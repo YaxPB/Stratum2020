@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
+        //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
             GetComponent<SpriteRenderer>().flipX = false;
         else
@@ -84,6 +85,7 @@ public class Enemy : MonoBehaviour
 
         anim.SetBool("IsDead", true);
 
+        //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }
