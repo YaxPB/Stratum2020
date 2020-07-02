@@ -43,7 +43,7 @@ public class MovePlayer : MonoBehaviour
             OnLanding();
         }
 
-        if(Input.GetButtonDown("Jump") && !isJumping)
+        /*Input.GetButtonDown("Jump") && !isJumping)
         {
             axisY = transform.position.y;
             isJumping = true;
@@ -51,7 +51,7 @@ public class MovePlayer : MonoBehaviour
             rigidBody.WakeUp();
             rigidBody.AddForce(new Vector2(transform.position.x + 7.5f, jumpForce));
             //animator.SetBool("isJumping", true);
-        }
+        }*/
     }
 
     private void Flip(float horizontal)
@@ -60,9 +60,11 @@ public class MovePlayer : MonoBehaviour
         {
             facingRight = !facingRight;
 
-            Vector3 scale = transform.localScale;
+            /*Vector3 scale = transform.localScale;
             scale.x *= -1;
-            transform.localScale = scale;
+            transform.localScale = scale;*/
+
+            transform.Rotate(0f, 180f, 0f);
         }
     }
 
