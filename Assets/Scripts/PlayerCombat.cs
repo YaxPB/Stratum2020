@@ -7,7 +7,7 @@ public class PlayerCombat : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
 
-    public Animator anim;
+    public Animation anim;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -26,14 +26,14 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= nextAttack)
+       /* if (Time.time >= nextAttack)
         {
             if (Input.GetButtonDown("Fire1"))
             {
                 Attack();
                 nextAttack = Time.time + 1f / attackRate;
             }
-        }
+        }*/
     }
 
     void Attack()
