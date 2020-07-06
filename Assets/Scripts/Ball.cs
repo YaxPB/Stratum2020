@@ -5,8 +5,9 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public Transform kickOff;
-
     public GameObject ballPrefab;
+
+    public float despawn = 2f;
 
     // Update is called once per frame
     void Update()
@@ -20,6 +21,7 @@ public class Ball : MonoBehaviour
     void Shoot()
     {
         Debug.Log("kicked!");
-        Instantiate(ballPrefab, kickOff.position, kickOff.rotation);
+        GameObject flight = Instantiate(ballPrefab, kickOff.position, kickOff.rotation);
+        Destroy(flight, despawn);
     }
 }

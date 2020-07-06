@@ -327,6 +327,7 @@ MonoBehaviour:
   kickOff: {fileID: 1805949791}
   ballPrefab: {fileID: 3349655182178554148, guid: 3f623fda920b39c48becb5825b9e282f,
     type: 3}
+  despawn: 0.8
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

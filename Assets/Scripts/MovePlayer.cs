@@ -38,12 +38,12 @@ public class MovePlayer : MonoBehaviour
         transform.position = transform.position + movement * Time.deltaTime;
         Flip(horizontal);
 
-        if(transform.position.y <= axisY)
+        /*if(transform.position.y <= axisY)
         {
             OnLanding();
         }
 
-        /*Input.GetButtonDown("Jump") && !isJumping)
+        Input.GetButtonDown("Jump") && !isJumping)
         {
             axisY = transform.position.y;
             isJumping = true;
@@ -68,12 +68,12 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    void OnLanding()
+    /*void OnLanding()
     {
         isJumping = false;
         rigidBody.gravityScale = 0f;
         rigidBody.Sleep();
         axisY = transform.position.y;
         //animator.SetBool("isJumping", false);
-    }
+    }*/
 }
