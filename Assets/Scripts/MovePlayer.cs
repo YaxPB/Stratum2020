@@ -5,7 +5,8 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     public float runSpeed = 1f;
-    public float jumpForce = 300f;
+    public float slidingSpeed = 300f;
+    private Vector3 slideDir;
 
     float horizontal;
     float vertical;
@@ -30,6 +31,7 @@ public class MovePlayer : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
+        DodgeRoll();
     }
 
     private void FixedUpdate()
@@ -76,4 +78,15 @@ public class MovePlayer : MonoBehaviour
         axisY = transform.position.y;
         //animator.SetBool("isJumping", false);
     }*/
+
+    private void DodgeRoll()
+    {
+        if (Input.GetButtonDown("Dodge"))
+        {
+            slideDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            slideDir.z = 0;
+            transform.position += slideDir * slidingSpeed * Time.deltaTime;
+            Debug.Log("dodged");
+        }
+    }
 }

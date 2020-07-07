@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
         //apply damage 
         foreach (Collider2D player in hitPlayer)
         {
-            player.GetComponent<Enemy>().TakeDamage(attackDamage);
+            player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
         }
     }
 
