@@ -10,9 +10,10 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float chaseDistance;
     public float stopDistance;
-
+    
     public Animator anim;
     public GameObject target;
+
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -27,6 +28,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+
+
     }
     
     void Update()

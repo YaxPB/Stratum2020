@@ -54,10 +54,6 @@ public class BorderBeats : MonoBehaviour
             BeatGenerator.instance.SpawnBeat();
 
         }
-        if (Input.GetKeyUp(capPunch) || Input.GetKeyUp(capKick) || Input.GetKeyUp(capDodge) || Input.GetKeyUp(capBerimbau))
-        {
-
-        }
 
     }
 
