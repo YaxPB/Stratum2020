@@ -321,13 +321,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 253619244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e39c9c966a5254ba99a6d320de77a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32a0e520d064e784a929ce051e4d96e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   kickOff: {fileID: 1805949791}
   ballPrefab: {fileID: 3349655182178554148, guid: 3f623fda920b39c48becb5825b9e282f,
     type: 3}
-  despawn: 0.8
+  despawn: 0.7
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,9 +815,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1811861762}
   - component: {fileID: 1811861761}
-  - component: {fileID: 1811861763}
   - component: {fileID: 1811861764}
   - component: {fileID: 1811861765}
+  - component: {fileID: 1811861763}
   m_Layer: 8
   m_Name: NinjaFoo
   m_TagString: Enemy
