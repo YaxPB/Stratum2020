@@ -8,13 +8,20 @@ public class Ball : MonoBehaviour
     public GameObject ballPrefab;
 
     public float despawn = 2f;
+    
+    public float ballCoolDown = 2f;
+    private float nextBall = 0;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Kick"))
+        if (Time.time > nextBall)
         {
-            Shoot();
+            if (Input.GetButtonDown("Kick"))
+            {
+                Shoot();
+                nextBall = Time.time + ballCoolDown;
+            }
         }
     }
 
