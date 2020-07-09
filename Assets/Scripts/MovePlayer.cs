@@ -6,7 +6,6 @@ public class MovePlayer : MonoBehaviour
 {
     public float runSpeed = 1f;
     public float rollSpeed = 5f;
-    public float slidingSpeed = 300f;
     private Vector3 slideDir;
 
     float horizontal;
@@ -14,17 +13,16 @@ public class MovePlayer : MonoBehaviour
     bool facingRight;
 
     Animator animator;
-
-    Rigidbody2D rigidBody;
-    float axisY;
-    bool isJumping;
+    
+    //bool isJumping;
     bool isRolling;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody2D>();
-        rigidBody.Sleep();
+
+        /*rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.Sleep();*/
     }
 
     // Update is called once per frame
