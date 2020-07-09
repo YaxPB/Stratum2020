@@ -11,9 +11,12 @@ public class Enemy : MonoBehaviour
     public float regSpeed;
     public float chaseDistance;
     public float stopDistance;
-
+    
     public Animator anim;
     public GameObject target;
+
+    public GameObject theCanvas;
+    private Animator theTarget;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -32,8 +35,13 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+<<<<<<< HEAD
         regSpeed = speed;
         isStunned = false;
+=======
+        theCanvas.SetActive(false);
+        theTarget = theCanvas.GetComponent<Animator>();
+>>>>>>> 6b80d8b9d30138116e4fc1dca630d27ada9c96bb
     }
     
     void Update()
@@ -64,6 +72,8 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
+        theCanvas.SetActive(true);
+        
         //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
             GetComponent<SpriteRenderer>().flipX = false;
@@ -88,6 +98,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        theTarget.SetBool("CombatMode", false);
+        theCanvas.SetActive(false);
         Debug.Log("Enemy died!");
 
         anim.SetBool("IsDead", true);
@@ -110,7 +122,7 @@ public class Enemy : MonoBehaviour
     {
         //play attack anim
         anim.SetTrigger("EAttack");
-
+        theTarget.SetBool("CombatMode", true);
         //detect player in range
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
 
