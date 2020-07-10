@@ -207,10 +207,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   speed: 2
+  regSpeed: 0
   chaseDistance: 4
   stopDistance: 1
   anim: {fileID: 3613096323288549441}
-  target: {fileID: 4585105229987357555, guid: dd04ea1b7654be243b39838fce2a508b, type: 3}
+  target: {fileID: 0}
   theCanvas: {fileID: 195179885081463898}
   attackPoint: {fileID: 3613096323859899478}
   attackRange: 0.5
@@ -219,6 +220,9 @@ MonoBehaviour:
     m_Bits: 512
   attackDamage: 20
   attackRate: 1.5
+  noteDamo: 10
+  isStunned: 0
+  stunDuration: 2
 --- !u!61 &3613096323288549440
 BoxCollider2D:
   m_ObjectHideFlags: 0
