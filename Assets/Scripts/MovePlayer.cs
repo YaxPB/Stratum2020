@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     public float runSpeed = 1f;
+    public float rollSpeed = 5f;
     public float slidingSpeed = 300f;
     private Vector3 slideDir;
 
@@ -17,6 +18,7 @@ public class MovePlayer : MonoBehaviour
     Rigidbody2D rigidBody;
     float axisY;
     bool isJumping;
+    bool isRolling;
 
     private void Awake()
     {
@@ -30,8 +32,14 @@ public class MovePlayer : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-
-        DodgeRoll();
+        Vector3 rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+        
+        if (Input.GetButtonDown("Dodge"))
+        {
+            isRolling = true;
+            Debug.Log("dodged");
+            DodgeRoll(rolling);
+        }
     }
 
     private void FixedUpdate()
@@ -79,14 +87,13 @@ public class MovePlayer : MonoBehaviour
         //animator.SetBool("isJumping", false);
     }*/
 
-    private void DodgeRoll()
+    private void DodgeRoll(Vector3 num)
     {
-        if (Input.GetButtonDown("Dodge"))
+        if (isRolling)
         {
-            slideDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            slideDir.z = 0;
-            transform.position += slideDir * slidingSpeed * Time.deltaTime;
-            Debug.Log("dodged");
+            
+            //transform.position = transform.position + num * Time.deltaTime;
+            isRolling = false;
         }
     }
 }
