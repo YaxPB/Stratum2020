@@ -35,13 +35,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-<<<<<<< HEAD
-        regSpeed = speed;
-        isStunned = false;
-=======
         theCanvas.SetActive(false);
         theTarget = theCanvas.GetComponent<Animator>();
->>>>>>> 6b80d8b9d30138116e4fc1dca630d27ada9c96bb
     }
     
     void Update()
@@ -49,6 +44,7 @@ public class Enemy : MonoBehaviour
         targetDistance = Vector2.Distance(transform.position, target.transform.position);
         if (targetDistance < chaseDistance && targetDistance > stopDistance)
         {
+            Debug.Log("nani");
             ChasePlayer(); 
         }
         else
@@ -122,7 +118,9 @@ public class Enemy : MonoBehaviour
     {
         //play attack anim
         anim.SetTrigger("EAttack");
+
         theTarget.SetBool("CombatMode", true);
+
         //detect player in range
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
 
