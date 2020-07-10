@@ -18,9 +18,22 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 1.5f;
     float nextAttack = 0f;
 
+    public Transform noteStart;
+    public GameObject notePrefab;
+
+    public MovePlayer mp;
+    public float regSpeed;
+
+    public float musicCoolDown = 5f;
+    private float nextMusic = 0;
+    
+    //despawn timer lol
+    public float berimgone = 4f;
+
     void Start()
     {
         currentHealth = maxHealth;
+        regSpeed = mp.runSpeed;
     }
 
     // Update is called once per frame
@@ -32,6 +45,16 @@ public class PlayerCombat : MonoBehaviour
             {
                 Attack();
                 nextAttack = Time.time + 1f / attackRate;
+            }
+        }
+
+        if (Time.time > nextMusic)
+        {
+            mp.runSpeed = regSpeed;
+            if (Input.GetButtonDown("Berimbau"))
+            {
+                Music();
+                nextMusic = Time.time + musicCoolDown;
             }
         }
     }
@@ -80,5 +103,13 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    void Music()
+    {
+        mp.runSpeed = mp.runSpeed / 3;
+        Debug.Log("MUSIC!");
+        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
+        Destroy(flight, berimgone);
     }
 }

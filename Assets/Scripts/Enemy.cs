@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     int currentHealth;
 
     public float speed;
+    public float regSpeed;
     public float chaseDistance;
     public float stopDistance;
     
@@ -27,11 +28,20 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1.5f;
     float nextAttack = 0f;
 
+    public int noteDamo = 10;
+    public bool isStunned;
+    public float stunDuration = 2f;
+
     void Start()
     {
         currentHealth = maxHealth;
+<<<<<<< HEAD
+        regSpeed = speed;
+        isStunned = false;
+=======
         theCanvas.SetActive(false);
         theTarget = theCanvas.GetComponent<Animator>();
+>>>>>>> 6b80d8b9d30138116e4fc1dca630d27ada9c96bb
     }
     
     void Update()
@@ -129,5 +139,23 @@ public class Enemy : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Music") && isStunned == false)
+        {
+            isStunned = true;
+            TakeDamage(noteDamo);
+            speed = speed / 4;
+            Invoke("NotStunned", stunDuration);
+        }
+    }
+
+    void NotStunned()
+    {
+        isStunned = false;
+        Debug.Log("unstunning");
+        speed = regSpeed;
     }
 }
