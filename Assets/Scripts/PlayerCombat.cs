@@ -6,6 +6,8 @@ public class PlayerCombat : MonoBehaviour
 {
     public int maxHealth = 100;
     int currentHealth;
+    public HealthBar healthBar;
+    public GameObject healthCanvas;
 
     public Animator anim;
 
@@ -34,6 +36,9 @@ public class PlayerCombat : MonoBehaviour
     {
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
+
+        healthBar.SetMaxHealth(maxHealth);
+        healthCanvas.SetActive(true);
     }
 
     // Update is called once per frame
@@ -80,6 +85,7 @@ public class PlayerCombat : MonoBehaviour
 
         //play hurt anim
         anim.SetTrigger("Hurt");
+        healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -95,6 +101,8 @@ public class PlayerCombat : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+        mp.enabled = false;
+        healthCanvas.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
