@@ -5,23 +5,24 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     public float runSpeed = 1f;
-    public float jumpForce = 300f;
+    public float rollSpeed = 5f;
+    private Vector3 slideDir;
 
     float horizontal;
     float vertical;
     bool facingRight;
 
     Animator animator;
-
-    Rigidbody2D rigidBody;
-    float axisY;
-    bool isJumping;
+    
+    //bool isJumping;
+    bool isRolling;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody2D>();
-        rigidBody.Sleep();
+
+        /*rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.Sleep();*/
     }
 
     // Update is called once per frame
@@ -29,7 +30,14 @@ public class MovePlayer : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-
+        Vector3 rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+        
+        if (Input.GetButtonDown("Dodge"))
+        {
+            isRolling = true;
+            Debug.Log("dodged");
+            DodgeRoll(rolling);
+        }
     }
 
     private void FixedUpdate()
@@ -38,12 +46,12 @@ public class MovePlayer : MonoBehaviour
         transform.position = transform.position + movement * Time.deltaTime;
         Flip(horizontal);
 
-        if(transform.position.y <= axisY)
+        /*if(transform.position.y <= axisY)
         {
             OnLanding();
         }
 
-        /*Input.GetButtonDown("Jump") && !isJumping)
+        Input.GetButtonDown("Jump") && !isJumping)
         {
             axisY = transform.position.y;
             isJumping = true;
@@ -68,12 +76,22 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    void OnLanding()
+    /*void OnLanding()
     {
         isJumping = false;
         rigidBody.gravityScale = 0f;
         rigidBody.Sleep();
         axisY = transform.position.y;
         //animator.SetBool("isJumping", false);
+    }*/
+
+    private void DodgeRoll(Vector3 num)
+    {
+        if (isRolling)
+        {
+            
+            //transform.position = transform.position + num * Time.deltaTime;
+            isRolling = false;
+        }
     }
 }
