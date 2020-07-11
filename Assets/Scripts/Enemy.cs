@@ -8,11 +8,15 @@ public class Enemy : MonoBehaviour
     int currentHealth;
 
     public float speed;
+    public float regSpeed;
     public float chaseDistance;
     public float stopDistance;
-
+    
     public Animator anim;
     public GameObject target;
+
+    public GameObject theCanvas;
+    private Animator theTarget;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -24,9 +28,15 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1.5f;
     float nextAttack = 0f;
 
+    public int noteDamo = 10;
+    public bool isStunned;
+    public float stunDuration = 2f;
+
     void Start()
     {
         currentHealth = maxHealth;
+        theCanvas.SetActive(false);
+        theTarget = theCanvas.GetComponent<Animator>();
     }
     
     void Update()
@@ -34,6 +44,7 @@ public class Enemy : MonoBehaviour
         targetDistance = Vector2.Distance(transform.position, target.transform.position);
         if (targetDistance < chaseDistance && targetDistance > stopDistance)
         {
+            Debug.Log("nani");
             ChasePlayer(); 
         }
         else
@@ -57,6 +68,8 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
+        theCanvas.SetActive(true);
+        
         //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
             GetComponent<SpriteRenderer>().flipX = false;
@@ -81,6 +94,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        theTarget.SetBool("CombatMode", false);
+        theCanvas.SetActive(false);
         Debug.Log("Enemy died!");
 
         anim.SetBool("IsDead", true);
@@ -104,13 +119,15 @@ public class Enemy : MonoBehaviour
         //play attack anim
         anim.SetTrigger("EAttack");
 
+        theTarget.SetBool("CombatMode", true);
+
         //detect player in range
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
 
         //apply damage 
         foreach (Collider2D player in hitPlayer)
         {
-            player.GetComponent<Enemy>().TakeDamage(attackDamage);
+            player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
         }
     }
 
@@ -120,5 +137,23 @@ public class Enemy : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Music") && isStunned == false)
+        {
+            isStunned = true;
+            TakeDamage(noteDamo);
+            speed = speed / 4;
+            Invoke("NotStunned", stunDuration);
+        }
+    }
+
+    void NotStunned()
+    {
+        isStunned = false;
+        Debug.Log("unstunning");
+        speed = regSpeed;
     }
 }

@@ -5,21 +5,30 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public Transform kickOff;
-
     public GameObject ballPrefab;
+
+    public float despawn = 2f;
+    
+    public float ballCoolDown = 2f;
+    private float nextBall = 0;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Kick"))
+        if (Time.time > nextBall)
         {
-            Shoot();
+            if (Input.GetButtonDown("Kick"))
+            {
+                Shoot();
+                nextBall = Time.time + ballCoolDown;
+            }
         }
     }
 
     void Shoot()
     {
         Debug.Log("kicked!");
-        Instantiate(ballPrefab, kickOff.position, kickOff.rotation);
+        GameObject flight = Instantiate(ballPrefab, kickOff.position, kickOff.rotation);
+        Destroy(flight, despawn);
     }
 }
