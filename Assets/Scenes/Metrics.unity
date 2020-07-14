@@ -622,6 +622,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 29963552, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 29963552, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3613096323288549444, guid: 843d976301ecf2448aa0a603a19a0b51,
         type: 3}
       propertyPath: m_Name
@@ -1737,6 +1745,11 @@ PrefabInstance:
     - target: {fileID: 7609580416468861313, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609580416708899336, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899348, guid: dd04ea1b7654be243b39838fce2a508b,
@@ -2912,7 +2925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1712112538
 SpriteRenderer:
   m_ObjectHideFlags: 0
