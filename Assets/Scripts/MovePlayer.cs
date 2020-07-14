@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
-    public float runSpeed = 1f;
+    public float runSpeed = 0.5f;
     public float rollSpeed = 5f;
     private Vector3 slideDir;
+    private Rigidbody2D playerRB;
+    private Vector3 rolling;
 
     float horizontal;
     float vertical;
     bool facingRight;
+
+    bool canMove;
+    bool isCombat;
 
     Animator animator;
     
@@ -19,6 +24,9 @@ public class MovePlayer : MonoBehaviour
 
     private void Awake()
     {
+        canMove = true;
+        isCombat = false;
+        playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
         /*rigidBody = GetComponent<Rigidbody2D>();
@@ -30,8 +38,14 @@ public class MovePlayer : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        Vector3 rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
-        
+        rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+
+        /*if (!canMove)
+        {
+            playerRB.velocity = Vector2.zero;
+            return;
+        }*/
+
         if (Input.GetButtonDown("Dodge"))
         {
             isRolling = true;
