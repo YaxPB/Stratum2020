@@ -133,5 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544676f7e6588e04b9c07390753b799e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 3
+  knockTime: 0.2
   speed: 15
+  damage: 10
   rb: {fileID: 8719944772568139067}
+  impactEffect: {fileID: 0}
