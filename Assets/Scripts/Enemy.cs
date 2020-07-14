@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour
     public float regSpeed;
     public float chaseDistance;
     public float stopDistance;
-    
+
+    public GameObject floatyText;
     public Animator anim;
     public GameObject target;
 
@@ -87,10 +88,21 @@ public class Enemy : MonoBehaviour
         //play hurt anim
         anim.SetTrigger("Hurt");
 
+        if (floatyText != null && currentHealth > 0)
+        {
+            ShowFloatyText(damage);
+        }
+
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    void ShowFloatyText(int damage)
+    {
+        var go = Instantiate(floatyText, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = damage.ToString();
     }
 
     void Die()
@@ -110,7 +122,7 @@ public class Enemy : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("player next to me");
+            //Debug.Log("player next to me");
             EnemyAttack();
         }
     }

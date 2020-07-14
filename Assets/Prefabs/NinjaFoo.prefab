@@ -210,8 +210,10 @@ MonoBehaviour:
   regSpeed: 0
   chaseDistance: 4
   stopDistance: 1
+  floatyText: {fileID: 2686320548070579237, guid: d9d72749bbebdc646825db2ecc36577a,
+    type: 3}
   anim: {fileID: 3613096323288549441}
-  target: {fileID: 0}
+  target: {fileID: 7609580416708899348, guid: dd04ea1b7654be243b39838fce2a508b, type: 3}
   theCanvas: {fileID: 195179885081463898}
   attackPoint: {fileID: 3613096323859899478}
   attackRange: 0.5
