@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         theCanvas.SetActive(false);
         theTarget = theCanvas.GetComponent<Animator>();
+        isStunned = false;
     }
     
     void Update()
@@ -143,9 +144,10 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Music") && isStunned == false)
         {
+            Debug.Log("ouch");
             isStunned = true;
             TakeDamage(noteDamo);
-            speed = speed / 4;
+            speed = 0;
             Invoke("NotStunned", stunDuration);
         }
     }

@@ -428,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 7609580416708899348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.36, y: -4.15, z: -1}
-  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 7609580415325780919}
   - {fileID: 7609580416228033895}
@@ -500,8 +500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08727ab0dc437e4c835d8cac2917ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 3
-  rollSpeed: 5
+  runSpeed: 5
+  rollSpeed: 15
+  startRollTime: 0.1
 --- !u!50 &7609580416708899336
 Rigidbody2D:
   serializedVersion: 4
