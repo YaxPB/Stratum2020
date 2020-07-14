@@ -103,6 +103,7 @@ public class Enemy : MonoBehaviour
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+        //EnemyManager.instance.enemyCount--;
     }
 
     void OnCollisionEnter(Collision col)
