@@ -42,6 +42,11 @@ public class MovePlayer : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         Vector3 rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
 
+        if (rollTime > 0)
+        {
+            rollTime -= Time.deltaTime;
+        }
+
         if (direction == 0) {
             if (Input.GetKeyDown(KeyCode.A))
                 direction = 1;
@@ -53,16 +58,17 @@ public class MovePlayer : MonoBehaviour
                 direction = 4;
         }
         else {
-            if(rollTime <= 0)
-            {
-                direction = 0;
-                rollTime = startRollTime;
-                rb.velocity = Vector2.zero;
+            //start coroutine
+            if (Input.GetButtonDown("Dodge")) { 
+                BeginDodgeRoll();
             }
-            else
-            {
-                DodgeRoll();
-            }
+        }
+
+        if (rollTime <= 0)
+        {
+            direction = 0;
+            rollTime = startRollTime;
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -111,12 +117,9 @@ public class MovePlayer : MonoBehaviour
         //animator.SetBool("isJumping", false);
     }*/
 
-    private void DodgeRoll()
+    private void BeginDodgeRoll()
     {
-
-        if (Input.GetButtonDown("Dodge"))
-        {
-            rollTime -= Time.deltaTime;
+            Debug.Log("im rolling");
 
             if(direction == 1)
             {
@@ -138,6 +141,5 @@ public class MovePlayer : MonoBehaviour
                 rb.velocity = Vector2.down * rollSpeed;
                 direction = 0;
             }
-        }
     }
 }

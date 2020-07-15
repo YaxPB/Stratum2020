@@ -22,7 +22,9 @@ public class Enemy : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask playerLayer;
-    public int attackDamage = 20;
+    public int attackDamage = 15;
+    public int strongDamage = 30;
+    private int attackType;
 
     private float targetDistance;
 
@@ -39,6 +41,7 @@ public class Enemy : MonoBehaviour
         theCanvas.SetActive(false);
         theTarget = theCanvas.GetComponent<Animator>();
         isStunned = false;
+        regSpeed = speed;
     }
     
     void Update()
@@ -129,18 +132,58 @@ public class Enemy : MonoBehaviour
 
     public void EnemyAttack()
     {
-        //play attack anim
-        anim.SetTrigger("EAttack");
-
         theTarget.SetBool("CombatMode", true);
 
         //detect player in range
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
 
-        //apply damage 
-        foreach (Collider2D player in hitPlayer)
+        var r = Random.Range(0, 100);
+        if (r < 70)
         {
-            player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+            //70% probability WEAK
+            attackType = 1;
+        }
+        else if (r >= 70 && r < 90)
+        {
+            //20% probability STRONG
+            attackType = 2;
+        }
+        else if (r >= 90)
+        {
+            //10% probability MISS
+            attackType = 3;
+        }
+
+        switch(attackType)
+        {
+            case 1:
+                //play attack anim
+                anim.SetTrigger("EAttack");
+                Debug.Log("weak attack");
+                //apply damage 
+                foreach (Collider2D player in hitPlayer)
+                {
+                    player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                }
+                break;
+            case 2:
+                //play strong attack anim
+                anim.SetTrigger("SAttack");
+                Debug.Log("strong atta  ck");
+                //apply damage 
+                foreach (Collider2D player in hitPlayer)
+                {
+                    player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
+                }
+                break;
+            case 3:
+                //play attack anim
+                anim.SetTrigger("Miss");
+                Debug.Log("you suck");
+                break;
+            default:
+                Debug.Log("shit happens");
+                break;
         }
     }
 
