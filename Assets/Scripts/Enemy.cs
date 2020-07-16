@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject floatyText;
     public Animator anim;
-    public GameObject target;
+    private GameObject target;
 
     public GameObject theCanvas;
     private Animator theTarget;
@@ -34,14 +34,16 @@ public class Enemy : MonoBehaviour
     public int noteDamo = 10;
     public bool isStunned;
     public float stunDuration = 2f;
+    bool isAttacking;
 
     void Start()
     {
         currentHealth = maxHealth;
         theCanvas.SetActive(false);
         theTarget = theCanvas.GetComponent<Animator>();
-        isStunned = false;
         regSpeed = speed;
+
+        target = GameObject.FindGameObjectWithTag("Player");
     }
     
     void Update()
@@ -49,7 +51,6 @@ public class Enemy : MonoBehaviour
         targetDistance = Vector2.Distance(transform.position, target.transform.position);
         if (targetDistance < chaseDistance && targetDistance > stopDistance)
         {
-            Debug.Log("nani");
             ChasePlayer(); 
         }
         else
@@ -59,9 +60,10 @@ public class Enemy : MonoBehaviour
         {
             if (Time.time >= nextAttack)
             {
-                    Debug.Log("player next to me");
-                    EnemyAttack();
-                    nextAttack = Time.time + 1f / attackRate;
+                isAttacking = true;
+                Debug.Log("player next to me");
+                EnemyAttack();
+                nextAttack = Time.time + 1f / attackRate;
             }
         }
     }
@@ -119,6 +121,8 @@ public class Enemy : MonoBehaviour
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+
+        Destroy(gameObject, 2f);
     }
 
     void OnCollisionEnter(Collision col)
@@ -132,58 +136,68 @@ public class Enemy : MonoBehaviour
 
     public void EnemyAttack()
     {
-        theTarget.SetBool("CombatMode", true);
+        var pc = target.GetComponent<PlayerCombat>();
 
-        //detect player in range
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
-
-        var r = Random.Range(0, 100);
-        if (r < 70)
+        if (pc.currentHealth < 0)
         {
-            //70% probability WEAK
-            attackType = 1;
-        }
-        else if (r >= 70 && r < 90)
-        {
-            //20% probability STRONG
-            attackType = 2;
-        }
-        else if (r >= 90)
-        {
-            //10% probability MISS
-            attackType = 3;
+            isAttacking = false;
         }
 
-        switch(attackType)
+        if (isAttacking)
         {
-            case 1:
-                //play attack anim
-                anim.SetTrigger("EAttack");
-                Debug.Log("weak attack");
-                //apply damage 
-                foreach (Collider2D player in hitPlayer)
-                {
-                    player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
-                }
-                break;
-            case 2:
-                //play strong attack anim
-                anim.SetTrigger("SAttack");
-                Debug.Log("strong atta  ck");
-                //apply damage 
-                foreach (Collider2D player in hitPlayer)
-                {
-                    player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
-                }
-                break;
-            case 3:
-                //play attack anim
-                anim.SetTrigger("Miss");
-                Debug.Log("you suck");
-                break;
-            default:
-                Debug.Log("shit happens");
-                break;
+            theTarget.SetBool("CombatMode", true);
+
+            //detect player in range
+            Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+
+            var r = Random.Range(0, 100);
+            if (r < 70)
+            {
+                //70% probability WEAK
+                attackType = 1;
+            }
+            else if (r >= 70 && r < 90)
+            {
+                //20% probability STRONG
+                attackType = 2;
+            }
+            else if (r >= 90)
+            {
+                //10% probability MISS
+                attackType = 3;
+            }
+
+            switch (attackType)
+            {
+                case 1:
+                    //play attack anim
+                    anim.SetTrigger("EAttack");
+                    Debug.Log("weak attack");
+                    //apply damage 
+                    foreach (Collider2D player in hitPlayer)
+                    {
+                        player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                    }
+                    break;
+                case 2:
+                    //play strong attack anim
+                    anim.SetTrigger("SAttack");
+                    Debug.Log("strong atta  ck");
+                    //apply damage 
+                    foreach (Collider2D player in hitPlayer)
+                    {
+                        player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
+                    }
+                    break;
+                case 3:
+                    //play attack anim
+                    anim.SetTrigger("Miss");
+                    Debug.Log("you suck");
+                    break;
+                default:
+                    Debug.Log("shit happens");
+                    break;
+            }
         }
     }
 

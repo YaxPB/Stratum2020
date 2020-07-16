@@ -26,17 +26,15 @@ public class BallBall : MonoBehaviour
         if (enemy != null)
         {
             //KNOCKBACK CODE
-            enemy.speed = enemy.speed / 2;
-            //enemyRb.isKinematic = false;
+            enemy.speed = enemy.speed * 2;
             Vector2 difference = enemyRb.transform.position - transform.position;
             difference = difference.normalized * thrust;
-            enemyRb.AddForce(difference, ForceMode2D.Impulse);
+            enemyRb.AddForce(difference, ForceMode2D.Force);
+            //Instantiate(impactEffect, transform.position, transform.rotation);
             StartCoroutine(KnockCo(enemyRb, enemy));
 
             enemy.TakeDamage(damage);
         }
-
-        //Instantiate(impactEffect, transform.position, transform.rotation);
     }
 
     private IEnumerator KnockCo(Rigidbody2D enemy, Enemy info)
