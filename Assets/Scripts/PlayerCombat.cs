@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
     public HealthBar healthBar;
     public GameObject healthCanvas;
+
+    public GameObject respawn;
 
     public Animator anim;
 
@@ -103,6 +105,8 @@ public class PlayerCombat : MonoBehaviour
         this.enabled = false;
         mp.enabled = false;
         healthCanvas.SetActive(false);
+
+        Invoke("Respawn", 5f);
     }
 
     private void OnDrawGizmosSelected()
@@ -119,5 +123,19 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("MUSIC!");
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
         Destroy(flight, berimgone);
+    }
+
+    void Respawn()
+    {
+        transform.position = respawn.transform.position;
+
+        anim.SetBool("IsDead", false);
+
+        GetComponent<Collider2D>().enabled = true;
+        this.enabled = true;
+        mp.enabled = true;
+        healthCanvas.SetActive(true);
+
+        Start();
     }
 }

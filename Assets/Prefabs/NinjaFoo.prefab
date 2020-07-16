@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 3613096323288549444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -5, z: 0}
-  m_LocalScale: {x: 2.99124, y: 2.99124, z: 2.99124}
+  m_LocalScale: {x: 4, y: 4, z: 2.4}
   m_Children:
   - {fileID: 3613096323859899478}
   - {fileID: 5692939215373813325}
@@ -209,12 +209,11 @@ MonoBehaviour:
   maxHealth: 100
   speed: 2
   regSpeed: 0
-  chaseDistance: 4
+  chaseDistance: 12
   stopDistance: 1
   floatyText: {fileID: 2686320548070579237, guid: d9d72749bbebdc646825db2ecc36577a,
     type: 3}
   anim: {fileID: 3613096323288549441}
-  target: {fileID: 0}
   theCanvas: {fileID: 195179885081463898}
   attackPoint: {fileID: 3613096323859899478}
   attackRange: 0.5
@@ -222,7 +221,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   attackDamage: 20
-  attackRate: 1.5
+  strongDamage: 30
+  attackRate: 0.4
   noteDamo: 10
   isStunned: 0
   stunDuration: 2
