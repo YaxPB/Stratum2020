@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         theCanvas.SetActive(false);
-        hitMe = theCanvas.GetComponent<Animator>();
+        hitMe = theCanvas.GetComponentInChildren<Animator>();
     }
     
     void Update()
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
-        // theCanvas.SetActive(true);
+        theCanvas.SetActive(true);
         
         //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
         // theTarget.SetBool("CombatMode", true);
 
         //detect player in range
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer, 0f, 5f);
 
         //apply damage 
         foreach (Collider2D player in hitPlayer)
@@ -147,6 +147,19 @@ public class Enemy : MonoBehaviour
             TakeDamage(noteDamo);
             speed = speed / 4;
             Invoke("NotStunned", stunDuration);
+        }
+        if (other.CompareTag("PewPew"))
+        {
+            Debug.Log("Raycast detected.");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PewPew"))
+        {
+            Debug.Log("Raycast has left the building");
+            hitMe.SetBool("withinRange", false);
         }
     }
 

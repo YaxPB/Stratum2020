@@ -19,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
     private Collider2D enemyCollision;
     private GameObject nearbyEnemy;
     private Animator enemyAnim;
+    private Enemy currentTarget;
 
     public int attackDamage = 40;
 
@@ -40,6 +41,7 @@ public class PlayerCombat : MonoBehaviour
 
     //despawn timer lol
     public float berimgone = 4f;
+    private Canvas temp;
     
     void Start()
     {
@@ -60,24 +62,27 @@ public class PlayerCombat : MonoBehaviour
         {
             Debug.Log("In Combat Mode");
             heartBoi.SetBool("isCombat", true);
-            deathRay = Physics2D.Raycast(transform.position, new Vector2(transform.rotation.y, 0f), attackRange * 2, layerMask);
-        }
-        if (deathRay.collider != null)
-        {
-            Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * deathRay.distance, Color.yellow);
-            Debug.Log("Hit!");
-            enemyCollision = deathRay.collider;
-            nearbyEnemy = enemyCollision.gameObject;
-            enemyAnim = nearbyEnemy.GetComponentInChildren<Canvas>().GetComponentInChildren<Animator>();
-            enemyAnim.enabled = true;
-            enemyAnim.SetBool("isCombat", true);
+            deathRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f), attackRange, layerMask);
 
+            if (deathRay.collider != null)
+            {
+                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * deathRay.distance, Color.yellow);
+                Debug.Log("Hit!");
+                enemyCollision = deathRay.collider;
+                nearbyEnemy = enemyCollision.gameObject;
+                enemyAnim = nearbyEnemy.GetComponentInChildren(typeof(Animator), true) as Animator;
+                enemyAnim.enabled = true;
+                enemyAnim.SetBool("isCombat", true);
+                enemyAnim.SetBool("withinRange", true);
+
+            }
+            else
+            {
+                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * deathRay.distance, Color.white);
+                Debug.Log("Miss!");
+            }
         }
-        else
-        {
-            Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right), Color.white);
-            Debug.Log("Miss!");
-        }
+        
 
         if (Time.time >= nextAttack)
         {
