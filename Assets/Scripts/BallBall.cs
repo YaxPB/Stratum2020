@@ -39,15 +39,15 @@ public class BallBall : MonoBehaviour
 
     private IEnumerator KnockCo(Rigidbody2D enemy, Enemy info)
     {
-        Debug.Log(enemy);
         if(enemy != null)
         {
             yield return new WaitForSeconds(knockTime);
-            Debug.Log(info.regSpeed);
+            //Debug.Log(info.regSpeed);
             enemy.velocity = Vector2.zero;
+
             //speed the enemy back up after the knockback;
             info.speed = info.regSpeed;
-            //enemy.isKinematic = true;
+
             Destroy(gameObject);
         }
     }

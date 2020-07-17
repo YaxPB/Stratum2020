@@ -27,7 +27,6 @@ public class Ball : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("kicked!");
         GameObject flight = Instantiate(ballPrefab, kickOff.position, kickOff.rotation);
         Destroy(flight, despawn);
     }

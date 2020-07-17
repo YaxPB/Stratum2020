@@ -220,7 +220,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  attackDamage: 20
+  attackDamage: 15
   strongDamage: 30
   attackRate: 0.4
   noteDamo: 10
