@@ -43,14 +43,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Parallax
     uniqueID: 3893655949
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Player
     uniqueID: 219729075
+    locked: 0
+  - name: Enemies
+    uniqueID: 2455592937
     locked: 0
   - name: UI
     uniqueID: 1516140709

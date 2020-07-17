@@ -12,11 +12,11 @@ public class Enemy : MonoBehaviour
     public float chaseDistance;
     public float stopDistance;
     
-    public Animator anim;
+    // public Animator anim;
     public GameObject target;
 
     public GameObject theCanvas;
-    private Animator theTarget;
+    private Animator hitMe;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         theCanvas.SetActive(false);
-        theTarget = theCanvas.GetComponent<Animator>();
+        hitMe = theCanvas.GetComponent<Animator>();
     }
     
     void Update()
@@ -54,7 +54,6 @@ public class Enemy : MonoBehaviour
         {
             if (Time.time >= nextAttack)
             {
-                    Debug.Log("player next to me");
                     EnemyAttack();
                     nextAttack = Time.time + 1f / attackRate;
             }
@@ -68,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
-        theCanvas.SetActive(true);
+        // theCanvas.SetActive(true);
         
         //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
@@ -84,7 +83,7 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
 
         //play hurt anim
-        anim.SetTrigger("Hurt");
+        // anim.SetTrigger("Hurt");
 
         if (currentHealth <= 0)
         {
@@ -94,11 +93,11 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        theTarget.SetBool("CombatMode", false);
+        // theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
         Debug.Log("Enemy died!");
 
-        anim.SetBool("IsDead", true);
+        // anim.SetBool("IsDead", true);
 
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
@@ -118,9 +117,9 @@ public class Enemy : MonoBehaviour
     public void EnemyAttack()
     {
         //play attack anim
-        anim.SetTrigger("EAttack");
+        // anim.SetTrigger("EAttack");
 
-        theTarget.SetBool("CombatMode", true);
+        // theTarget.SetBool("CombatMode", true);
 
         //detect player in range
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
