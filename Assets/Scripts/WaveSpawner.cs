@@ -69,11 +69,12 @@ public class WaveSpawner : MonoBehaviour
         waveCountDown = timeBetweenWaves;
 
         //waves.length will stop wave looping but is beyond index
-        if(nextWave + 1 > waves.Length - 1)
+        if(nextWave + 1 > waves.Length)
         {
             nextWave = 0;
             completed = true;
         }
+
         if (!completed)
         {
             Debug.Log("next wave");

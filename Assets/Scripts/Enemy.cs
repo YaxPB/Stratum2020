@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
             if (Time.time >= nextAttack)
             {
                 isAttacking = true;
-                Debug.Log("player next to me");
+                Debug.Log(target);
                 EnemyAttack();
                 nextAttack = Time.time + 1f / attackRate;
             }
@@ -114,7 +114,6 @@ public class Enemy : MonoBehaviour
     {
         theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
-        Debug.Log("Enemy died!");
 
         anim.SetBool("IsDead", true);
 
@@ -128,8 +127,7 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Player")
-        {
-            //Debug.Log("player next to me");
+        {;
             EnemyAttack();
         }
     }

@@ -97,8 +97,6 @@ public class PlayerCombat : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Enemy died!");
-
         anim.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
