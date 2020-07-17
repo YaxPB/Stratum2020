@@ -8,12 +8,17 @@ public class PlayerCombat : MonoBehaviour
     int currentHealth;
     public HealthBar healthBar;
     public GameObject healthCanvas;
+    private bool isCombat;
 
-    public Animator anim;
+    // public Animator anim;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    private Animator heartBoi;
+    private Collider2D enemyCollision;
+    private GameObject nearbyEnemy;
+    private Animator enemyAnim;
 
     public int attackDamage = 40;
 
@@ -28,22 +33,52 @@ public class PlayerCombat : MonoBehaviour
 
     public float musicCoolDown = 5f;
     private float nextMusic = 0;
-    
+
+    private RaycastHit2D deathRay;
+
+    private int layerMask = 1 << 8;
+
     //despawn timer lol
     public float berimgone = 4f;
-
+    
     void Start()
     {
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
-
+        
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
+        heartBoi = healthCanvas.GetComponentInChildren<Animator>();
+        heartBoi.SetBool("isCombat", false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        isCombat = CombatTrigger.isCombat;
+        if (isCombat)
+        {
+            Debug.Log("In Combat Mode");
+            heartBoi.SetBool("isCombat", true);
+            deathRay = Physics2D.Raycast(transform.position, new Vector2(transform.rotation.y, 0f), attackRange * 2, layerMask);
+        }
+        if (deathRay.collider != null)
+        {
+            Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * deathRay.distance, Color.yellow);
+            Debug.Log("Hit!");
+            enemyCollision = deathRay.collider;
+            nearbyEnemy = enemyCollision.gameObject;
+            enemyAnim = nearbyEnemy.GetComponentInChildren<Canvas>().GetComponentInChildren<Animator>();
+            enemyAnim.enabled = true;
+            enemyAnim.SetBool("isCombat", true);
+
+        }
+        else
+        {
+            Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right), Color.white);
+            Debug.Log("Miss!");
+        }
+
         if (Time.time >= nextAttack)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -67,7 +102,7 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         //play attack anim
-        anim.SetTrigger("Attack");
+        // anim.SetTrigger("Attack");
 
         //detect enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -84,7 +119,7 @@ public class PlayerCombat : MonoBehaviour
         currentHealth -= damage;
 
         //play hurt anim
-        anim.SetTrigger("Hurt");
+        // anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
@@ -95,9 +130,9 @@ public class PlayerCombat : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Enemy died!");
+        Debug.Log("You died!");
 
-        anim.SetBool("IsDead", true);
+        // anim.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;

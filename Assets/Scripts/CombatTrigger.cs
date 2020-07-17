@@ -7,13 +7,15 @@ public class CombatTrigger : MonoBehaviour
     public Camera mainCam;
     public Camera combatCam;
 
-    public bool isCombat;
+    public Canvas healthBar;
+    public static bool isCombat;
     private Animator theBeats;
     public AudioSource capBeat;
 
     // Start is called before the first frame update
     void Start()
     {
+
         combatCam.enabled = false;
         isCombat = false;
         theBeats = GetComponentInChildren<Animator>();
@@ -52,6 +54,7 @@ public class CombatTrigger : MonoBehaviour
 
     public void ActivateCombatMode()
     {
+        healthBar.enabled = true;
         capBeat.Play();
         mainCam.enabled = false;
         combatCam.enabled = true;
