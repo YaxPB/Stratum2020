@@ -9,6 +9,7 @@ TagManager:
   - Beat
   - Music
   - Barrier
+  - PewPew
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,9 @@ TagManager:
   - name: Parallax
     uniqueID: 3893655949
     locked: 0
+  - name: Background
+    uniqueID: 4104180153
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -54,6 +58,9 @@ TagManager:
     locked: 0
   - name: Enemies
     uniqueID: 2455592937
+    locked: 0
+  - name: Foreground
+    uniqueID: 2275712623
     locked: 0
   - name: UI
     uniqueID: 1516140709
