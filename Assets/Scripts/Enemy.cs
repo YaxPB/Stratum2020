@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private GameObject target;
 
     public GameObject theCanvas;
-    private Animator theTarget;
+    private Animator hitMe;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
     public float stunDuration = 2f;
     bool isAttacking;
 
+    public bool loggingEnabled = false;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
         regSpeed = speed;
 
         target = GameObject.FindGameObjectWithTag("Player");
+        hitMe = theCanvas.GetComponentInChildren<Animator>();
     }
     
     void Update()
@@ -51,6 +54,10 @@ public class Enemy : MonoBehaviour
         targetDistance = Vector2.Distance(transform.position, target.transform.position);
         if (targetDistance < chaseDistance && targetDistance > stopDistance)
         {
+            if (loggingEnabled)
+            {
+                Debug.Log("nani");
+            }
             ChasePlayer(); 
         }
         else
@@ -91,7 +98,7 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
 
         //play hurt anim
-        anim.SetTrigger("Hurt");
+        // anim.SetTrigger("Hurt");
 
         if (floatyText != null && currentHealth > 0)
         {
@@ -112,10 +119,12 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        theTarget.SetBool("CombatMode", false);
+        // theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
+        hitMe.SetBool("isCombat", false);
+        Debug.Log("Enemy died!");
 
-        anim.SetBool("IsDead", true);
+        // anim.SetBool("IsDead", true);
 
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
@@ -217,6 +226,19 @@ public class Enemy : MonoBehaviour
             speed = 0;
             Invoke("NotStunned", stunDuration);
         }
+        if (other.CompareTag("PewPew"))
+        {
+            Debug.Log("Raycast detected.");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PewPew"))
+        {
+            Debug.Log("Raycast has left the building");
+            hitMe.SetBool("withinRange", false);
+        }
     }
 
     void NotStunned()
@@ -224,5 +246,17 @@ public class Enemy : MonoBehaviour
         isStunned = false;
         Debug.Log("unstunning");
         speed = regSpeed;
+    }
+
+    void LockedOn(bool linedUp)
+    {
+        if (!linedUp)
+        {
+            hitMe.enabled = false;
+        }
+        Debug.Log("Locked on!");
+        hitMe.enabled = true;
+        hitMe.SetBool("isCombat", true);
+        hitMe.SetBool("withinRange", true);
     }
 }

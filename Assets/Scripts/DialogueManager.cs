@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;       // Holds the name of the NPC or object being interacted with
     public Text dialogueText;   // Holds the text to be displayed upon interaction
     public Animator animator;   // The animator in charge of enter/exit animation of the dialogue box
-    private bool convoStarted = false;   // Boolean to determine if a conversation has started
+    private bool convoStarted;  // Boolean to determine if a conversation has started
     private int pressedTimes;   // Number of times the F key is pressed
 
     // Uses a Queue (of Strings) data structure (FIFO)
@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-        
+        convoStarted = false;
     }
 
     // ONLY TOOK ME TWO FULL [working] DAYS BUT I FINALLY FUCKING FIXED IT ON 5/30/20 @ 12:38 AM
