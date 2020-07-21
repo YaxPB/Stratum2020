@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Player")
-        {;
+        {
             EnemyAttack();
         }
     }
@@ -164,7 +164,7 @@ public class Enemy : MonoBehaviour
                 //10% probability MISS
                 attackType = 3;
             }
-
+            
             switch (attackType)
             {
                 case 1:
