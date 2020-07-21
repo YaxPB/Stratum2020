@@ -23,6 +23,7 @@ public class MovePlayer : MonoBehaviour
 
     // Sound variables
     private float stepOffset;
+    private AudioSource playerFX;
 
 
     private void Awake()
@@ -30,6 +31,7 @@ public class MovePlayer : MonoBehaviour
         canMove = true;
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerFX = GetComponent<AudioSource>();
 
         /*rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.Sleep();*/
@@ -51,7 +53,6 @@ public class MovePlayer : MonoBehaviour
         rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
         if((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
         {
-            AudioManager.PlaySound("walk");
             // Can change this to adjust speed of footstep sounds
             stepOffset = 0.25f;
         }

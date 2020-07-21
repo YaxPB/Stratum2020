@@ -12,12 +12,18 @@ public class HealthBar : MonoBehaviour
     // also so other scripts can reference this 
     public static HealthBar instance;
     private Animator heartBeat;
+    private bool isCombat = false;
 
     private void Start()
     {
         instance = this;
         this.enabled = false;
         heartBeat = GetComponentInChildren<Animator>();
+        //Select the instance of AudioProcessor and pass a reference
+        //to this object
+        AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+        processor.onBeat.AddListener(onOnbeatDetected);
+        processor.onSpectrum.AddListener(onSpectrum);
     }
 
     public void SetMaxHealth(int health)
@@ -37,11 +43,35 @@ public class HealthBar : MonoBehaviour
     {
         if (!startOrEnd)
         {
+            isCombat = false;
             heartBeat.enabled = false;
             heartBeat.SetBool("isCombat", false);
             return;
         }
+        isCombat = true;
         heartBeat.enabled = true;
         heartBeat.SetBool("isCombat", true);
+    }
+
+    //this event will be called every time a beat is detected.
+    //Change the threshold parameter in the inspector
+    //to adjust the sensitivity
+    void onOnbeatDetected()
+    {
+        Debug.Log("Beat!!!");
+    }
+
+    //This event will be called every frame while music is playing
+    void onSpectrum(float[] spectrum)
+    {
+        //The spectrum is logarithmically averaged
+        //to 12 bands
+
+        for (int i = 0; i < spectrum.Length; ++i)
+        {
+            Vector3 start = new Vector3(i, 0, 0);
+            Vector3 end = new Vector3(i, spectrum[i], 0);
+            Debug.DrawLine(start, end);
+        }
     }
 }
