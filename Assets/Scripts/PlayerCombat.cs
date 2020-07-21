@@ -15,7 +15,6 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
-    private Animator heartBoi;
     private Collider2D enemyCollision;
     private GameObject nearbyEnemy;
     private Animator enemyAnim;
@@ -35,54 +34,38 @@ public class PlayerCombat : MonoBehaviour
     public float musicCoolDown = 5f;
     private float nextMusic = 0;
 
-    private RaycastHit2D deathRay;
+    private RaycastHit2D rangeRay;
 
+    // Make sure layerMask is configured correctly
     private int layerMask = 1 << 8;
+    // private LayerMask mask = LayerMask.GetMask("Wall");
 
     //despawn timer lol
     public float berimgone = 4f;
     private Canvas temp;
+
+    public bool loggingEnabled = false;
+    // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
+    public static PlayerCombat instance;
     
     void Start()
     {
+        instance = this;
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
         
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
-        heartBoi = healthCanvas.GetComponentInChildren<Animator>();
-        heartBoi.SetBool("isCombat", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        isCombat = CombatTrigger.isCombat;
         if (isCombat)
         {
-            Debug.Log("In Combat Mode");
-            heartBoi.SetBool("isCombat", true);
-            deathRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f), attackRange, layerMask);
-
-            if (deathRay.collider != null)
-            {
-                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * deathRay.distance, Color.yellow);
-                Debug.Log("Hit!");
-                enemyCollision = deathRay.collider;
-                nearbyEnemy = enemyCollision.gameObject;
-                enemyAnim = nearbyEnemy.GetComponentInChildren(typeof(Animator), true) as Animator;
-                enemyAnim.enabled = true;
-                enemyAnim.SetBool("isCombat", true);
-                enemyAnim.SetBool("withinRange", true);
-
-            }
-            else
-            {
-                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * deathRay.distance, Color.white);
-                Debug.Log("Miss!");
-            }
+            // Detects if enemy is within range to attack (targeting function)
+            TargetAssist();
         }
-        
 
         if (Time.time >= nextAttack)
         {
@@ -116,6 +99,7 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            AudioManager.PlaySound("kick");
         }
     }
 
@@ -135,7 +119,10 @@ public class PlayerCombat : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("You died!");
+        if (loggingEnabled)
+        {
+            Debug.Log("You died!");
+        }
 
         // anim.SetBool("IsDead", true);
 
@@ -155,9 +142,57 @@ public class PlayerCombat : MonoBehaviour
 
     void Music()
     {
+        if (loggingEnabled)
+        {
+            Debug.Log("MUSIC!");
+        }
         mp.runSpeed = mp.runSpeed / 3;
-        Debug.Log("MUSIC!");
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
         Destroy(flight, berimgone);
+    }
+
+    void TargetAssist()
+    {
+        if (isCombat)
+        {
+            if (loggingEnabled)
+            {
+                Debug.Log("In Combat Mode");
+            }
+            rangeRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f), attackRange, layerMask);
+
+            if (rangeRay.collider != null)
+            {
+                if (loggingEnabled)
+                {
+                    Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.yellow);
+                    Debug.Log("Hit!");
+                }
+
+                enemyCollision = rangeRay.collider;
+                nearbyEnemy = enemyCollision.gameObject;
+
+                nearbyEnemy.SendMessage("LockedOn", true);
+
+            }
+            else
+            {
+                if (loggingEnabled)
+                {
+                    Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.white);
+                    Debug.Log("Miss!");
+                }
+            }
+        }
+    }
+
+    void TimeToFight(bool combatMode)
+    {
+        if (!combatMode)
+        {
+            instance.enabled = false;
+        }
+        isCombat = combatMode;
+        instance.enabled = true;
     }
 }

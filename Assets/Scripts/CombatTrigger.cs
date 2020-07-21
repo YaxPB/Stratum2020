@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class CombatTrigger : MonoBehaviour
 {
+    // For camera switching
     public Camera mainCam;
     public Camera combatCam;
 
+    // Reference to the LifeForce Canvas that holds the HealthBar info
     public Canvas healthBar;
     public static bool isCombat;
-    private Animator theBeats;
     public AudioSource capBeat;
+    // Thinking about initializing a counter to hold numEnemiesLeft
+    // Every time an enemy is instantiated, use SendMessage to invoke a function
+    // that just adds 1 to counter; minus 1 every time player defeats an enemy
+    // Once the counter hits zero, activate NextZoneUI 
+    // Need to go through Yax's Respawn/Enemy Spawn script to figure out approach
 
     // Start is called before the first frame update
     void Start()
     {
-
         combatCam.enabled = false;
         isCombat = false;
-        theBeats = GetComponentInChildren<Animator>();
         capBeat = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // check if there are any enemies in the surrounding area
-        // if not, trigger NextArea UI 
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,18 +49,31 @@ public class CombatTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        // Update isCombat boolean to false once player exits the combat zone
         isCombat = false;
+        // Immediately stop playing the combat beat
         capBeat.Stop();
+        // Turns the main camera (+CamFollow) back on
         mainCam.enabled = true;
+        // Turns off the scene-locked combatCam
         combatCam.enabled = false;
+        // Tells the HealthBar to stop playing CombatMode animations
+        HealthBar.instance.gameObject.SendMessage("StartBeat", false);
+        PlayerCombat.instance.gameObject.SendMessage("TimeToFight", false);
     }
 
     public void ActivateCombatMode()
     {
+        // Enables the HealthBar to appear and activates its attached script
         healthBar.enabled = true;
+        // Starts playing the capoeira beat
         capBeat.Play();
+        // Disables the main camera
         mainCam.enabled = false;
+        // Switches to a combatCam that locks onto the entirety of the current combat area
         combatCam.enabled = true;
-
+        // Tells the HealthBar to start playing its CombatMode animations
+        HealthBar.instance.gameObject.SendMessage("StartBeat", true);
+        PlayerCombat.instance.gameObject.SendMessage("TimeToFight", true);
     }
 }
