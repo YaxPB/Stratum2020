@@ -7,10 +7,14 @@ public class MovePlayer : MonoBehaviour
     public float runSpeed = 1f;
     public float rollWindup = 0.1f;
     private Vector3 slideDir;
+    private Rigidbody2D playerRB;
+    private Vector3 rolling;
 
     float horizontal;
     float vertical;
     bool facingRight;
+
+    bool canMove;
 
     Animator animator;
 
@@ -21,10 +25,19 @@ public class MovePlayer : MonoBehaviour
     private int direction;
 
     //bool isJumping;
+    bool isRolling;
+
+    // Sound variables
+    private float stepOffset;
+    private AudioSource playerFX;
+
 
     private void Awake()
     {
+        canMove = true;
+        playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerFX = GetComponent<AudioSource>();
 
         /*rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.Sleep();*/
@@ -39,11 +52,30 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stepOffset > 0)
+        {
+            stepOffset -= Time.deltaTime;
+        }
+        if (stepOffset < 0)
+        {
+            stepOffset = 0;
+        }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        Vector3 rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+        rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+        if((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
+        {
+            // Can change this to adjust speed of footstep sounds
+            stepOffset = 0.25f;
+        }
 
-        if (rollTime > 0)
+        /*if (!canMove)
+        {
+            playerRB.velocity = Vector2.zero;
+            return;
+        }*/
+
+        if (Input.GetButtonDown("Dodge"))
         {
             rollTime -= Time.deltaTime;
         }
