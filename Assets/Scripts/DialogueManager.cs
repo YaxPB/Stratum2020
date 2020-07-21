@@ -9,7 +9,6 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;   // Holds the text to be displayed upon interaction
     public Animator animator;   // The animator in charge of enter/exit animation of the dialogue box
     private bool convoStarted;  // Boolean to determine if a conversation has started
-    private bool convoEnd;      // Booelean to determine... yada yada (for testing purposes only rn)
     private int pressedTimes;   // Number of times the F key is pressed
 
     // Uses a Queue (of Strings) data structure (FIFO)
@@ -20,7 +19,6 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         convoStarted = false;
-        convoEnd = false;
     }
 
     // ONLY TOOK ME TWO FULL [working] DAYS BUT I FINALLY FUCKING FIXED IT ON 5/30/20 @ 12:38 AM
@@ -108,7 +106,6 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("isOpen", false);
         // Reset variable for future conversations
         pressedTimes = 0;
-        convoEnd = true;
     }
 
 }

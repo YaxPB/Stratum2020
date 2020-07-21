@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
     public bool isStunned;
     public float stunDuration = 2f;
 
+    public bool loggingEnabled = false;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -44,7 +46,10 @@ public class Enemy : MonoBehaviour
         targetDistance = Vector2.Distance(transform.position, target.transform.position);
         if (targetDistance < chaseDistance && targetDistance > stopDistance)
         {
-            Debug.Log("nani");
+            if (loggingEnabled)
+            {
+                Debug.Log("nani");
+            }
             ChasePlayer(); 
         }
         else
@@ -95,6 +100,7 @@ public class Enemy : MonoBehaviour
     {
         // theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
+        hitMe.SetBool("isCombat", false);
         Debug.Log("Enemy died!");
 
         // anim.SetBool("IsDead", true);
@@ -168,5 +174,17 @@ public class Enemy : MonoBehaviour
         isStunned = false;
         Debug.Log("unstunning");
         speed = regSpeed;
+    }
+
+    void LockedOn(bool linedUp)
+    {
+        if (!linedUp)
+        {
+            hitMe.enabled = false;
+        }
+        Debug.Log("Locked on!");
+        hitMe.enabled = true;
+        hitMe.SetBool("isCombat", true);
+        hitMe.SetBool("withinRange", true);
     }
 }

@@ -15,17 +15,19 @@ public class MovePlayer : MonoBehaviour
     bool facingRight;
 
     bool canMove;
-    bool isCombat;
 
     Animator animator;
     
     //bool isJumping;
     bool isRolling;
 
+    // Sound variables
+    private float stepOffset;
+
+
     private void Awake()
     {
         canMove = true;
-        isCombat = false;
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -36,9 +38,23 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stepOffset > 0)
+        {
+            stepOffset -= Time.deltaTime;
+        }
+        if (stepOffset < 0)
+        {
+            stepOffset = 0;
+        }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+        if((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
+        {
+            AudioManager.PlaySound("walk");
+            // Can change this to adjust speed of footstep sounds
+            stepOffset = 0.25f;
+        }
 
         /*if (!canMove)
         {

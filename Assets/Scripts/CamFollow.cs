@@ -10,24 +10,25 @@ public class CamFollow : MonoBehaviour
     // public Vector3 offset;
 
     [SerializeField]
-    GameObject thePlayer;
+    GameObject thePlayer = null;
 
     [SerializeField]
-    float timeOffset;
+    float timeOffset = 0f;
 
     [SerializeField]
-    Vector2 posOffset;
+    Vector2 posOffset = new Vector2(0f, 0f);
 
     private Vector3 theVelocity;
 
     [SerializeField]
-    float leftLimit;
+    float leftLimit = 0f;
     [SerializeField]
-    float rightLimit;
+    float rightLimit = 0f;
     [SerializeField]
-    float topLimit;
+    float topLimit = 0f;
     [SerializeField]
-    float bottomLimit;
+    float bottomLimit = 0f;
+
 
     private void Update()
     {
