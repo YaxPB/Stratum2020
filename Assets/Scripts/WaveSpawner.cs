@@ -28,6 +28,8 @@ public class WaveSpawner : MonoBehaviour
     private SpawnState state = SpawnState.COUNTING;
     bool completed;
 
+    public GameObject foos;
+
     private void Start()
     {
         if(spawnPoints.Length == 0)
@@ -69,10 +71,12 @@ public class WaveSpawner : MonoBehaviour
         waveCountDown = timeBetweenWaves;
 
         //waves.length will stop wave looping but is beyond index
-        if(nextWave + 1 > waves.Length)
+        if(nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
             completed = true;
+            Debug.Log("all done");
+            foos.SetActive(true);
         }
 
         if (!completed)
@@ -99,6 +103,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave(Wave _wave)
     {
+        foos.SetActive(false);
         Debug.Log("Spawning wave:" + _wave.name);
         state = SpawnState.SPAWNING;
 

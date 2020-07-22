@@ -25,9 +25,6 @@ public class MovePlayer : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-
-        /*rigidBody = GetComponent<Rigidbody2D>();
-        rigidBody.Sleep();*/
     }
 
     private void Start()
@@ -78,21 +75,6 @@ public class MovePlayer : MonoBehaviour
         Vector3 movement = new Vector3(horizontal * runSpeed, vertical * runSpeed, 0.0f);
         transform.position = transform.position + movement * Time.deltaTime;
         Flip(horizontal);
-
-        /*if(transform.position.y <= axisY)
-        {
-            OnLanding();
-        }
-
-        Input.GetButtonDown("Jump") && !isJumping)
-        {
-            axisY = transform.position.y;
-            isJumping = true;
-            rigidBody.gravityScale = 1.5f;
-            rigidBody.WakeUp();
-            rigidBody.AddForce(new Vector2(transform.position.x + 7.5f, jumpForce));
-            //animator.SetBool("isJumping", true);
-        }*/
     }
 
     private void Flip(float horizontal)
@@ -108,15 +90,6 @@ public class MovePlayer : MonoBehaviour
             transform.Rotate(0f, 180f, 0f);
         }
     }
-
-    /*void OnLanding()
-    {
-        isJumping = false;
-        rigidBody.gravityScale = 0f;
-        rigidBody.Sleep();
-        axisY = transform.position.y;
-        //animator.SetBool("isJumping", false);
-    }*/
 
     private IEnumerator BeginDodgeRoll()
     {
