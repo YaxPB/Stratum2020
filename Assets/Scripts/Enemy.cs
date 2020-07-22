@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
     public GameObject theCanvas;
     private Animator theTarget;
 
+    public HealthBar healthBar;
+    public GameObject healthCanvas;
+
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask playerLayer;
@@ -39,6 +42,9 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthCanvas.SetActive(true);
+
         theCanvas.SetActive(false);
         theTarget = theCanvas.GetComponent<Animator>();
         regSpeed = speed;
@@ -91,7 +97,8 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
 
         //play hurt anim
-        anim.SetTrigger("Hurt");
+        //anim.SetTrigger("Hurt");
+        healthBar.SetHealth(currentHealth);
 
         if (floatyText != null && currentHealth > 0)
         {
@@ -115,7 +122,7 @@ public class Enemy : MonoBehaviour
         theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
 
-        anim.SetBool("IsDead", true);
+        //anim.SetBool("IsDead", true);
 
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
@@ -169,7 +176,7 @@ public class Enemy : MonoBehaviour
             {
                 case 1:
                     //play attack anim
-                    anim.SetTrigger("EAttack");
+                    //anim.SetTrigger("EAttack");
                     Debug.Log("weak attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
@@ -179,7 +186,7 @@ public class Enemy : MonoBehaviour
                     break;
                 case 2:
                     //play strong attack anim
-                    anim.SetTrigger("SAttack");
+                    //anim.SetTrigger("SAttack");
                     Debug.Log("strong atta  ck");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
@@ -189,7 +196,7 @@ public class Enemy : MonoBehaviour
                     break;
                 case 3:
                     //play attack anim
-                    anim.SetTrigger("Miss");
+                    //anim.SetTrigger("Miss");
                     Debug.Log("you suck");
                     break;
                 default:

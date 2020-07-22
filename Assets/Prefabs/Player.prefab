@@ -333,7 +333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.003572464, y: 0.40714216}
+  m_AnchoredPosition: {x: -0.029, y: 0.932}
   m_SizeDelta: {x: 294.17627, y: 101.76636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7609580416468861316
@@ -476,10 +476,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4595565320718623748, guid: 7cf0a0e5a9544fc4591ae6a197080672,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8285fcd0495b40c4d85007410777c781, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.22, y: 0.45}
@@ -500,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08727ab0dc437e4c835d8cac2917ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 7
+  runSpeed: 8
   rollWindup: 0.1
   rollSpeed: 20
   startRollTime: 0.5
@@ -538,18 +537,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.12}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.22, y: 0.45}
+    oldSize: {x: 2.13, y: 2.23}
     newSize: {x: 0.22, y: 0.45}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21, y: 0.45}
+  m_Size: {x: 1, y: 1.9}
   m_EdgeRadius: 0
 --- !u!95 &7609580416708899338
 Animator:
@@ -586,15 +585,15 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 7609580416010792729}
   healthCanvas: {fileID: 7609580416468861313}
-  respawn: {fileID: 0}
+  respawn: {fileID: 1739612661855515663, guid: ec4c89c0d41e6914db523d339dba991d, type: 3}
   anim: {fileID: 7609580416708899338}
   attackPoint: {fileID: 7609580415325780919}
-  attackRange: 1.2
+  attackRange: 3.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
   attackDamage: 40
-  attackRate: 1.5
+  attackRate: 1.6
   noteStart: {fileID: 7609580415888956884}
   notePrefab: {fileID: 750635563277515587, guid: e53a569d58a241e4d98002e4f7006175,
     type: 3}
