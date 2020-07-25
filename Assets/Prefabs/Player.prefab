@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -355,7 +355,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &7609580416468861315
 MonoBehaviour:
@@ -428,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 7609580416708899348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.36, y: -4.15, z: -1}
-  m_LocalScale: {x: 5, y: 5, z: 4}
+  m_LocalScale: {x: 2, y: 2, z: 4}
   m_Children:
   - {fileID: 7609580415325780919}
   - {fileID: 7609580416228033895}
@@ -475,7 +475,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 8285fcd0495b40c4d85007410777c781, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -502,7 +502,9 @@ MonoBehaviour:
   runSpeed: 8
   rollWindup: 0.1
   rollSpeed: 20
-  startRollTime: 0.5
+  rollTime: 0
+  startRollTime: 1
+  direction: 0
 --- !u!50 &7609580416708899336
 Rigidbody2D:
   serializedVersion: 4
@@ -558,7 +560,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7609580416708899348}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: bce9c7c786da4a5468b09077facd921d, type: 2}
   m_CullingMode: 0
@@ -585,10 +587,10 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 7609580416010792729}
   healthCanvas: {fileID: 7609580416468861313}
-  respawn: {fileID: 1739612661855515663, guid: ec4c89c0d41e6914db523d339dba991d, type: 3}
+  respawn: {fileID: 0}
   anim: {fileID: 7609580416708899338}
   attackPoint: {fileID: 7609580415325780919}
-  attackRange: 3.5
+  attackRange: 2.3
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
@@ -614,7 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kickOff: {fileID: 7609580416228033895}
-  ballPrefab: {fileID: 3349655182178554148, guid: 3f623fda920b39c48becb5825b9e282f,
+  ballPrefab: {fileID: -2785554726785591423, guid: 3f623fda920b39c48becb5825b9e282f,
     type: 3}
   despawn: 1.35
   ballCoolDown: 2
