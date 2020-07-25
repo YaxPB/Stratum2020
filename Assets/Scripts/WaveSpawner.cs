@@ -27,6 +27,7 @@ public class WaveSpawner : MonoBehaviour
 
     private SpawnState state = SpawnState.COUNTING;
     bool completed;
+    bool beginTheWaves;
 
     public GameObject foos;
 
@@ -42,24 +43,29 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        if(state == SpawnState.WAITING)
+        if (beginTheWaves)
         {
-            if (!EnemyIsAlive())
+            if (state == SpawnState.WAITING)
             {
-                WaveCompleted();
+                if (!EnemyIsAlive())
+                {
+                    WaveCompleted();
+                }
+                else
+                    return;
             }
-            else
-                return;
-        }
 
-        if(waveCountDown <= 0)
-        {
-            if(state != SpawnState.SPAWNING){
-                StartCoroutine(SpawnWave(waves[nextWave]));
+            if (waveCountDown <= 0)
+            {
+                if (state != SpawnState.SPAWNING)
+                {
+                    StartCoroutine(SpawnWave(waves[nextWave]));
+                }
             }
-        }
-        else{
-            waveCountDown -= Time.deltaTime;
+            else if (!completed)
+            {
+                waveCountDown -= Time.deltaTime;
+            }
         }
     }
 
@@ -73,7 +79,7 @@ public class WaveSpawner : MonoBehaviour
         //waves.length will stop wave looping but is beyond index
         if(nextWave + 1 > waves.Length - 1)
         {
-            nextWave = 0;
+            //nextWave = 0;
             completed = true;
             Debug.Log("all done");
             foos.SetActive(true);
@@ -123,5 +129,13 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Spawning Enemy: " + _enemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, _sp.position, _sp.rotation);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            beginTheWaves = true;
+        }
     }
 }

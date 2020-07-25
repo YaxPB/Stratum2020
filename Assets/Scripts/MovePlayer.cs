@@ -13,14 +13,18 @@ public class MovePlayer : MonoBehaviour
     bool facingRight;
 
     Animator animator;
-
+    
     private Rigidbody2D rb;
     public float rollSpeed;
-    private float rollTime;
-    public float startRollTime;
-    private int direction;
 
-    //bool isJumping;
+    [SerializeField]
+    private float rollTime;
+
+    public float startRollTime;
+
+    [SerializeField]
+    private int direction;
+    bool isDodging;
 
     private void Awake()
     {
@@ -38,14 +42,23 @@ public class MovePlayer : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        Vector3 rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
 
         if (rollTime > 0)
         {
             rollTime -= Time.deltaTime;
         }
 
-        if (direction == 0) {
+        if (!isDodging)
+        {
+            if (direction != 0)
+            {
+                //start coroutine
+                if (Input.GetButtonDown("Dodge"))
+                {
+                    StartCoroutine(BeginDodgeRoll());
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.A))
                 direction = 1;
             else if (Input.GetKeyDown(KeyCode.D))
@@ -54,19 +67,6 @@ public class MovePlayer : MonoBehaviour
                 direction = 3;
             else if (Input.GetKeyDown(KeyCode.S))
                 direction = 4;
-        }
-        else {
-            //start coroutine
-            if (Input.GetButtonDown("Dodge")) { 
-                StartCoroutine(BeginDodgeRoll());
-            }
-        }
-
-        if (rollTime <= 0)
-        {
-            direction = 0;
-            rollTime = startRollTime;
-            rb.velocity = Vector2.zero;
         }
     }
 
@@ -86,6 +86,7 @@ public class MovePlayer : MonoBehaviour
             /*Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;*/
+            Debug.Log("flipping");
 
             transform.Rotate(0f, 180f, 0f);
         }
@@ -94,7 +95,6 @@ public class MovePlayer : MonoBehaviour
     private IEnumerator BeginDodgeRoll()
     {
         Debug.Log("im rolling");
-        yield return new WaitForSeconds(rollWindup);
 
         switch (direction)
         {
@@ -121,6 +121,18 @@ public class MovePlayer : MonoBehaviour
             default:
                 Debug.Log("Uh oh,no direction");
                 break;
+        }
+        Invoke("Reset", startRollTime);
+        yield return new WaitForSeconds(rollWindup);
+    }
+
+    void Reset()
+    {
+        if (rollTime <= 0)
+        {
+            //direction = 0;
+            rollTime = startRollTime;
+            rb.velocity = Vector2.zero;
         }
     }
 }

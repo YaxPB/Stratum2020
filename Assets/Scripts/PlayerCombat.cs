@@ -69,7 +69,7 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         //play attack anim
-        anim.SetTrigger("Attack");
+        //anim.SetTrigger("Attack");
 
         //detect enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -86,7 +86,7 @@ public class PlayerCombat : MonoBehaviour
         currentHealth -= damage;
 
         //play hurt anim
-        anim.SetTrigger("Hurt");
+        //anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
@@ -97,7 +97,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Die()
     {
-        anim.SetBool("IsDead", true);
+        //anim.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
@@ -127,7 +127,7 @@ public class PlayerCombat : MonoBehaviour
     {
         transform.position = respawn.transform.position;
 
-        anim.SetBool("IsDead", false);
+        //anim.SetBool("IsDead", false);
 
         GetComponent<Collider2D>().enabled = true;
         this.enabled = true;

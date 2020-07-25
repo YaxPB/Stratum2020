@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
 
     public float speed;
     public float regSpeed;
@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
     public bool isStunned;
     public float stunDuration = 2f;
     bool isAttacking;
+
+    int arrCount;
 
     void Start()
     {
@@ -123,8 +125,6 @@ public class Enemy : MonoBehaviour
         theCanvas.SetActive(false);
 
         //anim.SetBool("IsDead", true);
-
-        //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
@@ -187,7 +187,7 @@ public class Enemy : MonoBehaviour
                 case 2:
                     //play strong attack anim
                     //anim.SetTrigger("SAttack");
-                    Debug.Log("strong atta  ck");
+                    Debug.Log("strong attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
