@@ -62,7 +62,7 @@ public class Overhead : MonoBehaviour
         {
             checkedHealth = false;
             healthBar.SetHealth(changedPool);
-            Debug.Log(changedPool);
+            //Debug.Log(changedPool);
         }
 
     }

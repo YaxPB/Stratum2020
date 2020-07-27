@@ -12,7 +12,8 @@ public class MovePlayer : MonoBehaviour
     float vertical;
     bool facingRight;
 
-    Animator animator;
+    public Animator animator;
+    PlayerCombat pc;
     
     private Rigidbody2D rb;
     public float rollSpeed;
@@ -28,7 +29,7 @@ public class MovePlayer : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        pc = GetComponent<PlayerCombat>();
     }
 
     private void Start()
@@ -55,6 +56,7 @@ public class MovePlayer : MonoBehaviour
                 //start coroutine
                 if (Input.GetButtonDown("Dodge"))
                 {
+                    //pc.enabled = false;
                     StartCoroutine(BeginDodgeRoll());
                 }
             }
@@ -73,6 +75,17 @@ public class MovePlayer : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(horizontal * runSpeed, vertical * runSpeed, 0.0f);
+
+        if(horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+
+        }
+
         transform.position = transform.position + movement * Time.deltaTime;
         Flip(horizontal);
     }
@@ -130,7 +143,7 @@ public class MovePlayer : MonoBehaviour
     {
         if (rollTime <= 0)
         {
-            //direction = 0;
+            //pc.enabled = true;
             rollTime = startRollTime;
             rb.velocity = Vector2.zero;
         }

@@ -78,18 +78,20 @@ public class Enemy : MonoBehaviour
 
     private void StopChasePlayer()
     {
-        //nothing wow
+        anim.SetBool("isWalking", false);
     }
 
     private void ChasePlayer()
     {
         theCanvas.SetActive(true);
-        
+
+        anim.SetBool("isWalking", true);
+
         //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponentInChildren<SpriteRenderer>().flipX = false;
         else
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
 
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
@@ -124,19 +126,13 @@ public class Enemy : MonoBehaviour
         theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
 
+        anim.SetBool("isWalking", false);
         //anim.SetBool("IsDead", true);
+
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
         Destroy(gameObject, 2f);
-    }
-
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            EnemyAttack();
-        }
     }
 
     public void EnemyAttack()
@@ -172,11 +168,13 @@ public class Enemy : MonoBehaviour
                 attackType = 3;
             }
             
+            anim.SetBool("isWalking", false);
+
             switch (attackType)
             {
                 case 1:
                     //play attack anim
-                    //anim.SetTrigger("EAttack");
+                    anim.SetTrigger("isAttacking");
                     Debug.Log("weak attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
@@ -186,7 +184,7 @@ public class Enemy : MonoBehaviour
                     break;
                 case 2:
                     //play strong attack anim
-                    //anim.SetTrigger("SAttack");
+                    anim.SetTrigger("SAttack");
                     Debug.Log("strong attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)

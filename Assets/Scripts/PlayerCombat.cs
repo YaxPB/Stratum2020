@@ -68,7 +68,6 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        //play attack anim
         //anim.SetTrigger("Attack");
 
         //detect enemies in range
@@ -84,8 +83,7 @@ public class PlayerCombat : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
-        //play hurt anim
+        
         //anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
 
