@@ -64,8 +64,10 @@ public class DoYouWishToProceed : MonoBehaviour
 
     private void OpenSesame()
     {
+        AudioManagerSFX.PlaySound("open");
         doorMessage.SetBool("isOpen", false);
         doorCollider.enabled = false;
+        Destroy(this);
     }
 
     private void Reset()

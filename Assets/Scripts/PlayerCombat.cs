@@ -17,6 +17,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public LayerMask breakableLayers;
     private Collider2D enemyCollision;
     private GameObject nearbyEnemy;
     private Animator enemyAnim;
@@ -96,12 +97,18 @@ public class PlayerCombat : MonoBehaviour
 
         //detect enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitBreakables = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, breakableLayers);
         
         //apply damage 
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            AudioManager.PlaySound("kick");
+            AudioManagerSFX.PlaySound("kick");
+        }
+        foreach (Collider2D breakable in hitBreakables)
+        {
+            AudioManagerSFX.PlaySound("kick");
+            breakable.GetComponent<Breakable>().TakeDamage(attackDamage);
         }
     }
 
@@ -152,6 +159,11 @@ public class PlayerCombat : MonoBehaviour
         }
         mp.runSpeed = mp.runSpeed / 3;
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
+        // Maybe SendMessage to nearby enemies (check Enemy script first) to display notesAnim
+        // Freeze the player (momentarily), play some music (lower volume of bg music), button prompts
+        // I'm thinking of a radial wipe (pie chart with triangular sections for when to time hits)
+        // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
+        // OR hits that happen in quick succession with each correctly timed button press
         Destroy(flight, berimgone);
     }
 

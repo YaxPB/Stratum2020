@@ -89,7 +89,9 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
+
         dialogueText.text = "";
+        AudioManagerSFX.PlaySound("dialogue");
         foreach(char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
@@ -97,6 +99,7 @@ public class DialogueManager : MonoBehaviour
             // 1 frame buffer time between each letter rendering
             yield return null;
         }
+        AudioManagerSFX.theSource.Stop();
     }
 
     void EndDialogue()
