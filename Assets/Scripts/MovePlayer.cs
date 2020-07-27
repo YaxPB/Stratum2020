@@ -65,6 +65,7 @@ public class MovePlayer : MonoBehaviour
         rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
         if((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
         {
+            AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
             stepOffset = 0.25f;
         }
@@ -74,11 +75,6 @@ public class MovePlayer : MonoBehaviour
             playerRB.velocity = Vector2.zero;
             return;
         }*/
-
-        if (Input.GetButtonDown("Dodge"))
-        {
-            rollTime -= Time.deltaTime;
-        }
 
         if (direction == 0) {
             if (Input.GetKeyDown(KeyCode.A))
@@ -92,7 +88,8 @@ public class MovePlayer : MonoBehaviour
         }
         else {
             //start coroutine
-            if (Input.GetButtonDown("Dodge")) { 
+            if (Input.GetButtonDown("Dodge")) {
+                rollTime -= Time.deltaTime;
                 StartCoroutine(BeginDodgeRoll());
             }
         }

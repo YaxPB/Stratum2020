@@ -12,6 +12,7 @@ public class CombatTrigger : MonoBehaviour
     public Canvas healthBar;
     public static bool isCombat;
     public AudioSource capBeat;
+
     // Thinking about initializing a counter to hold numEnemiesLeft
     // Every time an enemy is instantiated, use SendMessage to invoke a function
     // that just adds 1 to counter; minus 1 every time player defeats an enemy
@@ -51,8 +52,8 @@ public class CombatTrigger : MonoBehaviour
     {
         // Update isCombat boolean to false once player exits the combat zone
         isCombat = false;
-        // Immediately stop playing the combat beat
-        capBeat.Stop();
+        // Immediately stop playing the combat beat (NOTE: thinking of writing a quick fade out script)
+        AudioManagerBG.theSource.Stop();
         // Turns the main camera (+CamFollow) back on
         mainCam.enabled = true;
         // Turns off the scene-locked combatCam
@@ -66,8 +67,9 @@ public class CombatTrigger : MonoBehaviour
     {
         // Enables the HealthBar to appear and activates its attached script
         healthBar.enabled = true;
-        // Starts playing the capoeira beat
-        capBeat.Play();
+
+        AudioManagerBG.SwitchTrack("combat");
+        // Eventually change the next 2 lines to invoke something like CamFollow.CombatMode
         // Disables the main camera
         mainCam.enabled = false;
         // Switches to a combatCam that locks onto the entirety of the current combat area

@@ -42,7 +42,6 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         theCanvas.SetActive(false);
-        theTarget = theCanvas.GetComponent<Animator>();
         regSpeed = speed;
 
         target = GameObject.FindGameObjectWithTag("Player");
@@ -152,7 +151,6 @@ public class Enemy : MonoBehaviour
 
         if (isAttacking)
         {
-            theTarget.SetBool("CombatMode", true);
 
             //detect player in range
             Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
@@ -183,7 +181,7 @@ public class Enemy : MonoBehaviour
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                        // player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
                     }
                     break;
                 case 2:
@@ -193,7 +191,7 @@ public class Enemy : MonoBehaviour
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
+                        // player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
                     }
                     break;
                 case 3:

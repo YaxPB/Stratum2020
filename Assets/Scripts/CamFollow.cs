@@ -29,6 +29,12 @@ public class CamFollow : MonoBehaviour
     [SerializeField]
     float bottomLimit = 0f;
 
+    public static Camera mainCam;
+
+    private void Start()
+    {
+        mainCam = GetComponent<Camera>();
+    }
 
     private void Update()
     {
@@ -52,6 +58,15 @@ public class CamFollow : MonoBehaviour
             transform.position.z  
         );
 
+    }
+
+    // Add a method that locks the main camera instead of switching to another cam
+    // Locks in place, same size but encompassing the entirety of "one wave(length)" of enemies
+    // Basically locks where it can see the entire CombatZone
+    public void CombatZone()
+    {
+        // Main cam locks into place (so we don't have to switch cams)
+        // Make sure the perspective can see the entirety (with maybe a
     }
 
 
