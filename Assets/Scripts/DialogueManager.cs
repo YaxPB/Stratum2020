@@ -44,7 +44,8 @@ public class DialogueManager : MonoBehaviour
     } // Update
 
     public void StartDialogue(Dialogue theDialogue)
-    {   
+    {
+        MovePlayer.instance.canMove = false;
         // Activates the animator that brings up the DialogueBox
         animator.SetBool("isOpen", true);
         // Just a boolean to determine whether or not a conversation has started
@@ -104,6 +105,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        MovePlayer.instance.canMove = true;
         // Closes the dialogue box and ends the conversation
         Debug.Log("End of conversation.");
         animator.SetBool("isOpen", false);

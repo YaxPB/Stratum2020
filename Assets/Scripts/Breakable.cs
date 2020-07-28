@@ -33,7 +33,7 @@ public class Breakable : MonoBehaviour
     {
         // theTarget.SetBool("CombatMode", false);
         Debug.Log("Lamp died!");
-
+        AudioManagerSFX.PlaySound("lampBreak");
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;

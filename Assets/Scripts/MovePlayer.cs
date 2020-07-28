@@ -14,7 +14,7 @@ public class MovePlayer : MonoBehaviour
     float vertical;
     bool facingRight;
 
-    bool canMove;
+    public bool canMove;
 
     Animator animator;
 
@@ -31,6 +31,8 @@ public class MovePlayer : MonoBehaviour
     private float stepOffset;
     private AudioSource playerFX;
 
+    public static MovePlayer instance;
+
 
     private void Awake()
     {
@@ -45,6 +47,7 @@ public class MovePlayer : MonoBehaviour
 
     private void Start()
     {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
         rollTime = startRollTime;
     }
@@ -56,25 +59,27 @@ public class MovePlayer : MonoBehaviour
         {
             stepOffset -= Time.deltaTime;
         }
-        if (stepOffset < 0)
+        if (stepOffset <= 0)
         {
             stepOffset = 0;
         }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
-        if((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
+        if(canMove && (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
         {
             AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
             stepOffset = 0.25f;
         }
 
-        /*if (!canMove)
+        if (!canMove)
         {
             playerRB.velocity = Vector2.zero;
+            horizontal = 0f;
+            vertical = 0f;
             return;
-        }*/
+        }
 
         if (direction == 0) {
             if (Input.GetKeyDown(KeyCode.A))
