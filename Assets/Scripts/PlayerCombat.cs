@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -45,7 +46,9 @@ public class PlayerCombat : MonoBehaviour
 
     //despawn timer lol
     public float berimgone = 4f;
-    private Canvas temp;
+
+    public Canvas berimBAM;
+    private bool isPlaying;
 
     public bool loggingEnabled = false;
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
@@ -59,6 +62,7 @@ public class PlayerCombat : MonoBehaviour
         
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
+        berimBAM.enabled = false;
     }
 
     // Update is called once per frame
@@ -103,11 +107,11 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            AudioManagerSFX.PlaySound("kick");
+            AudioManagerSFX.PlaySound("kickEnemy");
         }
         foreach (Collider2D breakable in hitBreakables)
         {
-            AudioManagerSFX.PlaySound("kick");
+            AudioManagerSFX.PlaySound("kickLamp");
             breakable.GetComponent<Breakable>().TakeDamage(attackDamage);
         }
     }
@@ -153,18 +157,29 @@ public class PlayerCombat : MonoBehaviour
 
     void Music()
     {
+        
         if (loggingEnabled)
         {
             Debug.Log("MUSIC!");
         }
-        mp.runSpeed = mp.runSpeed / 3;
+        // Freeze the player (momentarily), play some music, button prompts
+        MovePlayer.instance.canMove = false;
+        AudioManagerBG.SwitchTrack("berimBAM");
+        berimBAM.enabled = true;
+        BerimBeats();
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
+        Destroy(flight, berimgone);
+        
+    }
+
+    void BerimBeats()
+    {
+        isPlaying = true;
         // Maybe SendMessage to nearby enemies (check Enemy script first) to display notesAnim
-        // Freeze the player (momentarily), play some music (lower volume of bg music), button prompts
         // I'm thinking of a radial wipe (pie chart with triangular sections for when to time hits)
         // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
         // OR hits that happen in quick succession with each correctly timed button press
-        Destroy(flight, berimgone);
+        // MovePlayer.instance.canMove = true;
     }
 
     void TargetAssist()

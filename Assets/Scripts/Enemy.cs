@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("nani");
             }
+            anim.SetTrigger("stopChase");
             ChasePlayer(); 
         }
         else
@@ -76,13 +77,14 @@ public class Enemy : MonoBehaviour
 
     private void StopChasePlayer()
     {
+        
         //nothing wow
     }
 
     private void ChasePlayer()
     {
         theCanvas.SetActive(true);
-        
+        anim.SetTrigger("chasePlayer");
         //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
             GetComponent<SpriteRenderer>().flipX = false;

@@ -8,12 +8,13 @@ public class AudioManagerBG : MonoBehaviour
     public static AudioManagerBG instance;
     public static AudioSource theSource;
     public static AudioSource secondLayer;
-    public static AudioClip combatBass124, combatTheme, grandmaTheme, nightmareTheme, stratumTheme;
+    public static AudioClip berimBAM, combatBass124, combatTheme, grandmaTheme, nightmareTheme, stratumTheme;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimBAM1");
         combatBass124 = Resources.Load<AudioClip>("Sounds/aud_124bpmBass");
         combatTheme = Resources.Load<AudioClip>("Sounds/aud_berimbeatSnippet");
         grandmaTheme = Resources.Load<AudioClip>("Sounds/bg_nightmareWhoopie");
@@ -68,12 +69,13 @@ public class AudioManagerBG : MonoBehaviour
                 if(theSource.clip != combatTheme)
                 {
                     theSource.clip = combatTheme;
-                    // secondLayer.clip = combatBass124;
                 }
                 theSource.volume = 0.5f;
-                // secondLayer.volume = 0.6f;
                 theSource.Play();
-                // secondLayer.Play();
+                break;
+            case "berimBAM":
+                theSource.Stop();
+                theSource.PlayOneShot(berimBAM);
                 break;
 
         }
