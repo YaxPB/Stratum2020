@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
-    public float runSpeed = 1f;
+    public float runSpeed;
     public float rollWindup = 0.1f;
     private Vector3 slideDir;
 
@@ -56,6 +56,7 @@ public class MovePlayer : MonoBehaviour
                 //start coroutine
                 if (Input.GetButtonDown("Dodge"))
                 {
+                    isDodging = true;
                     //pc.enabled = false;
                     StartCoroutine(BeginDodgeRoll());
                 }
@@ -99,7 +100,7 @@ public class MovePlayer : MonoBehaviour
             /*Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;*/
-            Debug.Log("flipping");
+            //Debug.Log("flipping");
 
             transform.Rotate(0f, 180f, 0f);
         }
@@ -146,6 +147,7 @@ public class MovePlayer : MonoBehaviour
             //pc.enabled = true;
             rollTime = startRollTime;
             rb.velocity = Vector2.zero;
+            isDodging = false;
         }
     }
 }

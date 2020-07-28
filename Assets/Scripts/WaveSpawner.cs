@@ -30,9 +30,11 @@ public class WaveSpawner : MonoBehaviour
     bool beginTheWaves;
 
     public GameObject foos;
+    public GameObject oh;
 
     private void Start()
     {
+        //oh.SetActive(false);
         if(spawnPoints.Length == 0)
         {
             Debug.LogError("no spawn points foo");
@@ -83,6 +85,7 @@ public class WaveSpawner : MonoBehaviour
             completed = true;
             Debug.Log("all done");
             foos.SetActive(true);
+            //oh.SetActive(false);
         }
 
         if (!completed)
@@ -126,6 +129,7 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(Transform _enemy)
     {
+        //oh.SetActive(true);
         Debug.Log("Spawning Enemy: " + _enemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, _sp.position, _sp.rotation);

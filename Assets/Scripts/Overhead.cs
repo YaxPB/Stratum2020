@@ -5,11 +5,10 @@ using UnityEngine;
 public class Overhead : MonoBehaviour
 {
     int totalPool;
-    int changedPool;
+    int changingPool;
 
     public GameObject foos;
     public Enemy[] maxhealthPool;
-    public Enemy[] globalPool;
 
     public HealthBar healthBar;
     public GameObject healthCanvas;
@@ -17,12 +16,11 @@ public class Overhead : MonoBehaviour
     //GameObject[] Enemies;
 
     bool counted;
-    bool checkedHealth = false;
+    bool set;
 
     void Start()
     {
         maxhealthPool = foos.GetComponentsInChildren<Enemy>();
-        //healthCanvas.SetActive(true);
     }
     
     void Update()
@@ -34,36 +32,31 @@ public class Overhead : MonoBehaviour
             {
                 totalPool += health.currentHealth;
             }
+            changingPool = totalPool;
         }
         else
         {
-            healthBar.SetMaxHealth(totalPool);
-            healthCanvas.SetActive(true);
+            if (!set)
+            {
+                //Debug.Log(totalPool);
+                healthBar.SetMaxHealth(totalPool);
+                healthCanvas.SetActive(true);
+                set = true;
+            }
         }
         counted = true;
 
-        globalPool = foos.GetComponentsInChildren<Enemy>();
+        if(changingPool <= 0)
+            healthCanvas.SetActive(false);
 
-        AdjustPool();
-        checkedHealth = true;
+        //globalPool = foos.GetComponentsInChildren<Enemy>();
     }
 
     //called to adjust the health pool after each enemy death
-    void AdjustPool()
+    public void AdjustPool(int damage)
     {
-        if (!checkedHealth)
-        {
-            foreach (var healthChange in globalPool)
-            {
-                changedPool += healthChange.currentHealth;
-            }
-        }
-        else
-        {
-            checkedHealth = false;
-            healthBar.SetHealth(changedPool);
-            //Debug.Log(changedPool);
-        }
-
+        changingPool -= damage;
+        Debug.Log(changingPool);
+        healthBar.SetHealth(changingPool);
     }
 }

@@ -14,7 +14,9 @@ public class PlayerCombat : MonoBehaviour
     public Animator anim;
 
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    //public float attackRange = 0.5f;
+    public float attackRangeX;
+    public float attackRangeY;
     public LayerMask enemyLayers;
 
     public int attackDamage = 40;
@@ -68,15 +70,23 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        //anim.SetTrigger("Attack");
+        anim.SetTrigger("Attack");
 
         //detect enemies in range
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY),0 , enemyLayers);
         
         //apply damage 
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            var damo = enemy.GetComponent<Enemy>();
+            if (damo.currentHealth > attackDamage)
+            {
+                damo.TakeDamage(attackDamage);
+            }
+            else
+            {
+                damo.TakeDamage(damo.currentHealth);
+            }
         }
     }
 
@@ -110,7 +120,7 @@ public class PlayerCombat : MonoBehaviour
         if (attackPoint == null)
             return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX,attackRangeY, 1));
     }
 
     void Music()
