@@ -16,7 +16,7 @@ public class MovePlayer : MonoBehaviour
 
     bool canMove;
 
-    Animator animator;
+    //Animator animator;
 
     public Animator animator;
     
@@ -70,7 +70,7 @@ public class MovePlayer : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
-        if((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
+        if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
         {
             AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
@@ -104,12 +104,15 @@ public class MovePlayer : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.S))
                 direction = 4;
         }
-        else {
+        else
+        {
             //start coroutine
-            if (Input.GetButtonDown("Dodge")) { 
+            if (Input.GetButtonDown("Dodge"))
+            {
                 StartCoroutine(BeginDodgeRoll());
             }
         }
+    }
 
     private void FixedUpdate()
     {
