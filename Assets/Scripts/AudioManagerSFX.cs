@@ -7,18 +7,25 @@ public class AudioManagerSFX : MonoBehaviour
     public static AudioManagerSFX instance;
     public static AudioSource theSource;
     public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, doorOpen, typingText, lampBreak;
+    public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHit, enemyDie;
     public static float pitchRandom = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
+        berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimbauNote3");
         doorOpen = Resources.Load<AudioClip>("Sounds/aud_doorOpen");
+        lampBreak = Resources.Load<AudioClip>("Sounds/aud_lampCrash1");
+        typingText = Resources.Load<AudioClip>("Sounds/aud_textBlip1");
+
+        enemyBasicAttack = Resources.Load<AudioClip>("Sounds/aud_kick5");
+        enemyHit = Resources.Load<AudioClip>("Sounds/aud_enemyTakeDamage");
+        enemyDie = Resources.Load<AudioClip>("Sounds/aud_enemyDies");
+
         playerFootsteps = Resources.Load<AudioClip>("Sounds/aud_footsteps1");
         playerHit = Resources.Load<AudioClip>("Sounds/aud_kick4");
         playerHitLamp = Resources.Load<AudioClip>("Sounds/aud_lampHit1");
-        berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimbauNote3");
-        typingText = Resources.Load<AudioClip>("Sounds/aud_textBlip1");
-        lampBreak = Resources.Load<AudioClip>("Sounds/aud_lampCrash1");
+        
         theSource = GetComponent<AudioSource>();
         if(theSource == null)
         {
@@ -31,6 +38,7 @@ public class AudioManagerSFX : MonoBehaviour
     {
         theSource.loop = false;
         theSource.pitch = 1.0f;
+        theSource.volume = 0.8f;
         switch (theSFX)
         {
             case "run":
@@ -38,11 +46,14 @@ public class AudioManagerSFX : MonoBehaviour
                 theSource.PlayOneShot(playerFootsteps); 
                 break;
             case "kickEnemy":
-                theSource.PlayOneShot(berimBAM);
+                // theSource.PlayOneShot(berimBAM);
                 theSource.PlayOneShot(playerHit);
+                theSource.volume = 1f;
+                theSource.clip = enemyHit;
+                theSource.PlayDelayed(0.15f);
                 break;
             case "kickLamp":
-                theSource.PlayOneShot(berimBAM);
+                theSource.PlayOneShot(playerHit);
                 theSource.pitch = Random.Range(1.0f - pitchRandom, 1.0f + pitchRandom);
                 theSource.PlayOneShot(playerHitLamp);
                 break;
@@ -61,6 +72,14 @@ public class AudioManagerSFX : MonoBehaviour
                 }
                 theSource.loop = true;
                 theSource.Play();
+                break;
+            case "basicAttack":
+                theSource.volume = 1f;
+                theSource.PlayOneShot(enemyBasicAttack);
+                break;
+            case "enemyDied":
+                theSource.volume = 1f;
+                theSource.PlayOneShot(enemyDie);
                 break;
 
         }

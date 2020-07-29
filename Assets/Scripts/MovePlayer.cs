@@ -55,6 +55,20 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove)
+        {
+            playerRB.velocity = Vector2.zero;
+            horizontal = 0f;
+            vertical = 0f;
+            return;
+        }
+        else
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+            rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+        }
+
         if (stepOffset > 0)
         {
             stepOffset -= Time.deltaTime;
@@ -63,22 +77,12 @@ public class MovePlayer : MonoBehaviour
         {
             stepOffset = 0;
         }
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+
         if(canMove && (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
         {
             AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
             stepOffset = 0.25f;
-        }
-
-        if (!canMove)
-        {
-            playerRB.velocity = Vector2.zero;
-            horizontal = 0f;
-            vertical = 0f;
-            return;
         }
 
         if (direction == 0) {

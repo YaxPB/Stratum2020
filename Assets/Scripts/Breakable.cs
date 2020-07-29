@@ -7,12 +7,14 @@ public class Breakable : MonoBehaviour
     public int maxHealth = 25;
     int currentHealth;
     private Animator postAnim;
+    private Transform thisLampPos;
 
 
     public void Start()
     {
         currentHealth = maxHealth;
         postAnim = gameObject.GetComponent<Animator>();
+        thisLampPos = gameObject.GetComponent<Transform>();
     }
 
     public void TakeDamage(int damage)

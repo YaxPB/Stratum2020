@@ -15,8 +15,7 @@ public class AudioManagerBG : MonoBehaviour
     {
         instance = this;
         berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimBAM1");
-        combatBass124 = Resources.Load<AudioClip>("Sounds/aud_124bpmBass");
-        combatTheme = Resources.Load<AudioClip>("Sounds/aud_berimbeatSnippet");
+        combatTheme = Resources.Load<AudioClip>("Sounds/bg_combatBeats126");
         grandmaTheme = Resources.Load<AudioClip>("Sounds/bg_nightmareWhoopie");
         nightmareTheme = Resources.Load<AudioClip>("Sounds/bg_nightmare1");
         stratumTheme = Resources.Load<AudioClip>("Sounds/bg_explorationPhase");
@@ -48,6 +47,7 @@ public class AudioManagerBG : MonoBehaviour
                 if (theSource.clip != stratumTheme)
                 {
                     theSource.clip = stratumTheme;
+                    theSource.volume = 1f;
                 }
                 theSource.Play();
                 break;
@@ -66,11 +66,11 @@ public class AudioManagerBG : MonoBehaviour
                 theSource.Play();
                 break;
             case "combat":
-                if(theSource.clip != combatTheme)
+                theSource.volume = 0.25f;
+                if (theSource.clip != combatTheme)
                 {
                     theSource.clip = combatTheme;
                 }
-                theSource.volume = 0.5f;
                 theSource.Play();
                 break;
             case "berimBAM":
