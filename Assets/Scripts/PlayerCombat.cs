@@ -92,14 +92,17 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        
-        //anim.SetTrigger("Hurt");
-        healthBar.SetHealth(currentHealth);
-
-        if (currentHealth <= 0)
+        if (!mp.isDodging)
         {
-            Die();
+            currentHealth -= damage;
+
+            anim.SetTrigger("Hurt");
+            healthBar.SetHealth(currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 

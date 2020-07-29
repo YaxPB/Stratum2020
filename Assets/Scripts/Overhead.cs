@@ -7,20 +7,27 @@ public class Overhead : MonoBehaviour
     int totalPool;
     int changingPool;
 
-    public GameObject foos;
+    //public GameObject foos;
     public Enemy[] maxhealthPool;
+    public GameObject[] enemies;
 
     public HealthBar healthBar;
     public GameObject healthCanvas;
-
-    //GameObject[] Enemies;
+    public WaveSpawner ws;
 
     bool counted;
     bool set;
 
     void Start()
     {
-        maxhealthPool = foos.GetComponentsInChildren<Enemy>();
+        if (ws.allSpawned)
+        {
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                maxhealthPool[i] = enemies[i].GetComponent<Enemy>();
+            }
+        }
     }
     
     void Update()

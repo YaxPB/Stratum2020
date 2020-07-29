@@ -59,9 +59,6 @@ public class Enemy : MonoBehaviour
         theCanvas.SetActive(false);
         theTarget = theCanvas.GetComponent<Animator>();
         regSpeed = speed;
-
-        oh = GameObject.FindGameObjectWithTag("Overhead").GetComponent<Overhead>();
-
         target = GameObject.FindGameObjectWithTag("Player");
     }
     
@@ -80,19 +77,22 @@ public class Enemy : MonoBehaviour
             if (Time.time >= nextAttack)
             {
                 isAttacking = true;
-                Debug.Log(target);
                 EnemyAttack();
                 nextAttack = Time.time + 1f / attackRate;
             }
         }
+
+        //wave enemies have to detect oh after the Overhead is turned on by the wavespawner
+        /*if(ws.allSpawned)
+            oh = GameObject.FindGameObjectWithTag("Overhead").GetComponent<Overhead>();*/
     }
 
     private void StopChasePlayer()
     {
         anim.SetBool("isWalking", false);
-        anim.SetBool("isBlocking", false);
+        //anim.SetBool("isBlocking", false);
         //isBlocking = false;
-        speed = regSpeed;
+        //speed = regSpeed;
     }
 
     private void ChasePlayer()
@@ -102,7 +102,6 @@ public class Enemy : MonoBehaviour
         if(!isBlocking)
             anim.SetBool("isWalking", true);
 
-        //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
             GetComponentInChildren<SpriteRenderer>().flipX = false;
         else
@@ -124,8 +123,7 @@ public class Enemy : MonoBehaviour
         {
             currentHealth -= damage;
         }
-
-        //play hurt anim
+        
         //anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
 
@@ -228,12 +226,18 @@ public class Enemy : MonoBehaviour
                 case 3:
                     anim.SetTrigger("Vomit");
                     Debug.Log("vomit");
-                    flight = Instantiate<Vomiting>(vomitPrefab, attackPoint.position, attackPoint.rotation);
+                    Vector2 direction = Vector2.right;
+                    if(GetComponentInChildren<SpriteRenderer>().flipX)
+                    {
+                        direction = Vector2.left;
+                    }
+                    flight = Vomiting.CreateVomit(vomitPrefab, attackPoint, direction);
                     Invoke("ByeVomit", despawn);
                     break;
                 case 4:
-                    speed = 0;
+                    speed = speed/2;
                     anim.SetBool("isBlocking", true);
+                    anim.SetTrigger("Block");
                     anim.SetBool("isWalking", false);
                     isBlocking = true;
                     Debug.Log("blocking");
