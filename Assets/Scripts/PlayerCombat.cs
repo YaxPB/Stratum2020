@@ -46,6 +46,7 @@ public class PlayerCombat : MonoBehaviour
 
     //despawn timer lol
     public float berimgone = 4f;
+    private float[] timerRotationZ = new float[4] {-42.5f, 42.5f, 135, -135};
 
     public Canvas berimBAM;
     private bool isPlaying;
@@ -157,7 +158,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Music()
     {
-        
+        int rotationIndex = Random.Range(0, 4);
         if (loggingEnabled)
         {
             Debug.Log("MUSIC!");
@@ -166,10 +167,18 @@ public class PlayerCombat : MonoBehaviour
         MovePlayer.instance.canMove = false;
         AudioManagerBG.SwitchTrack("berimBAM");
         berimBAM.enabled = true;
+        berimBAM.transform.eulerAngles = new Vector3 (
+            gameObject.transform.eulerAngles.x,
+            gameObject.transform.eulerAngles.y,
+            timerRotationZ[rotationIndex]
+            );
+        // Maybe an array to store z-rotation data to shuffle thru every time called
         BerimBeats();
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
         Destroy(flight, berimgone);
-        
+        // berimBAM.enabled = false;
+        // MovePlayer.instance.canMove = true;
+
     }
 
     void BerimBeats()
@@ -179,7 +188,7 @@ public class PlayerCombat : MonoBehaviour
         // I'm thinking of a radial wipe (pie chart with triangular sections for when to time hits)
         // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
         // OR hits that happen in quick succession with each correctly timed button press
-        // MovePlayer.instance.canMove = true;
+        
     }
 
     void TargetAssist()

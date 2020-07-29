@@ -57,11 +57,14 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("nani");
             }
-            anim.SetTrigger("stopChase");
+            
             ChasePlayer(); 
         }
         else
+        {
             StopChasePlayer();
+        }
+        
 
         if (targetDistance <= stopDistance)
         {
@@ -77,13 +80,14 @@ public class Enemy : MonoBehaviour
 
     private void StopChasePlayer()
     {
-        
-        //nothing wow
+        anim.ResetTrigger("chasePlayer");
+        anim.SetTrigger("stopChase");
     }
 
     private void ChasePlayer()
     {
         theCanvas.SetActive(true);
+        anim.ResetTrigger("stopChase");
         anim.SetTrigger("chasePlayer");
         //add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
@@ -120,11 +124,10 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
         hitMe.SetBool("isCombat", false);
         Debug.Log("Enemy died!");
-
+        AudioManagerSFX.PlaySound("enemyDied");
         // anim.SetBool("IsDead", true);
 
         //enemy gameobj is not destroyed, body is left behind
@@ -145,7 +148,8 @@ public class Enemy : MonoBehaviour
     public void EnemyAttack()
     {
         var pc = target.GetComponent<PlayerCombat>();
-
+        anim.ResetTrigger("basicAttack");
+        anim.ResetTrigger("strongAttack");
         if (pc.currentHealth < 0)
         {
             isAttacking = false;
@@ -178,18 +182,20 @@ public class Enemy : MonoBehaviour
             {
                 case 1:
                     //play attack anim
-                    anim.SetTrigger("EAttack");
+                    anim.SetTrigger("basicAttack");
+                    AudioManagerSFX.PlaySound("basicAttack");
                     Debug.Log("weak attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        // player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                        pc.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
                     }
                     break;
                 case 2:
                     //play strong attack anim
-                    anim.SetTrigger("SAttack");
-                    Debug.Log("strong atta  ck");
+                    // anim.SetTrigger("strongAttack");
+                    // AudioManagerSFX.PlaySound("strongAttack");
+                    Debug.Log("strong attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
@@ -198,7 +204,7 @@ public class Enemy : MonoBehaviour
                     break;
                 case 3:
                     //play attack anim
-                    anim.SetTrigger("Miss");
+                    // anim.SetTrigger("Miss");
                     Debug.Log("you suck");
                     break;
                 default:
