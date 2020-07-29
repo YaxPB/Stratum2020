@@ -12,6 +12,8 @@ public class BallBall : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject impactEffect;
 
+    public bool didHit { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +27,15 @@ public class BallBall : MonoBehaviour
         Rigidbody2D enemyRb = hitInfo.GetComponent<Rigidbody2D>();
         if (enemy != null)
         {
+            didHit = true;
             //KNOCKBACK CODE
-            enemy.speed = enemy.speed * 2;
+            enemy.speed = enemy.speed/2;
             Vector2 difference = enemyRb.transform.position - transform.position;
             difference = difference.normalized * thrust;
-            enemyRb.AddForce(difference, ForceMode2D.Force);
+            enemyRb.AddForce(difference, ForceMode2D.Impulse);
+
             //Instantiate(impactEffect, transform.position, transform.rotation);
+
             StartCoroutine(KnockCo(enemyRb, enemy));
 
             enemy.TakeDamage(damage);
@@ -42,8 +47,8 @@ public class BallBall : MonoBehaviour
         if(enemy != null)
         {
             yield return new WaitForSeconds(knockTime);
-            //Debug.Log(info.regSpeed);
             enemy.velocity = Vector2.zero;
+            Debug.Log(enemy.velocity);
 
             //speed the enemy back up after the knockback;
             info.speed = info.regSpeed;

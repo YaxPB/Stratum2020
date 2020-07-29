@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
 
     public float speed;
     public float regSpeed;
@@ -16,11 +16,18 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     private GameObject target;
 
+    Overhead oh;
     public GameObject theCanvas;
     private Animator hitMe;
 
+    public HealthBar healthBar;
+    public GameObject healthCanvas;
+
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    //public float attackRange = 0.5f;
+    public float attackRangeX;
+    public float attackRangeY;
+
     public LayerMask playerLayer;
     public int attackDamage = 15;
     public int strongDamage = 30;
@@ -35,15 +42,24 @@ public class Enemy : MonoBehaviour
     public bool isStunned;
     public float stunDuration = 2f;
     bool isAttacking;
+    bool isBlocking;
+
+    int arrCount;
 
     public bool loggingEnabled = false;
+
+    Vomiting flight;
+    public Vomiting vomitPrefab;
+    public float despawn = 2f;
 
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthCanvas.SetActive(true);
+
         theCanvas.SetActive(false);
         regSpeed = speed;
-
         target = GameObject.FindGameObjectWithTag("Player");
         hitMe = theCanvas.GetComponentInChildren<Animator>();
     }
@@ -67,37 +83,58 @@ public class Enemy : MonoBehaviour
             if (Time.time >= nextAttack)
             {
                 isAttacking = true;
-                Debug.Log(target);
                 EnemyAttack();
                 nextAttack = Time.time + 1f / attackRate;
             }
         }
+
+        //wave enemies have to detect oh after the Overhead is turned on by the wavespawner
+        /*if(ws.allSpawned)
+            oh = GameObject.FindGameObjectWithTag("Overhead").GetComponent<Overhead>();*/
     }
 
     private void StopChasePlayer()
     {
-        //nothing wow
+        anim.SetBool("isWalking", false);
+        //anim.SetBool("isBlocking", false);
+        //isBlocking = false;
+        //speed = regSpeed;
     }
 
     private void ChasePlayer()
     {
         theCanvas.SetActive(true);
-        
-        //add in a correct flip function to follow player
+
+        if(!isBlocking)
+            anim.SetBool("isWalking", true);
+
         if (transform.position.x < target.transform.position.x)
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponentInChildren<SpriteRenderer>().flipX = false;
         else
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
 
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        if (isBlocking)
+        {
+            currentHealth -= damage / 3;
+            isBlocking = false;
+            anim.SetBool("isBlocking", false);
+            speed = regSpeed;
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
+        
+        //anim.SetTrigger("Hurt");
+        healthBar.SetHealth(currentHealth);
 
-        //play hurt anim
-        // anim.SetTrigger("Hurt");
+        if(oh != null)
+            oh.AdjustPool(damage);
 
         if (floatyText != null && currentHealth > 0)
         {
@@ -118,26 +155,19 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // theTarget.SetBool("CombatMode", false);
+        //theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
         hitMe.SetBool("isCombat", false);
         Debug.Log("Enemy died!");
 
-        // anim.SetBool("IsDead", true);
+        anim.SetBool("isWalking", false);
+        //anim.SetBool("IsDead", true);
 
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
         Destroy(gameObject, 2f);
-    }
-
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            EnemyAttack();
-        }
     }
 
     public void EnemyAttack()
@@ -149,34 +179,41 @@ public class Enemy : MonoBehaviour
             isAttacking = false;
         }
 
-        if (isAttacking)
+        if (isAttacking && !isBlocking)
         {
 
             //detect player in range
-            Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+            Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, playerLayer);
 
             var r = Random.Range(0, 100);
-            if (r < 70)
+            if (r < 60)
             {
-                //70% probability WEAK
+                //60% probability WEAK
                 attackType = 1;
             }
-            else if (r >= 70 && r < 90)
+            else if(r >60 && r < 75)
             {
-                //20% probability STRONG
+                //15% probability STRONG
                 attackType = 2;
+            }
+            else if (r >= 75 && r < 90)
+            {
+                //15% probability VOMIT
+                attackType = 3;
             }
             else if (r >= 90)
             {
-                //10% probability MISS
-                attackType = 3;
+                //10% probability BLOCK
+                attackType = 4;
             }
             
+            anim.SetBool("isWalking", false);
+
             switch (attackType)
             {
                 case 1:
                     //play attack anim
-                    anim.SetTrigger("EAttack");
+                    anim.SetTrigger("isAttacking");
                     Debug.Log("weak attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
@@ -187,20 +224,34 @@ public class Enemy : MonoBehaviour
                 case 2:
                     //play strong attack anim
                     anim.SetTrigger("SAttack");
-                    Debug.Log("strong atta  ck");
+                    Debug.Log("strong attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        // player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
+                        player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
                     }
                     break;
                 case 3:
-                    //play attack anim
-                    anim.SetTrigger("Miss");
-                    Debug.Log("you suck");
+                    anim.SetTrigger("Vomit");
+                    Debug.Log("vomit");
+                    Vector2 direction = Vector2.right;
+                    if(GetComponentInChildren<SpriteRenderer>().flipX)
+                    {
+                        direction = Vector2.left;
+                    }
+                    flight = Vomiting.CreateVomit(vomitPrefab, attackPoint, direction);
+                    Invoke("ByeVomit", despawn);
+                    break;
+                case 4:
+                    speed = speed/2;
+                    anim.SetBool("isBlocking", true);
+                    anim.SetTrigger("Block");
+                    anim.SetBool("isWalking", false);
+                    isBlocking = true;
+                    Debug.Log("blocking");
                     break;
                 default:
-                    Debug.Log("shit happens");
+                    Debug.Log("welp that happened");
                     break;
             }
         }
@@ -211,7 +262,7 @@ public class Enemy : MonoBehaviour
         if (attackPoint == null)
             return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX, attackRangeY, 1));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -256,5 +307,13 @@ public class Enemy : MonoBehaviour
         hitMe.enabled = true;
         hitMe.SetBool("isCombat", true);
         hitMe.SetBool("withinRange", true);
+    }
+
+    void ByeVomit()
+    {
+        if (!flight.didHit)
+        {
+            Destroy(flight);
+        }
     }
 }

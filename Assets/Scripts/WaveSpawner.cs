@@ -27,9 +27,15 @@ public class WaveSpawner : MonoBehaviour
 
     private SpawnState state = SpawnState.COUNTING;
     bool completed;
+    bool beginTheWaves;
+    public bool allSpawned { get; private set; }
+
+    public GameObject foos;
+    public GameObject oh;
 
     private void Start()
     {
+        //oh.SetActive(false);
         if(spawnPoints.Length == 0)
         {
             Debug.LogError("no spawn points foo");
@@ -40,24 +46,29 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        if(state == SpawnState.WAITING)
+        if (beginTheWaves)
         {
-            if (!EnemyIsAlive())
+            if (state == SpawnState.WAITING)
             {
-                WaveCompleted();
+                if (!EnemyIsAlive())
+                {
+                    WaveCompleted();
+                }
+                else
+                    return;
             }
-            else
-                return;
-        }
 
-        if(waveCountDown <= 0)
-        {
-            if(state != SpawnState.SPAWNING){
-                StartCoroutine(SpawnWave(waves[nextWave]));
+            if (waveCountDown <= 0)
+            {
+                if (state != SpawnState.SPAWNING)
+                {
+                    StartCoroutine(SpawnWave(waves[nextWave]));
+                }
             }
-        }
-        else{
-            waveCountDown -= Time.deltaTime;
+            else if (!completed)
+            {
+                waveCountDown -= Time.deltaTime;
+            }
         }
     }
 
@@ -69,10 +80,13 @@ public class WaveSpawner : MonoBehaviour
         waveCountDown = timeBetweenWaves;
 
         //waves.length will stop wave looping but is beyond index
-        if(nextWave + 1 > waves.Length)
+        if(nextWave + 1 > waves.Length - 1)
         {
-            nextWave = 0;
+            //nextWave = 0;
             completed = true;
+            Debug.Log("all done");
+            foos.SetActive(true);
+            oh.SetActive(false);
         }
 
         if (!completed)
@@ -99,6 +113,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave(Wave _wave)
     {
+        foos.SetActive(false);
         Debug.Log("Spawning wave:" + _wave.name);
         state = SpawnState.SPAWNING;
 
@@ -107,6 +122,8 @@ public class WaveSpawner : MonoBehaviour
             SpawnEnemy(_wave.enemy);
             yield return new WaitForSeconds(1f/_wave.rate);
         }
+        allSpawned = true;
+        oh.SetActive(true);
 
         state = SpawnState.WAITING;
 
@@ -118,5 +135,13 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Spawning Enemy: " + _enemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, _sp.position, _sp.rotation);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            beginTheWaves = true;
+        }
     }
 }
