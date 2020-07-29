@@ -15,7 +15,9 @@ public class PlayerCombat : MonoBehaviour
     public Animator anim;
 
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    //public float attackRange = 0.5f;
+    public float attackRangeX;
+    public float attackRangeY;
     public LayerMask enemyLayers;
     public LayerMask breakableLayers;
     private Collider2D enemyCollision;
@@ -56,7 +58,7 @@ public class PlayerCombat : MonoBehaviour
         instance = this;
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
-        
+
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
     }
@@ -92,16 +94,25 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        //play attack anim
-        // anim.SetTrigger("Attack");
+        anim.SetTrigger("Attack");
 
         //detect enemies in range
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY),0 , enemyLayers);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         Collider2D[] hitBreakables = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, breakableLayers);
         
         //apply damage 
         foreach(Collider2D enemy in hitEnemies)
         {
+            var damo = enemy.GetComponent<Enemy>();
+            if (damo.currentHealth > attackDamage)
+            {
+                damo.TakeDamage(attackDamage);
+            }
+            else
+            {
+                damo.TakeDamage(damo.currentHealth);
+            }
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             AudioManagerSFX.PlaySound("kick");
         }
@@ -114,20 +125,23 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-
-        //play hurt anim
-        // anim.SetTrigger("Hurt");
-        healthBar.SetHealth(currentHealth);
-
-        if (currentHealth <= 0)
+        if (!mp.isDodging)
         {
-            Die();
+            currentHealth -= damage;
+
+            anim.SetTrigger("Hurt");
+            healthBar.SetHealth(currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
     void Die()
     {
+        //anim.SetBool("IsDead", true);
         if (loggingEnabled)
         {
             Debug.Log("You died!");
@@ -148,7 +162,7 @@ public class PlayerCombat : MonoBehaviour
         if (attackPoint == null)
             return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX,attackRangeY, 1));
     }
 
     void Music()
@@ -216,7 +230,7 @@ public class PlayerCombat : MonoBehaviour
     {
         transform.position = respawn.transform.position;
 
-        anim.SetBool("IsDead", false);
+        //anim.SetBool("IsDead", false);
 
         GetComponent<Collider2D>().enabled = true;
         this.enabled = true;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
-    public float runSpeed = 1f;
+    public float runSpeed;
     public float rollWindup = 0.1f;
     private Vector3 slideDir;
     private Rigidbody2D playerRB;
@@ -18,11 +18,18 @@ public class MovePlayer : MonoBehaviour
 
     Animator animator;
 
+    public Animator animator;
+    
     private Rigidbody2D rb;
     public float rollSpeed;
+
+    [SerializeField]
     private float rollTime;
     public float startRollTime;
+
+    [SerializeField]
     private int direction;
+    public bool isDodging { get; private set; }
 
     //bool isJumping;
     bool isRolling;
@@ -76,7 +83,18 @@ public class MovePlayer : MonoBehaviour
             return;
         }*/
 
-        if (direction == 0) {
+        if (!isDodging)
+        {
+            if (direction != 0)
+            {
+                //start coroutine
+                if (Input.GetButtonDown("Dodge"))
+                {
+                    isDodging = true;
+                    StartCoroutine(BeginDodgeRoll());
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.A))
                 direction = 1;
             else if (Input.GetKeyDown(KeyCode.D))
@@ -88,40 +106,27 @@ public class MovePlayer : MonoBehaviour
         }
         else {
             //start coroutine
-            if (Input.GetButtonDown("Dodge")) {
-                rollTime -= Time.deltaTime;
+            if (Input.GetButtonDown("Dodge")) { 
                 StartCoroutine(BeginDodgeRoll());
             }
         }
 
-        if (rollTime <= 0)
-        {
-            direction = 0;
-            rollTime = startRollTime;
-            rb.velocity = Vector2.zero;
-        }
-    }
-
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(horizontal * runSpeed, vertical * runSpeed, 0.0f);
-        transform.position = transform.position + movement * Time.deltaTime;
-        Flip(horizontal);
 
-        /*if(transform.position.y <= axisY)
+        if(horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
         {
-            OnLanding();
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+
         }
 
-        Input.GetButtonDown("Jump") && !isJumping)
-        {
-            axisY = transform.position.y;
-            isJumping = true;
-            rigidBody.gravityScale = 1.5f;
-            rigidBody.WakeUp();
-            rigidBody.AddForce(new Vector2(transform.position.x + 7.5f, jumpForce));
-            //animator.SetBool("isJumping", true);
-        }*/
+        transform.position = transform.position + movement * Time.deltaTime;
+        Flip(horizontal);
     }
 
     private void Flip(float horizontal)
@@ -130,28 +135,12 @@ public class MovePlayer : MonoBehaviour
         {
             facingRight = !facingRight;
 
-            /*Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;*/
-
             transform.Rotate(0f, 180f, 0f);
         }
     }
 
-    /*void OnLanding()
-    {
-        isJumping = false;
-        rigidBody.gravityScale = 0f;
-        rigidBody.Sleep();
-        axisY = transform.position.y;
-        //animator.SetBool("isJumping", false);
-    }*/
-
     private IEnumerator BeginDodgeRoll()
     {
-        Debug.Log("im rolling");
-        yield return new WaitForSeconds(rollWindup);
-
         switch (direction)
         {
             case 1:
@@ -177,6 +166,18 @@ public class MovePlayer : MonoBehaviour
             default:
                 Debug.Log("Uh oh,no direction");
                 break;
+        }
+        Invoke("Reset", startRollTime);
+        yield return new WaitForSeconds(rollWindup);
+    }
+
+    void Reset()
+    {
+        if (rollTime <= 0)
+        {
+            rollTime = startRollTime;
+            rb.velocity = Vector2.zero;
+            isDodging = false;
         }
     }
 }
