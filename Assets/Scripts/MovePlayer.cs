@@ -13,7 +13,6 @@ public class MovePlayer : MonoBehaviour
     bool facingRight;
 
     public Animator animator;
-    PlayerCombat pc;
     
     private Rigidbody2D rb;
     public float rollSpeed;
@@ -25,12 +24,7 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField]
     private int direction;
-    bool isDodging;
-
-    private void Awake()
-    {
-        pc = GetComponent<PlayerCombat>();
-    }
+    public bool isDodging { get; private set; }
 
     private void Start()
     {
@@ -57,7 +51,6 @@ public class MovePlayer : MonoBehaviour
                 if (Input.GetButtonDown("Dodge"))
                 {
                     isDodging = true;
-                    //pc.enabled = false;
                     StartCoroutine(BeginDodgeRoll());
                 }
             }
@@ -97,19 +90,12 @@ public class MovePlayer : MonoBehaviour
         {
             facingRight = !facingRight;
 
-            /*Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;*/
-            //Debug.Log("flipping");
-
             transform.Rotate(0f, 180f, 0f);
         }
     }
 
     private IEnumerator BeginDodgeRoll()
     {
-        Debug.Log("im rolling");
-
         switch (direction)
         {
             case 1:
@@ -144,7 +130,6 @@ public class MovePlayer : MonoBehaviour
     {
         if (rollTime <= 0)
         {
-            //pc.enabled = true;
             rollTime = startRollTime;
             rb.velocity = Vector2.zero;
             isDodging = false;

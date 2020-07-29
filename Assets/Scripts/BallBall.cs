@@ -33,8 +33,6 @@ public class BallBall : MonoBehaviour
             Vector2 difference = enemyRb.transform.position - transform.position;
             difference = difference.normalized * thrust;
             enemyRb.AddForce(difference, ForceMode2D.Impulse);
-            
-            Debug.Log("test");
 
             //Instantiate(impactEffect, transform.position, transform.rotation);
 

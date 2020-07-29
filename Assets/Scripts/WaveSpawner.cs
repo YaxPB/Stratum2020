@@ -28,6 +28,7 @@ public class WaveSpawner : MonoBehaviour
     private SpawnState state = SpawnState.COUNTING;
     bool completed;
     bool beginTheWaves;
+    public bool allSpawned { get; private set; }
 
     public GameObject foos;
     public GameObject oh;
@@ -85,7 +86,7 @@ public class WaveSpawner : MonoBehaviour
             completed = true;
             Debug.Log("all done");
             foos.SetActive(true);
-            //oh.SetActive(false);
+            oh.SetActive(false);
         }
 
         if (!completed)
@@ -121,6 +122,8 @@ public class WaveSpawner : MonoBehaviour
             SpawnEnemy(_wave.enemy);
             yield return new WaitForSeconds(1f/_wave.rate);
         }
+        allSpawned = true;
+        oh.SetActive(true);
 
         state = SpawnState.WAITING;
 
@@ -129,7 +132,6 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(Transform _enemy)
     {
-        //oh.SetActive(true);
         Debug.Log("Spawning Enemy: " + _enemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, _sp.position, _sp.rotation);

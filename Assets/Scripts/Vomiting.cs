@@ -13,15 +13,16 @@ public class Vomiting : MonoBehaviour
 
     public bool didHit { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
+    public static Vomiting CreateVomit(Vomiting vomit, Transform at, Vector2 direction)
     {
-        rb.velocity = transform.right * speed;
+        Vomiting flight = Instantiate<Vomiting>(vomit, at.position, at.rotation);
+        flight.rb.velocity = direction * flight.speed;
+        return flight;
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log(hitInfo.name);
+        //Debug.Log(hitInfo.name);
         pc = hitInfo.GetComponent<PlayerCombat>();
         mp = hitInfo.GetComponent<MovePlayer>();
 
