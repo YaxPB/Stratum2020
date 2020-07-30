@@ -1241,7 +1241,7 @@ MonoBehaviour:
 
     Q to Berimbau attack'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3017,7 +3017,7 @@ MonoBehaviour:
 
     Left-click to basic attack'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4730,7 +4730,7 @@ MonoBehaviour:
 
     SHIFT to dodge roll'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4840,11 +4840,6 @@ PrefabInstance:
       propertyPath: respawn
       value: 
       objectReference: {fileID: 314738721}
-    - target: {fileID: 7609580416708899339, guid: dd04ea1b7654be243b39838fce2a508b,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899348, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_Name

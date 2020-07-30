@@ -5,58 +5,54 @@ using UnityEngine;
 public class Overhead : MonoBehaviour
 {
     int totalPool;
+    int count;
     int changingPool;
+    int spawner;
+    int wave;
 
-    //public GameObject foos;
-    public Enemy[] maxhealthPool;
-    public GameObject[] enemies;
+    //public GameObject[] enemies;
+    
+    public int[] maxhealthPool;
+    public WaveSpawner[] waveComs;
 
     public HealthBar healthBar;
     public GameObject healthCanvas;
-    public WaveSpawner ws;
 
-    bool counted;
-    bool set;
+    public bool readyToDecrease;
 
-    void Start()
+    private void Start()
     {
-        if (ws.allSpawned)
+        healthCanvas.SetActive(false);
+        waveComs = FindObjectsOfType<WaveSpawner>();
+        //Debug.Log(waveComs[1].name);
+    }
+
+    public void SetOverhead()
+    {
+        //if (waveComs[spawner].allSpawned)
+        if (!waveComs[spawner].completed)
         {
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                maxhealthPool[i] = enemies[i].GetComponent<Enemy>();
-            }
+            count = waveComs[spawner].waves[wave].count;
+            totalPool = count * 100;
+            changingPool = totalPool;
+            healthBar.SetMaxHealth(totalPool);
+            Debug.Log(totalPool);
+            healthCanvas.SetActive(true);
+            readyToDecrease = true;
+            wave++;
         }
     }
     
     void Update()
     {
-        //sets the waves entire health pool
-        if (!counted)
+        if (healthBar.slider.value <= 0)
         {
-            foreach (var health in maxhealthPool)
-            {
-                totalPool += health.currentHealth;
-            }
-            changingPool = totalPool;
-        }
-        else
-        {
-            if (!set)
-            {
-                //Debug.Log(totalPool);
-                healthBar.SetMaxHealth(totalPool);
-                healthCanvas.SetActive(true);
-                set = true;
-            }
-        }
-        counted = true;
-
-        if(changingPool <= 0)
             healthCanvas.SetActive(false);
+            readyToDecrease = false;
+        }
 
-        //globalPool = foos.GetComponentsInChildren<Enemy>();
+        if (waveComs[spawner].completed)
+            spawner++;
     }
 
     //called to adjust the health pool after each enemy death
