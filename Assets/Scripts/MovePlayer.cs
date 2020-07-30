@@ -43,7 +43,6 @@ public class MovePlayer : MonoBehaviour
     {
         canMove = true;
         playerRB = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         playerFX = GetComponent<AudioSource>();
 
         /*rigidBody = GetComponent<Rigidbody2D>();

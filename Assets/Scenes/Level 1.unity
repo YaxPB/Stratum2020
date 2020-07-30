@@ -1230,6 +1230,11 @@ PrefabInstance:
       propertyPath: respawn
       value: 
       objectReference: {fileID: 452341076}
+    - target: {fileID: 7609580416708899339, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: attackDamage
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899348, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_Name

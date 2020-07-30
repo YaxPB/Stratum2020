@@ -26,15 +26,16 @@ public class WaveSpawner : MonoBehaviour
     private float searchCountDown = 1f;
 
     private SpawnState state = SpawnState.COUNTING;
-    bool completed;
+    public bool completed { get; private set; }
     bool beginTheWaves;
-    public bool allSpawned { get; private set; }
+    //public bool allSpawned { get; private set; }
 
     public GameObject foos;
-    public GameObject oh;
+    Overhead oh;
 
     private void Start()
     {
+        oh = FindObjectOfType<Overhead>();
         //oh.SetActive(false);
         if(spawnPoints.Length == 0)
         {
@@ -86,7 +87,6 @@ public class WaveSpawner : MonoBehaviour
             completed = true;
             Debug.Log("all done");
             foos.SetActive(true);
-            oh.SetActive(false);
         }
 
         if (!completed)
@@ -122,8 +122,8 @@ public class WaveSpawner : MonoBehaviour
             SpawnEnemy(_wave.enemy);
             yield return new WaitForSeconds(1f/_wave.rate);
         }
-        allSpawned = true;
-        oh.SetActive(true);
+
+        oh.SetOverhead();
 
         state = SpawnState.WAITING;
 

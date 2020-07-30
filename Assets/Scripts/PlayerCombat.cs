@@ -98,8 +98,8 @@ public class PlayerCombat : MonoBehaviour
 
         //detect enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY),0 , enemyLayers);
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        Collider2D[] hitBreakables = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, breakableLayers);
+       
+        Collider2D[] hitBreakables = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, breakableLayers);
         
         //apply damage 
         foreach(Collider2D enemy in hitEnemies)
@@ -113,12 +113,11 @@ public class PlayerCombat : MonoBehaviour
             {
                 damo.TakeDamage(damo.currentHealth);
             }
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            AudioManagerSFX.PlaySound("kick");
+            //AudioManagerSFX.PlaySound("kick");
         }
         foreach (Collider2D breakable in hitBreakables)
         {
-            AudioManagerSFX.PlaySound("kick");
+            //AudioManagerSFX.PlaySound("kick");
             breakable.GetComponent<Breakable>().TakeDamage(attackDamage);
         }
     }
@@ -189,7 +188,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 Debug.Log("In Combat Mode");
             }
-            rangeRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f), attackRange, layerMask);
+            rangeRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f),attackRangeX, layerMask);
 
             if (rangeRay.collider != null)
             {

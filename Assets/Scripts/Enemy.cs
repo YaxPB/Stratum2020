@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
     public int noteDamo = 10;
     public bool isStunned;
     public float stunDuration = 2f;
+    public float timeAfterDamo = 1.8f;
     bool isAttacking;
     bool isBlocking;
 
@@ -54,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        oh = FindObjectOfType<Overhead>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
@@ -87,10 +89,6 @@ public class Enemy : MonoBehaviour
                 nextAttack = Time.time + 1f / attackRate;
             }
         }
-
-        //wave enemies have to detect oh after the Overhead is turned on by the wavespawner
-        /*if(ws.allSpawned)
-            oh = GameObject.FindGameObjectWithTag("Overhead").GetComponent<Overhead>();*/
     }
 
     private void StopChasePlayer()
@@ -130,11 +128,14 @@ public class Enemy : MonoBehaviour
             currentHealth -= damage;
         }
         
+        isStunned = true;
         //anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
 
-        if(oh != null)
+        if(oh.readyToDecrease)
             oh.AdjustPool(damage);
+
+        Invoke("NotStunned", timeAfterDamo);
 
         if (floatyText != null && currentHealth > 0)
         {
@@ -179,9 +180,8 @@ public class Enemy : MonoBehaviour
             isAttacking = false;
         }
 
-        if (isAttacking && !isBlocking)
+        if (isAttacking && !isBlocking && !isStunned)
         {
-
             //detect player in range
             Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, playerLayer);
 
@@ -293,7 +293,6 @@ public class Enemy : MonoBehaviour
     void NotStunned()
     {
         isStunned = false;
-        Debug.Log("unstunning");
         speed = regSpeed;
     }
 
