@@ -8,13 +8,13 @@ public class AudioManagerBG : MonoBehaviour
     public static AudioManagerBG instance;
     public static AudioSource theSource;
     public static AudioSource secondLayer;
-    public static AudioClip berimBAM, combatBass124, combatTheme, grandmaTheme, nightmareTheme, stratumTheme;
+    public static AudioClip berimBAM, combatBass124, combatTheme, grandmaTheme, nightmareTheme, stratumTheme, temp;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimBAM1");
+        berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimBAM2");
         combatTheme = Resources.Load<AudioClip>("Sounds/bg_combatBeats126");
         grandmaTheme = Resources.Load<AudioClip>("Sounds/bg_nightmareWhoopie");
         nightmareTheme = Resources.Load<AudioClip>("Sounds/bg_nightmare1");
@@ -24,7 +24,6 @@ public class AudioManagerBG : MonoBehaviour
         {
             theSource = gameObject.AddComponent<AudioSource>();
         }
-        secondLayer = gameObject.AddComponent<AudioSource>();
         SwitchTrack("stratum");
     }
 
@@ -42,6 +41,10 @@ public class AudioManagerBG : MonoBehaviour
         {
             case "menu":
                 // nothing yet 
+                break;
+            case "previous":
+                theSource.clip = temp;
+                theSource.Play();
                 break;
             case "stratum":
                 if (theSource.clip != stratumTheme)
@@ -69,6 +72,7 @@ public class AudioManagerBG : MonoBehaviour
                 theSource.volume = 0.25f;
                 if (theSource.clip != combatTheme)
                 {
+                    temp = theSource.clip;
                     theSource.clip = combatTheme;
                 }
                 theSource.Play();
@@ -76,8 +80,8 @@ public class AudioManagerBG : MonoBehaviour
             case "berimBAM":
                 theSource.Stop();
                 theSource.PlayOneShot(berimBAM);
+                theSource.PlayDelayed(4.75f);
                 break;
-
         }
 
     }
