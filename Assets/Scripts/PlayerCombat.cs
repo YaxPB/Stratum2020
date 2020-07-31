@@ -48,8 +48,8 @@ public class PlayerCombat : MonoBehaviour
     public float berimgone = 4f;
     private float[] timerRotationZ = new float[4] {-42.5f, 42.5f, 135, -135};
 
-    public Canvas berimBAM;
-    private bool isPlaying;
+    public GameObject berimBeatDownTimer;
+    // private bool isPlaying;
 
     public bool loggingEnabled = false;
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
@@ -57,13 +57,13 @@ public class PlayerCombat : MonoBehaviour
     
     void Start()
     {
-        instance = this;
+        instance = FindObjectOfType<PlayerCombat>();
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
         
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
-        berimBAM.enabled = false;
+        berimBeatDownTimer.SetActive(false);
     }
 
     // Update is called once per frame
@@ -73,24 +73,24 @@ public class PlayerCombat : MonoBehaviour
         {
             // Detects if enemy is within range to attack (targeting function)
             TargetAssist();
-        }
 
-        if (Time.time >= nextAttack)
-        {
-            if (Input.GetButtonDown("Fire1"))
+            if (Time.time >= nextAttack)
             {
-                Attack();
-                nextAttack = Time.time + 1f / attackRate;
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Attack();
+                    nextAttack = Time.time + 1f / attackRate;
+                }
             }
-        }
 
-        if (Time.time > nextMusic)
-        {
-            mp.runSpeed = regSpeed;
-            if (Input.GetButtonDown("Berimbau"))
+            if (Time.time > nextMusic)
             {
-                Music();
-                nextMusic = Time.time + musicCoolDown;
+                mp.runSpeed = regSpeed;
+                if (Input.GetButtonDown("Berimbau"))
+                {
+                    Music();
+                    nextMusic = Time.time + musicCoolDown;
+                }
             }
         }
     }
@@ -158,37 +158,34 @@ public class PlayerCombat : MonoBehaviour
 
     void Music()
     {
-        int rotationIndex = Random.Range(0, 4);
         if (loggingEnabled)
         {
             Debug.Log("MUSIC!");
         }
-        // Freeze the player (momentarily), play some music, button prompts
-        MovePlayer.instance.canMove = false;
-        AudioManagerBG.SwitchTrack("berimBAM");
-        berimBAM.enabled = true;
-        berimBAM.transform.eulerAngles = new Vector3 (
-            gameObject.transform.eulerAngles.x,
-            gameObject.transform.eulerAngles.y,
-            timerRotationZ[rotationIndex]
-            );
-        // Maybe an array to store z-rotation data to shuffle thru every time called
-        BerimBeats();
+
+        berimBeatDownTimer.SetActive(true);
+        berimBeatDownTimer.SendMessage("Start");
+        StartCoroutine(BerimBeats());
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
         Destroy(flight, berimgone);
-        // berimBAM.enabled = false;
-        // MovePlayer.instance.canMove = true;
-
     }
 
-    void BerimBeats()
+    // Will probably be an IEnumerator so we can add a quick yield delay for switching things off/on
+    IEnumerator BerimBeats()
     {
-        isPlaying = true;
-        // Maybe SendMessage to nearby enemies (check Enemy script first) to display notesAnim
-        // I'm thinking of a radial wipe (pie chart with triangular sections for when to time hits)
+
+        // isPlaying = true;
+        AudioManagerBG.SwitchTrack("berimBAM");
+        // Freeze the player (momentarily), play some music, button prompts
+        MovePlayer.instance.canMove = false;
+
+
+
         // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
         // OR hits that happen in quick succession with each correctly timed button press
-        
+        yield return new WaitForSeconds(4.6f);
+        // berimBeatDownTimer.SetActive(false);
+        MovePlayer.instance.canMove = true;
     }
 
     void TargetAssist()
@@ -228,12 +225,16 @@ public class PlayerCombat : MonoBehaviour
 
     void TimeToFight(bool combatMode)
     {
-        if (!combatMode)
+        isCombat = combatMode;
+        if (!isCombat)
         {
             instance.enabled = false;
         }
-        isCombat = combatMode;
-        instance.enabled = true;
+        else
+        {
+            instance.enabled = true;
+        }
+
     }
 
     void Respawn()

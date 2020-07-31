@@ -6,16 +6,17 @@ public class AudioManagerSFX : MonoBehaviour
 {
     public static AudioManagerSFX instance;
     public static AudioSource theSource;
-    public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, doorOpen, typingText, lampBreak;
+    public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, doorOpen, typingText, lampBreak, pandeiro;
     public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHit, enemyDie;
     public static float pitchRandom = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimbauNote3");
+        berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimbauNote2");
         doorOpen = Resources.Load<AudioClip>("Sounds/aud_doorOpen");
         lampBreak = Resources.Load<AudioClip>("Sounds/aud_lampCrash1");
+        pandeiro = Resources.Load<AudioClip>("Sounds/aud_pandeiro1");
         typingText = Resources.Load<AudioClip>("Sounds/aud_textBlip1");
 
         enemyBasicAttack = Resources.Load<AudioClip>("Sounds/aud_kick5");
@@ -50,7 +51,7 @@ public class AudioManagerSFX : MonoBehaviour
                 theSource.PlayOneShot(playerHit);
                 theSource.volume = 1f;
                 theSource.clip = enemyHit;
-                theSource.PlayDelayed(0.15f);
+                theSource.PlayDelayed(0.2f);
                 break;
             case "kickLamp":
                 theSource.PlayOneShot(playerHit);
@@ -81,7 +82,11 @@ public class AudioManagerSFX : MonoBehaviour
                 theSource.volume = 1f;
                 theSource.PlayOneShot(enemyDie);
                 break;
-
+            case "berimBAM":
+                theSource.PlayOneShot(pandeiro);
+                theSource.pitch = 1.2f;
+                theSource.PlayOneShot(berimBAM);
+                break;
         }
 
     }
