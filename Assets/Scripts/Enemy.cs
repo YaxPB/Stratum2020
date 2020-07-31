@@ -29,8 +29,8 @@ public class Enemy : MonoBehaviour
     public float attackRangeY;
 
     public LayerMask playerLayer;
-    public int attackDamage = 15;
-    public int strongDamage = 30;
+    public int attackDamage = 10;
+    public int strongDamage = 20;
     private int attackType;
 
     private float targetDistance;
@@ -38,10 +38,10 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1.5f;
     float nextAttack = 0f;
 
-    public int noteDamo = 10;
+    public int noteDamo = 20;
     public bool isStunned;
     public float stunDuration = 2f;
-    public float timeAfterDamo = 1.8f;
+    public float timeAfterDamo = 1.7f;
     bool isAttacking;
     bool isBlocking;
 

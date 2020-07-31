@@ -23,7 +23,6 @@ public class Overhead : MonoBehaviour
     {
         healthCanvas.SetActive(false);
         waveComs = FindObjectsOfType<WaveSpawner>();
-        Debug.Log(waveComs[3].name);
     }
 
     public void SetOverhead(int wave)

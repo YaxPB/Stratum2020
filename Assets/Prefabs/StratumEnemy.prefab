@@ -465,7 +465,7 @@ MonoBehaviour:
   currentHealth: 0
   speed: 4
   regSpeed: 0
-  chaseDistance: 12
+  chaseDistance: 24
   stopDistance: 1
   floatyText: {fileID: 2686320548070579237, guid: d9d72749bbebdc646825db2ecc36577a,
     type: 3}
@@ -479,12 +479,14 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  attackDamage: 15
-  strongDamage: 30
+  attackDamage: 10
+  strongDamage: 20
   attackRate: 0.4
   noteDamo: 10
   isStunned: 0
   stunDuration: 2
+  timeAfterDamo: 1.8
+  loggingEnabled: 0
   vomitPrefab: {fileID: 4418971504066246878, guid: dd99d154667734741a7c33f6a221b829,
     type: 3}
   despawn: 2
