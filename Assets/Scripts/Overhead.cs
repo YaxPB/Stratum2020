@@ -7,8 +7,7 @@ public class Overhead : MonoBehaviour
     int totalPool;
     int count;
     int changingPool;
-    int spawner;
-    int wave;
+    int spawner = 0;
 
     //public GameObject[] enemies;
     
@@ -24,22 +23,19 @@ public class Overhead : MonoBehaviour
     {
         healthCanvas.SetActive(false);
         waveComs = FindObjectsOfType<WaveSpawner>();
-        //Debug.Log(waveComs[1].name);
+        Debug.Log(waveComs[3].name);
     }
 
-    public void SetOverhead()
+    public void SetOverhead(int wave)
     {
-        //if (waveComs[spawner].allSpawned)
         if (!waveComs[spawner].completed)
         {
             count = waveComs[spawner].waves[wave].count;
             totalPool = count * 100;
             changingPool = totalPool;
             healthBar.SetMaxHealth(totalPool);
-            Debug.Log(totalPool);
             healthCanvas.SetActive(true);
             readyToDecrease = true;
-            wave++;
         }
     }
     

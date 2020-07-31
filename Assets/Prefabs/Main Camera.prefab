@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef62683693d8cf34baaf62f9125da672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b, type: 3}
+  target: {fileID: 0}
 --- !u!81 &6298649509532807042
 AudioListener:
   m_ObjectHideFlags: 0

@@ -8,15 +8,12 @@ public class MovePlayer : MonoBehaviour
     public float rollWindup = 0.1f;
     private Vector3 slideDir;
     private Rigidbody2D playerRB;
-    private Vector3 rolling;
 
     float horizontal;
     float vertical;
     bool facingRight;
 
     bool canMove;
-
-    //Animator animator;
 
     public Animator animator;
     
@@ -31,22 +28,13 @@ public class MovePlayer : MonoBehaviour
     private int direction;
     public bool isDodging { get; private set; }
 
-    //bool isJumping;
-    bool isRolling;
-
     // Sound variables
     private float stepOffset;
     private AudioSource playerFX;
 
-
     private void Awake()
     {
         canMove = true;
-        playerRB = GetComponent<Rigidbody2D>();
-        playerFX = GetComponent<AudioSource>();
-
-        /*rigidBody = GetComponent<Rigidbody2D>();
-        rigidBody.Sleep();*/
     }
 
     private void Start()
@@ -58,35 +46,34 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stepOffset > 0)
+        /*if (stepOffset > 0)
         {
             stepOffset -= Time.deltaTime;
         }
+
         if (stepOffset < 0)
         {
             stepOffset = 0;
-        }
+        }*/
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
-        if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
+        /*if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
         {
             AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
             stepOffset = 0.25f;
-        }
-
-        /*if (!canMove)
-        {
-            playerRB.velocity = Vector2.zero;
-            return;
         }*/
+
+        if (rollTime > 0)
+        {
+            rollTime -= Time.deltaTime;
+        }
 
         if (!isDodging)
         {
             if (direction != 0)
             {
-                //start coroutine
                 if (Input.GetButtonDown("Dodge"))
                 {
                     isDodging = true;
@@ -102,14 +89,6 @@ public class MovePlayer : MonoBehaviour
                 direction = 3;
             else if (Input.GetKeyDown(KeyCode.S))
                 direction = 4;
-        }
-        else
-        {
-            //start coroutine
-            if (Input.GetButtonDown("Dodge"))
-            {
-                StartCoroutine(BeginDodgeRoll());
-            }
         }
     }
 
