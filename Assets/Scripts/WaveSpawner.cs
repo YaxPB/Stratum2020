@@ -83,7 +83,6 @@ public class WaveSpawner : MonoBehaviour
         //waves.length will stop wave looping but is beyond index
         if(nextWave + 1 > waves.Length - 1)
         {
-            //nextWave = 0;
             completed = true;
             Debug.Log("all done");
             foos.SetActive(true);
@@ -123,7 +122,7 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f/_wave.rate);
         }
 
-        oh.SetOverhead();
+        oh.SetOverhead(nextWave);
 
         state = SpawnState.WAITING;
 

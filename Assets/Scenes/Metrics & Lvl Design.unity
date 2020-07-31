@@ -1756,6 +1756,10 @@ MonoBehaviour:
     enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
     count: 2
     rate: 1
+  - name: StratumWave
+    enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+    count: 4
+    rate: 1
   spawnPoints:
   - {fileID: 1100411465}
   - {fileID: 1646255403}
