@@ -1,0 +1,389 @@
+fileFormatVersion: 2
+guid: 65dcb2d0d6649df459964636cc66bd57
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -529395388283831465
+    second: Stratum_Enemy_Hit_0
+  - first:
+      213: 5102100136240328700
+    second: Stratum_Enemy_Hit_1
+  - first:
+      213: 5045743969147114134
+    second: Stratum_Enemy_Hit_2
+  - first:
+      213: 1727071075459913492
+    second: Stratum_Enemy_Hit_2
+  - first:
+      213: 6823898897358943590
+    second: Stratum_Enemy_Hit_3
+  - first:
+      213: 7681601939934305670
+    second: Stratum_Enemy_Hit_4
+  - first:
+      213: -8191590393020117800
+    second: Stratum_Enemy_Hit_6
+  - first:
+      213: 442714494077080709
+    second: Stratum_Enemy_Hit_5
+  - first:
+      213: 398675618386758552
+    second: Stratum_Enemy_Hit_6
+  - first:
+      213: 5406107924358358753
+    second: Stratum_Enemy_Hit_7
+  - first:
+      213: -2253575206555821917
+    second: Stratum_Enemy_Hit_8
+  - first:
+      213: 3322395457576123810
+    second: Stratum_Enemy_Hit_11
+  - first:
+      213: 5150712524346179432
+    second: Stratum_Enemy_Hit_0
+  - first:
+      213: -2816792642811462930
+    second: Stratum_Enemy_Hit_1
+  - first:
+      213: -1922615306217153828
+    second: Stratum_Enemy_Hit_2
+  - first:
+      213: -1922188934001216528
+    second: Stratum_Enemy_Hit_2
+  - first:
+      213: 5600748071806764492
+    second: Stratum_Enemy_Hit_3
+  - first:
+      213: -17429549112158150
+    second: Stratum_Enemy_Hit_4
+  - first:
+      213: 8257393872917307143
+    second: Stratum_Enemy_Hit_6
+  - first:
+      213: -4214501609821608377
+    second: Stratum_Enemy_Hit_5
+  - first:
+      213: -3213686131209265359
+    second: Stratum_Enemy_Hit_6
+  - first:
+      213: 3896446045184049008
+    second: Stratum_Enemy_Hit_7
+  - first:
+      213: -2830570483869322869
+    second: Stratum_Enemy_Hit_8
+  - first:
+      213: 7172117405545933085
+    second: Stratum_Enemy_Hit_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1165
+        width: 673
+        height: 883
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f3fc150c10b7740800000000000000
+      internalID: 5150712524346179432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_1
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 1157
+        width: 652
+        height: 891
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeaf94fe30eb8e8d0800000000000000
+      internalID: -2816792642811462930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_2
+      rect:
+        serializedVersion: 2
+        x: 2209
+        y: 1197
+        width: 496
+        height: 851
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f3bba549530355e0800000000000000
+      internalID: -1922188934001216528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_3
+      rect:
+        serializedVersion: 2
+        x: 2699
+        y: 1197
+        width: 506
+        height: 851
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc50f7082bad9bd40800000000000000
+      internalID: 5600748071806764492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_4
+      rect:
+        serializedVersion: 2
+        x: 3199
+        y: 1321
+        width: 897
+        height: 727
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a38139cdae312cff0800000000000000
+      internalID: -17429549112158150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 415
+        width: 833
+        height: 746
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74665418d151385c0800000000000000
+      internalID: -4214501609821608377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_6
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 470
+        width: 594
+        height: 691
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13f1ca19d71b663d0800000000000000
+      internalID: -3213686131209265359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_7
+      rect:
+        serializedVersion: 2
+        x: 1423
+        y: 369
+        width: 564
+        height: 792
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07fbba9a805f21630800000000000000
+      internalID: 3896446045184049008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stratum_Enemy_Hit_8
+      rect:
+        serializedVersion: 2
+        x: 1983
+        y: 327
+        width: 586
+        height: 834
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b817345542bc7b8d0800000000000000
+      internalID: -2830570483869322869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
