@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     public float shakeDistance;
+    public int randRange = 2;
 
     public int cameraZPos = -10;
 
@@ -24,7 +25,7 @@ public class CameraShake : MonoBehaviour
 
     void Shake()
     {
-        Vector3 shakePos = new Vector3(camera.position.x + Random.Range(0,2) * shakeDistance, camera.position.y + Random.Range(0, 2) * shakeDistance, cameraZPos);
+        Vector3 shakePos = new Vector3(camera.position.x + Random.Range(0,randRange) * shakeDistance, camera.position.y + Random.Range(0, randRange) * shakeDistance, cameraZPos);
 
         camera.position = shakePos; 
     }
