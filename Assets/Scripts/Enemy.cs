@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour
         //anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
 
-        if(oh.readyToDecrease)
+        if(oh != null && oh.readyToDecrease)
             oh.AdjustPool(damage);
 
         Invoke("NotStunned", timeAfterDamo);
@@ -212,13 +212,12 @@ public class Enemy : MonoBehaviour
             switch (attackType)
             {
                 case 1:
-                    //play attack anim
                     anim.SetTrigger("isAttacking");
                     Debug.Log("weak attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        // player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                        player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
                     }
                     break;
                 case 2:
