@@ -40,8 +40,7 @@ public class PlayerCombat : MonoBehaviour
     private float nextMusic = 0;
 
     private RaycastHit2D rangeRay;
-
-    // Make sure layerMask is configured correctly
+    
     private int layerMask = 1 << 8;
     // private LayerMask mask = LayerMask.GetMask("Wall");
 
@@ -52,6 +51,8 @@ public class PlayerCombat : MonoBehaviour
     public bool loggingEnabled = false;
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
+
+    public CameraShake cs;
     
     void Start()
     {
@@ -130,6 +131,9 @@ public class PlayerCombat : MonoBehaviour
 
             anim.SetTrigger("Hurt");
             healthBar.SetHealth(currentHealth);
+
+            cs.shakeDistance = 0.06f;
+            Invoke("ResetShake", 0.2f);
 
             if (currentHealth <= 0)
             {
@@ -237,5 +241,10 @@ public class PlayerCombat : MonoBehaviour
         healthCanvas.SetActive(true);
 
         Start();
+    }
+
+    private void ResetShake()
+    {
+        cs.shakeDistance = 0f;
     }
 }

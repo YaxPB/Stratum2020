@@ -32,6 +32,8 @@ public class MovePlayer : MonoBehaviour
     private float stepOffset;
     private AudioSource playerFX;
 
+    public bool load;
+
     private void Awake()
     {
         canMove = true;
@@ -159,6 +161,14 @@ public class MovePlayer : MonoBehaviour
             rollTime = startRollTime;
             rb.velocity = Vector2.zero;
             isDodging = false;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("NextLevel"))
+        {
+            load = true;
         }
     }
 }

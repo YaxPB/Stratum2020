@@ -8,10 +8,17 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime;
 
+    MovePlayer mp;
+
+    private void Start()
+    {
+        mp = FindObjectOfType<MovePlayer>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(mp.load)
         {
             LoadNextLevel();
         }
@@ -24,6 +31,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
+        mp.load = false;
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelIndex);
