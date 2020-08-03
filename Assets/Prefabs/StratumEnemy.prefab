@@ -412,6 +412,36 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &2155200322747754121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5939818661619307057}
+  m_Layer: 0
+  m_Name: PukePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5939818661619307057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2155200322747754121}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.22, y: 1.56, z: -5.73999}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 3613096323288549446}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3613096323288549444
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +476,7 @@ Transform:
   - {fileID: 3613096323859899478}
   - {fileID: 5692939215373813325}
   - {fileID: 7566620111728600363}
+  - {fileID: 5939818661619307057}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -466,7 +497,7 @@ MonoBehaviour:
   speed: 4
   regSpeed: 0
   chaseDistance: 30
-  stopDistance: 1
+  stopDistance: 2
   floatyText: {fileID: 2686320548070579237, guid: d9d72749bbebdc646825db2ecc36577a,
     type: 3}
   anim: {fileID: 5103427470869850905}
@@ -474,6 +505,7 @@ MonoBehaviour:
   healthBar: {fileID: 1710472345290848318}
   healthCanvas: {fileID: 1675828497071084139}
   attackPoint: {fileID: 3613096323859899478}
+  pukePoint: {fileID: 5939818661619307057}
   attackRangeX: 3
   attackRangeY: 4.5
   playerLayer:
@@ -481,7 +513,7 @@ MonoBehaviour:
     m_Bits: 512
   attackDamage: 10
   strongDamage: 20
-  attackRate: 0.4
+  attackRate: 0.5
   noteDamo: 10
   isStunned: 0
   stunDuration: 2
@@ -507,8 +539,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.13, y: 2.23}
-    newSize: {x: 0.16, y: 0.45}
+    oldSize: {x: 1.3, y: 1.96}
+    newSize: {x: 6.68, y: 8.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -885,15 +917,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7937499831273637345, guid: 2e7d13c0fca12bf45a2ca0f8bdaf37d1,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.75, y: 8.65}
+  m_Size: {x: 6.69, y: 8.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &5103427470869850905

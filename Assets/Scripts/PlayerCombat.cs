@@ -157,7 +157,7 @@ public class PlayerCombat : MonoBehaviour
         mp.enabled = false;
         healthCanvas.SetActive(false);
 
-        Invoke("Respawn", 5f);
+        Invoke("Respawn", 3.5f);
     }
 
     private void OnDrawGizmosSelected()

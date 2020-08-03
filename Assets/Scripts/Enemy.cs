@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public GameObject healthCanvas;
 
     public Transform attackPoint;
+    public Transform pukePoint;
     //public float attackRange = 0.5f;
     public float attackRangeX;
     public float attackRangeY;
@@ -41,13 +42,14 @@ public class Enemy : MonoBehaviour
     public int noteDamo = 20;
     public bool isStunned;
     public float stunDuration = 2f;
-    public float timeAfterDamo = 1.7f;
+    public float timeAfterDamo = 1.5f;
     bool isAttacking;
     bool isBlocking;
 
     int arrCount;
 
     public bool loggingEnabled = false;
+    private bool stopped;
 
     Vomiting flight;
     public Vomiting vomitPrefab;
@@ -118,10 +120,9 @@ public class Enemy : MonoBehaviour
     {
         if (isBlocking)
         {
+            stopped = true;
             currentHealth -= damage / 3;
-            isBlocking = false;
-            anim.SetBool("isBlocking", false);
-            speed = regSpeed;
+            StopBlock();
         }
         else
         {
@@ -131,12 +132,11 @@ public class Enemy : MonoBehaviour
         isStunned = true;
         //anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
-
         if(oh != null && oh.readyToDecrease)
             oh.AdjustPool(damage);
-
+        
         Invoke("NotStunned", timeAfterDamo);
-
+        
         if (floatyText != null && currentHealth > 0)
         {
             ShowFloatyText(damage);
@@ -238,16 +238,21 @@ public class Enemy : MonoBehaviour
                     {
                         direction = Vector2.left;
                     }
-                    flight = Vomiting.CreateVomit(vomitPrefab, attackPoint, direction);
+                    flight = Vomiting.CreateVomit(vomitPrefab, pukePoint, direction);
                     Invoke("ByeVomit", despawn);
                     break;
                 case 4:
+                    stopped = false;
+                    Debug.Log("blocking");
                     speed = speed/2;
                     anim.SetBool("isBlocking", true);
                     anim.SetTrigger("Block");
                     anim.SetBool("isWalking", false);
                     isBlocking = true;
-                    Debug.Log("blocking");
+                    if (!stopped)
+                    {
+                        Invoke("StopBlock", 3f);
+                    }
                     break;
                 default:
                     Debug.Log("welp that happened");
@@ -313,5 +318,12 @@ public class Enemy : MonoBehaviour
         {
             Destroy(flight);
         }
+    }
+
+    void StopBlock()
+    {
+        isBlocking = false;
+        anim.SetBool("isBlocking", false);
+        speed = regSpeed;
     }
 }
