@@ -5,12 +5,14 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public Transform kickOff;
-    public GameObject ballPrefab;
+    public BallBall ballPrefab;
 
     public float despawn = 2f;
     
     public float ballCoolDown = 2f;
     private float nextBall = 0;
+    
+    BallBall flight;
 
     // Update is called once per frame
     void Update()
@@ -27,8 +29,15 @@ public class Ball : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("kicked!");
-        GameObject flight = Instantiate(ballPrefab, kickOff.position, kickOff.rotation);
-        Destroy(flight, despawn);
+        flight = Instantiate<BallBall>(ballPrefab, kickOff.position, kickOff.rotation);
+        Invoke("ByeBall", despawn);
+    }
+
+    void ByeBall()
+    {
+        if(!flight.didHit)
+        {
+            Destroy(flight);
+        }
     }
 }

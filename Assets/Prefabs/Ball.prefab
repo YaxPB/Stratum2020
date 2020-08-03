@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3349655182178554148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.637409, y: -3.7261927, z: -1.6610129}
-  m_LocalScale: {x: 1.7227, y: 1.7227, z: 1.7227}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1.7227}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544676f7e6588e04b9c07390753b799e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 3
-  knockTime: 0.2
+  thrust: 6
+  knockTime: 0.5
   speed: 15
   damage: 10
   rb: {fileID: 8719944772568139067}
