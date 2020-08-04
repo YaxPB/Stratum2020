@@ -84,7 +84,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time > nextMusic)
         {
-            mp.runSpeed = regSpeed;
+            //mp.runSpeed = regSpeed;
             if (Input.GetButtonDown("Berimbau"))
             {
                 Music();
@@ -101,6 +101,8 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY),0 , enemyLayers);
        
         Collider2D[] hitBreakables = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, breakableLayers);
+        mp.runSpeed = 0f;
+        Debug.Log(mp.runSpeed);
         
         //apply damage 
         foreach(Collider2D enemy in hitEnemies)
@@ -116,6 +118,9 @@ public class PlayerCombat : MonoBehaviour
             }
             //AudioManagerSFX.PlaySound("kick");
         }
+
+        Invoke("ResetSpeed", 0.45f);
+
         foreach (Collider2D breakable in hitBreakables)
         {
             //AudioManagerSFX.PlaySound("kick");
@@ -127,6 +132,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!mp.isDodging)
         {
+            mp.runSpeed = 0f;
             currentHealth -= damage;
 
             anim.SetTrigger("Hurt");
@@ -134,6 +140,7 @@ public class PlayerCombat : MonoBehaviour
 
             cs.shakeDistance = 0.06f;
             Invoke("ResetShake", 0.2f);
+            Invoke("ResetSpeed", 0.2f);
 
             if (currentHealth <= 0)
             {
@@ -182,6 +189,7 @@ public class PlayerCombat : MonoBehaviour
         // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
         // OR hits that happen in quick succession with each correctly timed button press
         Destroy(flight, berimgone);
+        Invoke("ResetSpeed", 1.5f);
     }
 
     void TargetAssist()
@@ -246,5 +254,10 @@ public class PlayerCombat : MonoBehaviour
     private void ResetShake()
     {
         cs.shakeDistance = 0f;
+    }
+    
+    private void ResetSpeed()
+    {
+        mp.runSpeed = regSpeed;
     }
 }
