@@ -130,7 +130,7 @@ public class Enemy : MonoBehaviour
         }
         
         isStunned = true;
-        //anim.SetTrigger("Hurt");
+        anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
         if(oh != null && oh.readyToDecrease)
             oh.AdjustPool(damage);
