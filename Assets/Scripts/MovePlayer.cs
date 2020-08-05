@@ -24,7 +24,8 @@ public class MovePlayer : MonoBehaviour
     public float startRollTime;
     private int direction;
 
-    //bool isJumping;
+    private Transform berimbauBeatDownTimer;
+
     bool isRolling;
 
     // Sound variables
@@ -50,6 +51,7 @@ public class MovePlayer : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody2D>();
         rollTime = startRollTime;
+        // berimbauBeatDownTimer = this.gameObject.transform.GetChild(4);
     }
 
     // Update is called once per frame
@@ -116,21 +118,6 @@ public class MovePlayer : MonoBehaviour
         Vector3 movement = new Vector3(horizontal * runSpeed, vertical * runSpeed, 0.0f);
         transform.position = transform.position + movement * Time.deltaTime;
         Flip(horizontal);
-
-        /*if(transform.position.y <= axisY)
-        {
-            OnLanding();
-        }
-
-        Input.GetButtonDown("Jump") && !isJumping)
-        {
-            axisY = transform.position.y;
-            isJumping = true;
-            rigidBody.gravityScale = 1.5f;
-            rigidBody.WakeUp();
-            rigidBody.AddForce(new Vector2(transform.position.x + 7.5f, jumpForce));
-            //animator.SetBool("isJumping", true);
-        }*/
     }
 
     private void Flip(float horizontal)
@@ -138,23 +125,13 @@ public class MovePlayer : MonoBehaviour
         if(horizontal < 0 && !facingRight || horizontal > 0 && facingRight)   
         {
             facingRight = !facingRight;
-
-            /*Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;*/
-
             transform.Rotate(0f, 180f, 0f);
+
+            // Prevents the berimbau timer from flipping erratically
+            // berimbauBeatDownTimer.Rotate(0f, -180f, -gameObject.transform.eulerAngles.z);
+            // Note to self: Rotation issue is happening because of the way the randomized angle.z thing is set up in Berimbau
         }
     }
-
-    /*void OnLanding()
-    {
-        isJumping = false;
-        rigidBody.gravityScale = 0f;
-        rigidBody.Sleep();
-        axisY = transform.position.y;
-        //animator.SetBool("isJumping", false);
-    }*/
 
     private IEnumerator BeginDodgeRoll()
     {
