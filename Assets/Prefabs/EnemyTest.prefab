@@ -308,7 +308,8 @@ MonoBehaviour:
   regSpeed: 0
   chaseDistance: 3
   stopDistance: 1
-  target: {fileID: 0}
+  floatyText: {fileID: 0}
+  anim: {fileID: 0}
   theCanvas: {fileID: 8363089308307078203}
   attackPoint: {fileID: 8363089309711568693}
   attackRange: 1.25
@@ -316,10 +317,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   attackDamage: 10
+  strongDamage: 30
   attackRate: 0.5
   noteDamo: 10
   isStunned: 0
-  stunDuration: 2
+  stunDuration: 6
+  loggingEnabled: 0
 --- !u!61 &8363089308903084290
 BoxCollider2D:
   m_ObjectHideFlags: 0

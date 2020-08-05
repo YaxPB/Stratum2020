@@ -13,7 +13,7 @@ public class MovePlayer : MonoBehaviour
     float vertical;
     bool facingRight;
 
-    bool canMove;
+    public bool canMove;
 
     public Animator animator;
     
@@ -28,39 +28,64 @@ public class MovePlayer : MonoBehaviour
     private int direction;
     public bool isDodging { get; private set; }
 
+    private Transform berimbauBeatDownTimer;
+
+    bool isRolling;
+
     // Sound variables
     private float stepOffset;
     private AudioSource playerFX;
 
+    public static MovePlayer instance;
     public bool load;
+
 
     private void Awake()
     {
         canMove = true;
+        playerRB = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        playerFX = GetComponent<AudioSource>();
+
+        /*rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.Sleep();*/
     }
 
     private void Start()
     {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
         rollTime = startRollTime;
+        // berimbauBeatDownTimer = this.gameObject.transform.GetChild(4);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (stepOffset > 0)
+        if (!canMove)
+        {
+            playerRB.velocity = Vector2.zero;
+            horizontal = 0f;
+            vertical = 0f;
+            return;
+        }
+        else
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+            rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+        }
+
+        if (stepOffset > 0)
         {
             stepOffset -= Time.deltaTime;
         }
-
-        if (stepOffset < 0)
+        if (stepOffset <= 0)
         {
             stepOffset = 0;
-        }*/
+        }
 
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        /*if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
+        if(canMove && (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && stepOffset == 0)
         {
             AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
@@ -117,8 +142,11 @@ public class MovePlayer : MonoBehaviour
         if(horizontal < 0 && !facingRight || horizontal > 0 && facingRight)   
         {
             facingRight = !facingRight;
-
             transform.Rotate(0f, 180f, 0f);
+
+            // Prevents the berimbau timer from flipping erratically
+            // berimbauBeatDownTimer.Rotate(0f, -180f, -gameObject.transform.eulerAngles.z);
+            // Note to self: Rotation issue is happening because of the way the randomized angle.z thing is set up in Berimbau
         }
     }
 

@@ -77,12 +77,16 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("nani");
             }
+            
             ChasePlayer(); 
         }
         else
+        {
             StopChasePlayer();
+        }
+        
 
-        if (targetDistance <= stopDistance)
+        if (targetDistance <= stopDistance && !isStunned)
         {
             if (Time.time >= nextAttack)
             {
@@ -160,11 +164,13 @@ public class Enemy : MonoBehaviour
         theCanvas.SetActive(false);
         hitMe.SetBool("isCombat", false);
         Debug.Log("Enemy died!");
+        AudioManagerSFX.PlaySound("enemyDied");
+        // anim.SetBool("IsDead", true);
 
         anim.SetBool("isWalking", false);
         //anim.SetBool("IsDead", true);
 
-        //enemy gameobj is not destroyed, body is left behind
+        // enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
@@ -174,7 +180,8 @@ public class Enemy : MonoBehaviour
     public void EnemyAttack()
     {
         var pc = target.GetComponent<PlayerCombat>();
-
+        anim.ResetTrigger("basicAttack");
+        anim.ResetTrigger("strongAttack");
         if (pc.currentHealth < 0)
         {
             isAttacking = false;
@@ -212,6 +219,9 @@ public class Enemy : MonoBehaviour
             switch (attackType)
             {
                 case 1:
+                    //play attack anim
+                    anim.SetTrigger("basicAttack");
+                    AudioManagerSFX.PlaySound("basicAttack");
                     anim.SetTrigger("isAttacking");
                     Debug.Log("weak attack");
                     //apply damage 
@@ -222,6 +232,9 @@ public class Enemy : MonoBehaviour
                     break;
                 case 2:
                     //play strong attack anim
+                    // anim.SetTrigger("strongAttack");
+                    // AudioManagerSFX.PlaySound("strongAttack");
+                    Debug.Log("strong attack");
                     anim.SetTrigger("SAttack");
                     Debug.Log("strong attack");
                     //apply damage 
@@ -271,12 +284,12 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Music") && isStunned == false)
+        if (other.CompareTag("Music"))
         {
-            Debug.Log("ouch");
+            Debug.Log("oh nooo i'm stunned");
             isStunned = true;
-            TakeDamage(noteDamo);
             speed = 0;
+            anim.StopPlayback();
             Invoke("NotStunned", stunDuration);
         }
         if (other.CompareTag("PewPew"))
@@ -298,6 +311,7 @@ public class Enemy : MonoBehaviour
     {
         isStunned = false;
         speed = regSpeed;
+        anim.StartPlayback();
     }
 
     void LockedOn(bool linedUp)

@@ -7,12 +7,14 @@ public class Breakable : MonoBehaviour
     public int maxHealth = 25;
     int currentHealth;
     private Animator postAnim;
+    private Transform thisLampPos;
 
 
     public void Start()
     {
         currentHealth = maxHealth;
         postAnim = gameObject.GetComponent<Animator>();
+        thisLampPos = gameObject.GetComponent<Transform>();
     }
 
     public void TakeDamage(int damage)
@@ -33,7 +35,7 @@ public class Breakable : MonoBehaviour
     {
         // theTarget.SetBool("CombatMode", false);
         Debug.Log("Lamp died!");
-
+        AudioManagerSFX.PlaySound("lampBreak");
         //enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
