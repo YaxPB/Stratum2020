@@ -11,7 +11,6 @@ public class CombatTrigger : MonoBehaviour
     // Reference to the LifeForce Canvas that holds the HealthBar info
     public Canvas healthBar;
     public static bool isCombat;
-    public AudioSource capBeat;
 
     // Thinking about initializing a counter to hold numEnemiesLeft
     // Every time an enemy is instantiated, use SendMessage to invoke a function
@@ -24,7 +23,6 @@ public class CombatTrigger : MonoBehaviour
     {
         combatCam.enabled = false;
         isCombat = false;
-        capBeat = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,7 +51,7 @@ public class CombatTrigger : MonoBehaviour
         // Update isCombat boolean to false once player exits the combat zone
         isCombat = false;
         // Immediately stop playing the combat beat (NOTE: thinking of writing a quick fade out script)
-        AudioManagerBG.theSource.Stop();
+        AudioManagerBG.SwitchTrack("previous");
         // Turns the main camera (+CamFollow) back on
         mainCam.enabled = true;
         // Turns off the scene-locked combatCam
