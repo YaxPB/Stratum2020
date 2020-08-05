@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     float nextAttack = 0f;
 
     public int noteDamo = 10;
-    public bool isStunned;
+    [SerializeField] private bool isStunned;
     public float stunDuration = 2f;
     bool isAttacking;
 
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         }
         
 
-        if (targetDistance <= stopDistance)
+        if (targetDistance <= stopDistance && !isStunned)
         {
             if (Time.time >= nextAttack)
             {
@@ -80,16 +80,14 @@ public class Enemy : MonoBehaviour
 
     private void StopChasePlayer()
     {
-        anim.ResetTrigger("chasePlayer");
         anim.SetTrigger("stopChase");
     }
 
     private void ChasePlayer()
     {
         theCanvas.SetActive(true);
-        anim.ResetTrigger("stopChase");
         anim.SetTrigger("chasePlayer");
-        //add in a correct flip function to follow player
+        // add in a correct flip function to follow player
         if (transform.position.x < target.transform.position.x)
             GetComponent<SpriteRenderer>().flipX = false;
         else
@@ -102,7 +100,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
 
-        //play hurt anim
+        // play hurt anim
         // anim.SetTrigger("Hurt");
 
         if (floatyText != null && currentHealth > 0)
@@ -130,7 +128,7 @@ public class Enemy : MonoBehaviour
         AudioManagerSFX.PlaySound("enemyDied");
         // anim.SetBool("IsDead", true);
 
-        //enemy gameobj is not destroyed, body is left behind
+        // enemy gameobj is not destroyed, body is left behind
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
@@ -224,12 +222,12 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Music") && isStunned == false)
+        if (other.CompareTag("Music"))
         {
-            Debug.Log("ouch");
+            Debug.Log("oh nooo i'm stunned");
             isStunned = true;
-            TakeDamage(noteDamo);
             speed = 0;
+            anim.StopPlayback();
             Invoke("NotStunned", stunDuration);
         }
         if (other.CompareTag("PewPew"))
@@ -252,6 +250,7 @@ public class Enemy : MonoBehaviour
         isStunned = false;
         Debug.Log("unstunning");
         speed = regSpeed;
+        anim.StartPlayback();
     }
 
     void LockedOn(bool linedUp)

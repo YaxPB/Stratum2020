@@ -24,13 +24,15 @@ public class PlayerCombat : MonoBehaviour
     private Animator enemyAnim;
     private Enemy currentTarget;
 
-    public int attackDamage = 40;
+    public int attackDamage = 25;
+    private int baseDamage;
 
     public float attackRate = 1.5f;
     float nextAttack = 0f;
 
     public Transform noteStart;
     public GameObject notePrefab;
+    private CircleCollider2D berimbauRange;
 
     public MovePlayer mp;
     public float regSpeed;
@@ -45,22 +47,23 @@ public class PlayerCombat : MonoBehaviour
     // private LayerMask mask = LayerMask.GetMask("Wall");
 
     //despawn timer lol
-    public float berimgone = 4f;
-    private float[] timerRotationZ = new float[4] {-42.5f, 42.5f, 135, -135};
+    public float berimgone = 4.6f;
+    private float[] timerRotationZ = new float[4] { -42.5f, 42.5f, 135, -135 };
 
     public GameObject berimBeatDownTimer;
-    // private bool isPlaying;
+    private bool isPlaying = false;
 
     public bool loggingEnabled = false;
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
-    
+
     void Start()
     {
-        instance = FindObjectOfType<PlayerCombat>();
+        instance = this;
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
-        
+        baseDamage = attackDamage;
+
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
@@ -74,7 +77,7 @@ public class PlayerCombat : MonoBehaviour
             // Detects if enemy is within range to attack (targeting function)
             TargetAssist();
 
-            if (Time.time >= nextAttack)
+            if (Time.time >= nextAttack && !isPlaying)
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -103,9 +106,9 @@ public class PlayerCombat : MonoBehaviour
         //detect enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         Collider2D[] hitBreakables = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, breakableLayers);
-        
+
         //apply damage 
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             AudioManagerSFX.PlaySound("kickEnemy");
@@ -115,6 +118,7 @@ public class PlayerCombat : MonoBehaviour
             AudioManagerSFX.PlaySound("kickLamp");
             breakable.GetComponent<Breakable>().TakeDamage(attackDamage);
         }
+
     }
 
     public void TakeDamage(int damage)
@@ -154,38 +158,47 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(noteStart.position, noteStart.GetComponent<CircleCollider2D>().radius);
     }
 
     void Music()
     {
+
         if (loggingEnabled)
         {
             Debug.Log("MUSIC!");
         }
 
-        berimBeatDownTimer.SetActive(true);
-        berimBeatDownTimer.SendMessage("Start");
         StartCoroutine(BerimBeats());
-        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
-        Destroy(flight, berimgone);
+        berimBeatDownTimer.SetActive(true);
     }
 
     // Will probably be an IEnumerator so we can add a quick yield delay for switching things off/on
     IEnumerator BerimBeats()
     {
-
-        // isPlaying = true;
+        isPlaying = true;
         AudioManagerBG.SwitchTrack("berimBAM");
+       
+        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
+        berimbauRange = flight.GetComponent<CircleCollider2D>();
+        Destroy(flight, berimgone);
+
         // Freeze the player (momentarily), play some music, button prompts
         MovePlayer.instance.canMove = false;
 
-
-
         // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
         // OR hits that happen in quick succession with each correctly timed button press
-        yield return new WaitForSeconds(4.6f);
-        // berimBeatDownTimer.SetActive(false);
+        yield return new WaitForSeconds(berimgone);
         MovePlayer.instance.canMove = true;
+        isPlaying = false;
+        yield return new WaitForSeconds(berimgone);
+        attackDamage = baseDamage;
+
+    }
+
+    void BuffBoi(int powMultiplier)
+    {
+        attackDamage += powMultiplier * 10;
     }
 
     void TargetAssist()
@@ -226,7 +239,7 @@ public class PlayerCombat : MonoBehaviour
     void TimeToFight(bool combatMode)
     {
         isCombat = combatMode;
-        if (!isCombat)
+        if (isCombat == false)
         {
             instance.enabled = false;
         }
