@@ -662,7 +662,7 @@ MonoBehaviour:
     m_Bits: 256
   breakableLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   attackDamage: 40
   attackRate: 1.7
   noteStart: {fileID: 7609580415888956884}
