@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 3613096323288549447}
   - component: {fileID: 3613096323288549440}
   - component: {fileID: 29963552}
+  - component: {fileID: 5034536467666618427}
   m_Layer: 8
   m_Name: StratumEnemy
   m_TagString: Enemy
@@ -569,6 +570,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &5034536467666618427
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613096323288549444}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 0e10d7f0d8a5bdb43a7333251ddd4aeb, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.42, y: 0.6}
+  serializedVersion: 2
+  m_Radius: 1.2
 --- !u!1 &3613096323859899477
 GameObject:
   m_ObjectHideFlags: 0
