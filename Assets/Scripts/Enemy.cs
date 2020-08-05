@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     public int noteDamo = 20;
     public bool isStunned;
     public float stunDuration = 2f;
-    public float timeAfterDamo = 1.5f;
+    public float timeAfterDamo = 1.4f;
     bool isAttacking;
     bool isBlocking;
 

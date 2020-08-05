@@ -102,7 +102,6 @@ public class PlayerCombat : MonoBehaviour
        
         Collider2D[] hitBreakables = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, breakableLayers);
         mp.runSpeed = 0f;
-        Debug.Log(mp.runSpeed);
         
         //apply damage 
         foreach(Collider2D enemy in hitEnemies)
