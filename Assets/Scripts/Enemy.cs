@@ -159,16 +159,14 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        //theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
         hitMe.SetBool("isCombat", false);
-        Debug.Log("Enemy died!");
         AudioManagerSFX.PlaySound("enemyDied");
         // anim.SetBool("IsDead", true);
 
         anim.SetBool("isWalking", false);
 
-        // enemy gameobj is not destroyed, body is left behind
+        // enemy gameobj is not destroyed, body is left behind for 2 seconds
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
