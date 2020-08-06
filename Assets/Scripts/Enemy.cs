@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
 
     public int noteDamo = 20;
     public bool isStunned;
-    public float stunDuration = 2f;
+    public float stunDuration = 5f;
     public float timeAfterDamo = 1.4f;
     bool isAttacking;
     bool isBlocking;
@@ -160,7 +160,6 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        //theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
         hitMe.SetBool("isCombat", false);
         Debug.Log("Enemy died!");
@@ -168,11 +167,6 @@ public class Enemy : MonoBehaviour
         // anim.SetBool("IsDead", true);
 
         anim.SetBool("isWalking", false);
-        //anim.SetBool("IsDead", true);
-
-        // enemy gameobj is not destroyed, body is left behind
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
 
         Destroy(gameObject, 2f);
     }
@@ -198,7 +192,7 @@ public class Enemy : MonoBehaviour
                 //60% probability WEAK
                 attackType = 1;
             }
-            else if(r >60 && r < 75)
+            else if (r >60 && r < 75)
             {
                 //15% probability STRONG
                 attackType = 2;
@@ -227,20 +221,20 @@ public class Enemy : MonoBehaviour
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                        PlayerCombat.instance.TakeDamage(attackDamage);
                     }
                     break;
                 case 2:
                     //play strong attack anim
-                    // anim.SetTrigger("strongAttack");
-                    // AudioManagerSFX.PlaySound("strongAttack");
+                    AudioManagerSFX.PlaySound("strongAttack");
+                    anim.SetTrigger("strongAttack");
                     Debug.Log("strong attack");
-                    anim.SetTrigger("SAttack");
-                    Debug.Log("strong attack");
+                    
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
+                        // This fixed the NullReferenceException that was happening during enemy attacks
+                        PlayerCombat.instance.TakeDamage(strongDamage);
                     }
                     break;
                 case 3:
@@ -282,15 +276,11 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX, attackRangeY, 1));
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Music"))
         {
-            Debug.Log("oh nooo i'm stunned");
-            isStunned = true;
-            speed = 0;
-            anim.StopPlayback();
-            Invoke("NotStunned", stunDuration);
+            Stunned();
         }
         if (other.CompareTag("PewPew"))
         {
@@ -298,13 +288,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("PewPew"))
         {
             Debug.Log("Raycast has left the building");
             hitMe.SetBool("withinRange", false);
         }
+        if (collision.CompareTag("Music"))
+        {
+            NotStunned();
+        }
+    }
+
+    void Stunned()
+    {
+        Debug.Log("oh nooo i'm stunned");
+        isStunned = true;
+        speed = 0;
+        anim.StopPlayback();
     }
 
     void NotStunned()
