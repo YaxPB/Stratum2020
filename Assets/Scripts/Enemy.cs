@@ -230,7 +230,6 @@ public class Enemy : MonoBehaviour
                     //play strong attack anim
                     // anim.SetTrigger("strongAttack");
                     // AudioManagerSFX.PlaySound("strongAttack");
-                    Debug.Log("strong attack");
                     anim.SetTrigger("SAttack");
                     Debug.Log("strong attack");
                     
