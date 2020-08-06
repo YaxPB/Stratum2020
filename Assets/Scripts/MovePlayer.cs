@@ -7,7 +7,6 @@ public class MovePlayer : MonoBehaviour
     public float runSpeed;
     public float rollWindup = 0.1f;
     private Vector3 slideDir;
-    private Rigidbody2D playerRB;
 
     float horizontal;
     float vertical;
@@ -39,21 +38,10 @@ public class MovePlayer : MonoBehaviour
     public static MovePlayer instance;
     public bool load;
 
-
-    private void Awake()
-    {
-        canMove = true;
-        playerRB = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        playerFX = GetComponent<AudioSource>();
-
-        /*rigidBody = GetComponent<Rigidbody2D>();
-        rigidBody.Sleep();*/
-    }
-
     private void Start()
     {
         instance = this;
+        canMove = true;
         rb = GetComponent<Rigidbody2D>();
         rollTime = startRollTime;
         // berimbauBeatDownTimer = this.gameObject.transform.GetChild(4);
@@ -64,7 +52,7 @@ public class MovePlayer : MonoBehaviour
     {
         if (!canMove)
         {
-            playerRB.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
             horizontal = 0f;
             vertical = 0f;
             return;
@@ -73,7 +61,7 @@ public class MovePlayer : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
-            rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
+            // rolling = new Vector3(horizontal * rollSpeed, vertical * rollSpeed, 0.0f);
         }
 
         if (stepOffset > 0)
@@ -90,7 +78,7 @@ public class MovePlayer : MonoBehaviour
             AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
             stepOffset = 0.25f;
-        }*/
+        }
 
         if (rollTime > 0)
         {

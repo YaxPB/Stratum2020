@@ -33,7 +33,10 @@ public class Berimbau : MonoBehaviour
         // find a way to get playerInput data 
         // every time the attack button is pressed during berimbau ability,
         // check to see if it lines up with the highlighted area
+        //**Note from Jake: Maybe the buttons spell out something and do something when a word is spelled out
+        //  - Would require some mechanical reworking, but doable! Test for feel FIRST.
 
+        // Just for testing, remove from final (user shouldn't be able to left-click through all berimbau prompts)
         if (Input.GetButtonDown("Fire1"))
         {
             BeatHit();

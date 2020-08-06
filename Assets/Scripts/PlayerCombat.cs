@@ -25,6 +25,7 @@ public class PlayerCombat : MonoBehaviour
     private GameObject nearbyEnemy;
     private Animator enemyAnim;
     private Enemy currentTarget;
+    private GameObject flight;
 
     public int attackDamage = 25;
     private int baseDamage;
@@ -34,7 +35,6 @@ public class PlayerCombat : MonoBehaviour
 
     public Transform noteStart;
     public GameObject notePrefab;
-    private CircleCollider2D berimbauRange;
 
     public MovePlayer mp;
     public float regSpeed;
@@ -45,21 +45,20 @@ public class PlayerCombat : MonoBehaviour
     private RaycastHit2D rangeRay;
     
     private int layerMask = 1 << 8;
-    // private LayerMask mask = LayerMask.GetMask("Wall");
 
     //despawn timer lol
-    public float berimgone = 4.6f;
-    private float[] timerRotationZ = new float[4] { -42.5f, 42.5f, 135, -135 };
+    public float berimgone = 4.6f;  // adjusted time to reflect duration of berimbau ability
 
     public GameObject berimBeatDownTimer;
     private bool isPlaying = false;
 
     public bool loggingEnabled = false;
+
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
 
-    public CameraShake cs;
-    
+    CameraShake cs;
+
     void Start()
     {
         instance = this;
@@ -70,6 +69,7 @@ public class PlayerCombat : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
+        cs = FindObjectOfType<CameraShake>();
     }
 
     // Update is called once per frame
@@ -89,6 +89,7 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
 
+        }
         if (Time.time > nextMusic)
         {
             //mp.runSpeed = regSpeed;
@@ -113,16 +114,8 @@ public class PlayerCombat : MonoBehaviour
         //apply damage 
         foreach (Collider2D enemy in hitEnemies)
         {
-            var damo = enemy.GetComponent<Enemy>();
-            if (damo.currentHealth > attackDamage)
-            {
-                damo.TakeDamage(attackDamage);
-            }
-            else
-            {
-                damo.TakeDamage(damo.currentHealth);
-            }
-            //AudioManagerSFX.PlaySound("kick");
+            AudioManagerSFX.PlaySound("kickEnemy");
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
 
         Invoke("ResetSpeed", 0.45f);
@@ -165,7 +158,6 @@ public class PlayerCombat : MonoBehaviour
 
         // anim.SetBool("IsDead", true);
 
-        GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         mp.enabled = false;
         healthCanvas.SetActive(false);
@@ -179,18 +171,26 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX,attackRangeY, 1));
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        Gizmos.DrawWireSphere(noteStart.position, noteStart.GetComponent<CircleCollider2D>().radius);
+        // Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        // Gizmos.DrawWireSphere(noteStart.position, noteStart.GetComponent<CircleCollider2D>().radius);
     }
 
     void Music()
     {
-
         if (loggingEnabled)
         {
             Debug.Log("MUSIC!");
         }
+        flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
 
+        // Tried a different method of detecting enemy collisions with MusicRange prefab
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(noteStart.position, notePrefab.GetComponent<CircleCollider2D>().radius, enemyLayers);
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().SendMessage("Stunned");
+        }
+        
+        StopAllCoroutines();
         StartCoroutine(BerimBeats());
         berimBeatDownTimer.SetActive(true);
     }
@@ -200,10 +200,6 @@ public class PlayerCombat : MonoBehaviour
     {
         isPlaying = true;
         AudioManagerBG.SwitchTrack("berimBAM");
-       
-        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
-        berimbauRange = flight.GetComponent<CircleCollider2D>();
-        Destroy(flight, berimgone);
 
         // Freeze the player (momentarily), play some music, button prompts
         MovePlayer.instance.canMove = false;
@@ -211,11 +207,12 @@ public class PlayerCombat : MonoBehaviour
         // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
         // OR hits that happen in quick succession with each correctly timed button press
         yield return new WaitForSeconds(berimgone);
+
+        Destroy(flight);    // Moved this call to after the WaitForSeconds timer
         MovePlayer.instance.canMove = true;
         isPlaying = false;
-        yield return new WaitForSeconds(berimgone);
-        attackDamage = baseDamage;
-
+        yield return new WaitForSeconds(berimgone * 2);
+        attackDamage = baseDamage;      
     }
 
     void BuffBoi(int powMultiplier)
@@ -225,35 +222,32 @@ public class PlayerCombat : MonoBehaviour
 
     void TargetAssist()
     {
-        if (isCombat)
+        if (loggingEnabled)
+        {
+            Debug.Log("In Combat Mode");
+        }
+        rangeRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f), attackRangeX, layerMask);
+
+        if (rangeRay.collider != null)
         {
             if (loggingEnabled)
             {
-                Debug.Log("In Combat Mode");
+                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.yellow);
+                Debug.Log("Hit!");
             }
-            rangeRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f),attackRangeX, layerMask);
 
-            if (rangeRay.collider != null)
+            enemyCollision = rangeRay.collider;
+            nearbyEnemy = enemyCollision.gameObject;
+
+            nearbyEnemy.SendMessage("LockedOn", true);
+
+        }
+        else
+        {
+            if (loggingEnabled)
             {
-                if (loggingEnabled)
-                {
-                    Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.yellow);
-                    Debug.Log("Hit!");
-                }
-
-                enemyCollision = rangeRay.collider;
-                nearbyEnemy = enemyCollision.gameObject;
-
-                nearbyEnemy.SendMessage("LockedOn", true);
-
-            }
-            else
-            {
-                if (loggingEnabled)
-                {
-                    Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.white);
-                    Debug.Log("Miss!");
-                }
+                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.white);
+                Debug.Log("Miss!");
             }
         }
     }
@@ -261,7 +255,7 @@ public class PlayerCombat : MonoBehaviour
     void TimeToFight(bool combatMode)
     {
         isCombat = combatMode;
-        if (isCombat == false)
+        if (!isCombat)
         {
             instance.enabled = false;
         }

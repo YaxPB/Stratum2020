@@ -56,7 +56,7 @@ public class CombatTrigger : MonoBehaviour
         mainCam.enabled = true;
         // Turns off the scene-locked combatCam
         combatCam.enabled = false;
-        // Tells the HealthBar to stop playing CombatMode animations
+        // Tells the HealthBar to stop playing CombatMode animations **Should probably find an alternative to SendMessage like this
         HealthBar.instance.gameObject.SendMessage("StartBeat", false);
         PlayerCombat.instance.gameObject.SendMessage("TimeToFight", false);
     }
