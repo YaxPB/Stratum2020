@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
 
     public int noteDamo = 20;
     public bool isStunned;
-    public float stunDuration = 5f;
+    public float stunDuration = 2f;
     public float timeAfterDamo = 1.4f;
     bool isAttacking;
     bool isBlocking;
@@ -77,7 +77,6 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("nani");
             }
-            
             ChasePlayer(); 
         }
         else
@@ -160,6 +159,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        //theTarget.SetBool("CombatMode", false);
         theCanvas.SetActive(false);
         hitMe.SetBool("isCombat", false);
         Debug.Log("Enemy died!");
@@ -167,6 +167,10 @@ public class Enemy : MonoBehaviour
         // anim.SetBool("IsDead", true);
 
         anim.SetBool("isWalking", false);
+
+        // enemy gameobj is not destroyed, body is left behind
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
 
         Destroy(gameObject, 2f);
     }
@@ -221,13 +225,15 @@ public class Enemy : MonoBehaviour
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        PlayerCombat.instance.TakeDamage(attackDamage);
+                        player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
                     }
                     break;
                 case 2:
                     //play strong attack anim
-                    AudioManagerSFX.PlaySound("strongAttack");
-                    anim.SetTrigger("strongAttack");
+                    // anim.SetTrigger("strongAttack");
+                    // AudioManagerSFX.PlaySound("strongAttack");
+                    Debug.Log("strong attack");
+                    anim.SetTrigger("SAttack");
                     Debug.Log("strong attack");
                     
                     //apply damage 
@@ -276,11 +282,15 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX, attackRangeY, 1));
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Music"))
+        if (other.CompareTag("Music") && isStunned == false)
         {
-            Stunned();
+            Debug.Log("oh nooo i'm stunned");
+            isStunned = true;
+            speed = 0;
+            anim.StopPlayback();
+            Invoke("NotStunned", stunDuration);
         }
         if (other.CompareTag("PewPew"))
         {
@@ -288,7 +298,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("PewPew"))
         {
