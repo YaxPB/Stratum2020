@@ -44,12 +44,14 @@ public class PlayerCombat : MonoBehaviour
     private float nextMusic = 0;
 
     private RaycastHit2D rangeRay;
-    
+
     private int layerMask = 1 << 8;
 
     //despawn timer lol
     public float berimgone = 4.6f;
     private float[] timerRotationZ = new float[4] { -42.5f, 42.5f, 135, -135 };
+    Collider2D[] hitEnemies;
+    Collider2D[] hitBreakables;
 
     public GameObject berimBeatDownTimer;
     private bool isPlaying = false;
@@ -79,9 +81,10 @@ public class PlayerCombat : MonoBehaviour
     {
         if (isCombat)
         {
-            // Detects if enemy is within range to attack (targeting function)
-            TargetAssist();
+            //detect enemies in range
+            hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, enemyLayers);
 
+            hitBreakables = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, breakableLayers);
             if (Time.time >= nextAttack && !isPlaying)
             {
                 if (Input.GetButtonDown("Fire1"))
@@ -107,12 +110,6 @@ public class PlayerCombat : MonoBehaviour
     {
         anim.SetTrigger("Attack");
 
-        //detect enemies in range
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY),0 , enemyLayers);
-       
-        Collider2D[] hitBreakables = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, breakableLayers);
-        mp.runSpeed = 0f;
-        
         //apply damage 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -125,10 +122,8 @@ public class PlayerCombat : MonoBehaviour
             {
                 damo.TakeDamage(damo.currentHealth);
             }
-            //AudioManagerSFX.PlaySound("kick");
+            AudioManagerSFX.PlaySound("kickEnemy");
         }
-
-        Invoke("ResetSpeed", 0.45f);
 
         foreach (Collider2D breakable in hitBreakables)
         {
@@ -181,7 +176,7 @@ public class PlayerCombat : MonoBehaviour
         if (attackPoint == null)
             return;
 
-        Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX,attackRangeY, 1));
+        Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX, attackRangeY, 1));
         // Gizmos.DrawWireSphere(noteStart.position, noteStart.GetComponent<CircleCollider2D>().radius);
     }
 
@@ -201,7 +196,7 @@ public class PlayerCombat : MonoBehaviour
     {
         isPlaying = true;
         AudioManagerBG.SwitchTrack("berimBAM");
-       
+
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
         berimbauRange = flight.GetComponent<CircleCollider2D>();
         Destroy(flight, berimgone);
@@ -224,38 +219,6 @@ public class PlayerCombat : MonoBehaviour
         attackDamage += powMultiplier * 10;
     }
 
-    void TargetAssist()
-    {
-        if (loggingEnabled)
-        {
-            Debug.Log("In Combat Mode");
-        }
-        rangeRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f), attackRangeX, layerMask);
-
-        if (rangeRay.collider != null)
-        {
-            if (loggingEnabled)
-            {
-                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.yellow);
-                Debug.Log("Hit!");
-            }
-
-            enemyCollision = rangeRay.collider;
-            nearbyEnemy = enemyCollision.gameObject;
-
-            nearbyEnemy.SendMessage("LockedOn", true);
-
-        }
-        else
-        {
-            if (loggingEnabled)
-            {
-                Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.white);
-                Debug.Log("Miss!");
-            }
-        }
-    }
-
     void TimeToFight(bool combatMode)
     {
         isCombat = combatMode;
@@ -274,7 +237,7 @@ public class PlayerCombat : MonoBehaviour
     {
         transform.position = respawn.transform.position;
 
-        //anim.SetBool("IsDead", false);
+        anim.SetBool("IsDead", false);
 
         GetComponent<Collider2D>().enabled = true;
         this.enabled = true;
@@ -282,15 +245,5 @@ public class PlayerCombat : MonoBehaviour
         healthCanvas.SetActive(true);
 
         Start();
-    }
-
-    private void ResetShake()
-    {
-        cs.shakeDistance = 0f;
-    }
-    
-    private void ResetSpeed()
-    {
-        mp.runSpeed = regSpeed;
     }
 }
