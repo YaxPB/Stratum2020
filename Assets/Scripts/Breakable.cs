@@ -21,8 +21,6 @@ public class Breakable : MonoBehaviour
     {
         currentHealth -= damage;
 
-        //play hurt anim
-        // anim.SetTrigger("Hurt");
         postAnim.SetTrigger("isHit");
         if (currentHealth <= 0)
         {
@@ -33,11 +31,8 @@ public class Breakable : MonoBehaviour
 
     void Die()
     {
-        // theTarget.SetBool("CombatMode", false);
         Debug.Log("Lamp died!");
         AudioManagerSFX.PlaySound("lampBreak");
-        //enemy gameobj is not destroyed, body is left behind
-        GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
         Destroy(gameObject, 2f);

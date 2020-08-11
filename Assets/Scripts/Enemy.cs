@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     public GameObject theCanvas;
     private Animator hitMe;
 
-    public HealthBar healthBar;
+    public EnemyHealthBar healthBar;
     public GameObject healthCanvas;
 
     public Transform attackPoint;
@@ -65,7 +65,6 @@ public class Enemy : MonoBehaviour
         theCanvas.SetActive(false);
         regSpeed = speed;
         target = GameObject.FindGameObjectWithTag("Player");
-        hitMe = theCanvas.GetComponentInChildren<Animator>();
     }
     
     void Update()
@@ -160,14 +159,12 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         theCanvas.SetActive(false);
-        hitMe.SetBool("isCombat", false);
         AudioManagerSFX.PlaySound("enemyDied");
         // anim.SetBool("IsDead", true);
 
         anim.SetBool("isWalking", false);
 
         // enemy gameobj is not destroyed, body is left behind for 2 seconds
-        GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
         Destroy(gameObject, 2f);
@@ -223,21 +220,19 @@ public class Enemy : MonoBehaviour
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                        pc.TakeDamage(attackDamage);
                     }
                     break;
                 case 2:
                     //play strong attack anim
-                    // anim.SetTrigger("strongAttack");
-                    // AudioManagerSFX.PlaySound("strongAttack");
-                    anim.SetTrigger("SAttack");
+                    anim.SetTrigger("strongAttack");
+                    AudioManagerSFX.PlaySound("strongAttack");
                     Debug.Log("strong attack");
                     
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        // This fixed the NullReferenceException that was happening during enemy attacks
-                        PlayerCombat.instance.TakeDamage(strongDamage);
+                        pc.TakeDamage(strongDamage);
                     }
                     break;
                 case 3:
@@ -281,7 +276,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Music") && isStunned == false)
+        if (other.CompareTag("Music"))
         {
             Debug.Log("oh nooo i'm stunned");
             isStunned = true;
@@ -289,19 +284,10 @@ public class Enemy : MonoBehaviour
             anim.StopPlayback();
             Invoke("NotStunned", stunDuration);
         }
-        if (other.CompareTag("PewPew"))
-        {
-            Debug.Log("Raycast detected.");
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("PewPew"))
-        {
-            Debug.Log("Raycast has left the building");
-            hitMe.SetBool("withinRange", false);
-        }
         if (collision.CompareTag("Music"))
         {
             NotStunned();

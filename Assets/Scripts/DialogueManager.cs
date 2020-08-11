@@ -105,6 +105,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        AudioManagerSFX.theSource.Stop();
         MovePlayer.instance.canMove = true;
         // Closes the dialogue box and ends the conversation
         Debug.Log("End of conversation.");
