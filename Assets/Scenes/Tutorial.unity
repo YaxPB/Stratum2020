@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -508,11 +508,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66524477}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 121.8, y: 9.35, z: 0}
+  m_LocalPosition: {x: 137, y: 9.35, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 540909918}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &66524479
 SpriteRenderer:
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 99922315}
   - component: {fileID: 99922316}
   m_Layer: 0
-  m_Name: Favela_C5
+  m_Name: FavelaC_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 165815096}
   - component: {fileID: 165815097}
   m_Layer: 0
-  m_Name: Favela_C5 (1)
+  m_Name: FavelaC_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,11 +1104,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165815095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 110.29999, y: 7.4, z: 0}
+  m_LocalPosition: {x: 99.31, y: 7.45, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 540909918}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &165815097
 SpriteRenderer:
@@ -1611,7 +1611,7 @@ GameObject:
   - component: {fileID: 200854440}
   - component: {fileID: 200854441}
   m_Layer: 0
-  m_Name: Favela_C4
+  m_Name: FavelaC_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1889,8 +1889,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1071452619}
-  - {fileID: 1990808967}
-  - {fileID: 327639633}
   m_Father: {fileID: 1520940882}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2142,7 +2140,7 @@ GameObject:
   - component: {fileID: 285608520}
   - component: {fileID: 285608521}
   m_Layer: 0
-  m_Name: Favela1
+  m_Name: FavelaA_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2156,11 +2154,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285608519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 137.16, y: 7.68, z: 0}
+  m_LocalPosition: {x: 109.25, y: 7.7, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 540909918}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &285608521
 SpriteRenderer:
@@ -2198,8 +2196,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -190787143
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e0a034ba1650c8148945ab4420e47ba8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2524,164 +2522,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &327639632
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 327639633}
-  - component: {fileID: 327639635}
-  - component: {fileID: 327639634}
-  m_Layer: 5
-  m_Name: Instructions (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &327639633
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327639632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.043489993, y: 0.043489993, z: 0.043489993}
-  m_Children: []
-  m_Father: {fileID: 231710442}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -431.87, y: -217.19}
-  m_SizeDelta: {x: 384.91153, y: 89.874146}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &327639634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327639632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'SPACE to Futbol
-
-    Q to Berimbau attack'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4278255604
-  m_fontColor: {r: 0.9553981, g: 1, b: 0, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_outlineColor:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 1
-  m_textAlignment: 257
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
-  m_linkedTextComponent: {fileID: 0}
-  m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_ignoreRectMaskCulling: 0
-  m_ignoreCulling: 1
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_firstVisibleCharacter: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.36931252, w: 0.4259401}
-  m_textInfo:
-    textComponent: {fileID: 327639634}
-    characterCount: 36
-    spriteCount: 0
-    spaceCount: 6
-    wordCount: 7
-    linkCount: 0
-    lineCount: 2
-    pageCount: 1
-    materialCount: 1
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
-  m_subTextObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &327639635
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327639632}
-  m_CullTransparentMesh: 0
 --- !u!1 &352773032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,7 +3011,7 @@ GameObject:
   - component: {fileID: 478938473}
   - component: {fileID: 478938474}
   m_Layer: 0
-  m_Name: Favela_C1
+  m_Name: FavelaC_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3519,10 +3359,10 @@ Transform:
   - {fileID: 1576058033}
   - {fileID: 99922315}
   - {fileID: 891704778}
-  - {fileID: 1975563552}
   - {fileID: 165815096}
-  - {fileID: 66524478}
+  - {fileID: 1975563552}
   - {fileID: 285608520}
+  - {fileID: 66524478}
   m_Father: {fileID: 1520940882}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3817,7 +3657,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1957566163}
+    m_TransformParent: {fileID: 986305584}
     m_Modifications:
     - target: {fileID: 16707376, guid: a7d1f766c54b5174090cf4e82423b8d0, type: 3}
       propertyPath: m_RootOrder
@@ -3831,12 +3671,12 @@ PrefabInstance:
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52
+      value: 16.864002
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
@@ -3866,7 +3706,7 @@ PrefabInstance:
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
@@ -3886,12 +3726,12 @@ PrefabInstance:
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400359, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
@@ -4003,10 +3843,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652002308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.45, z: 1}
+  m_LocalPosition: {x: -15.92, y: 3.45, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 970289800}
   - {fileID: 1727959623}
   - {fileID: 785516819}
   - {fileID: 265710775}
@@ -4243,8 +4082,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675732070}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: -5.8, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalPosition: {x: 4, y: -5.8, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 986305584}
   m_RootOrder: 0
@@ -4312,11 +4151,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Photograph
+    name: Xadri
     sentences:
-    - 
-    - 
-    - 
+    - I was so little then, when grandma used to take me to train in the city. I
+      miss her. Is it wrong to miss someone who's better off now?
+    - A bunch of subspirited revolutionaries vandalized the statue a few years later,
+      painting the King a crown of blood in "honor" of my hometown, Cineria.
+    - Honor's a... strong word. Honor is not smearing the statue of our leader. Honor
+      is winning Stratum's tournament and getting out of this hellhole once and for
+      all.
 --- !u!61 &675732074
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4478,7 +4321,7 @@ GameObject:
   - component: {fileID: 687106657}
   - component: {fileID: 687106658}
   m_Layer: 0
-  m_Name: Favela_B2
+  m_Name: FavelaB_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4950,21 +4793,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 7977894497688597755, guid: a7d1f766c54b5174090cf4e82423b8d0,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977894497688597755, guid: a7d1f766c54b5174090cf4e82423b8d0,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977894497688597755, guid: a7d1f766c54b5174090cf4e82423b8d0,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6085,7 +5913,7 @@ GameObject:
   - component: {fileID: 891704778}
   - component: {fileID: 891704779}
   m_Layer: 0
-  m_Name: Favela_B5
+  m_Name: FavelaB_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6923,7 +6751,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 652002309}
+    m_TransformParent: {fileID: 986305584}
     m_Modifications:
     - target: {fileID: 16707374, guid: a7d1f766c54b5174090cf4e82423b8d0, type: 3}
       propertyPath: m_IsActive
@@ -6937,17 +6765,17 @@ PrefabInstance:
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.380005
+      value: 20.369
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.45
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
@@ -6972,7 +6800,7 @@ PrefabInstance:
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
@@ -6989,6 +6817,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400359, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_Name
@@ -7002,6 +6840,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 970289799}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &981974903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7977894497878400359, guid: a7d1f766c54b5174090cf4e82423b8d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 559353957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &981974904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981974903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed0835239c38d1408a09d46c9603c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theDialogue:
+    name: Xadri
+    sentences:
+    - When I was little, the other subspirited kids and I would run around and destroy
+      the surveillance cams in our neighborhood so officers couldn't catch us practicing
+      magic.
+    - The officers would just storm in and plant more, until eventually the only
+      safe place to be ourselves was behind the walls of our tiny homes...
+    - I've grown more sensible than this. Destroying cams is pointless. I'm going
+      to make real change when I take my seat at Stratum Headquarters.
 --- !u!1 &986305583
 GameObject:
   m_ObjectHideFlags: 0
@@ -7033,6 +6899,8 @@ Transform:
   - {fileID: 675732071}
   - {fileID: 1073769902}
   - {fileID: 1985841078}
+  - {fileID: 970289800}
+  - {fileID: 559353958}
   m_Father: {fileID: 1520940882}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7458,15 +7326,15 @@ RectTransform:
   m_GameObject: {fileID: 1071452618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.043489993, y: 0.043489993, z: 0.043489993}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 231710442}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -491.7, y: -217.4}
-  m_SizeDelta: {x: 415.37027, y: 89.05104}
+  m_AnchoredPosition: {x: -487.5, y: -217}
+  m_SizeDelta: {x: 18, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1071452620
 MonoBehaviour:
@@ -7489,7 +7357,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Move with WASD
 
-    Left-click to Kick'
+    Press ''F'' to Interact'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7498,8 +7366,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278252031
-  m_fontColor: {r: 1, g: 0.9454187, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7517,14 +7385,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 1.5
+  m_fontSizeBase: 1.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -7558,10 +7426,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.36916238, w: 1.2492323}
   m_textInfo:
     textComponent: {fileID: 1071452620}
-    characterCount: 33
+    characterCount: 36
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 6
+    wordCount: 7
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -7616,7 +7484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073769901}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.8, y: -0.5, z: 0}
+  m_LocalPosition: {x: 10.75, y: -0.5, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 986305584}
@@ -7635,12 +7503,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Honorary Magical Symbol
+    name: Xadri
     sentences:
-    - 
-    - 
-    - 
-    - 
+    - My Grandma Xela won the tournament 10 years ago. She was so reolutionary that
+      subspees cast "X" marks in her memory to this day.
+    - Sometimes I wish champions didn't have to leave home. I know working for Stratum
+      is a dream, but without Cineria's brightest lights, these familiar streets
+      feel a little dimmer.
+    - Snap out of it, Xadri. You'll be taking your seat beside her any day now. And
+      you've got big shoes to fill.
 --- !u!61 &1073769904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7728,7 +7599,7 @@ GameObject:
   - component: {fileID: 1075291342}
   - component: {fileID: 1075291341}
   m_Layer: 0
-  m_Name: Nextlevel
+  m_Name: TransitionToTrain
   m_TagString: NextLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7768,8 +7639,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075291340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 177.7, y: 6.6872845, z: 5.7929688}
-  m_LocalScale: {x: 8.6626, y: 35.524998, z: 1}
+  m_LocalPosition: {x: 215, y: 7, z: 1}
+  m_LocalScale: {x: 8, y: 31, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -8116,7 +7987,7 @@ GameObject:
   - component: {fileID: 1103627080}
   - component: {fileID: 1103627081}
   m_Layer: 0
-  m_Name: Favela_A2
+  m_Name: FavelaA_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8718,7 +8589,7 @@ GameObject:
   - component: {fileID: 1249610348}
   - component: {fileID: 1249610349}
   m_Layer: 0
-  m_Name: Favela_C2
+  m_Name: FavelaC_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8799,7 +8670,7 @@ GameObject:
   - component: {fileID: 1250236868}
   - component: {fileID: 1250236869}
   m_Layer: 0
-  m_Name: Favela_B1
+  m_Name: FavelaB_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9288,7 +9159,7 @@ GameObject:
   - component: {fileID: 1398876404}
   - component: {fileID: 1398876405}
   m_Layer: 0
-  m_Name: Favela_C3
+  m_Name: FavelaC_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9702,7 +9573,7 @@ GameObject:
   - component: {fileID: 1464510228}
   - component: {fileID: 1464510229}
   m_Layer: 0
-  m_Name: Favela_A3
+  m_Name: FavelaA_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10237,7 +10108,7 @@ GameObject:
   - component: {fileID: 1576058033}
   - component: {fileID: 1576058034}
   m_Layer: 0
-  m_Name: Favela_B4
+  m_Name: FavelaB_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10802,7 +10673,7 @@ GameObject:
   - component: {fileID: 1672018608}
   - component: {fileID: 1672018609}
   m_Layer: 0
-  m_Name: Favela_A1
+  m_Name: FavelaA_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10883,7 +10754,7 @@ GameObject:
   - component: {fileID: 1683204718}
   - component: {fileID: 1683204719}
   m_Layer: 0
-  m_Name: Favela_B3
+  m_Name: FavelaB_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11103,6 +10974,60 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1722968259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7977894497878400359, guid: a7d1f766c54b5174090cf4e82423b8d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 970289799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1722968260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722968259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed0835239c38d1408a09d46c9603c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theDialogue:
+    name: Xadri
+    sentences:
+    - When I was little, the other subspirited kids and I would run around and destroy
+      the surveillance cams in our neighborhood so officers couldn't catch us practicing
+      magic.
+    - The officers would just storm in and plant more, until eventually the only
+      safe place to be ourselves was behind the walls of our tiny homes...
+    - I've grown more sensible than this. Destroying cams is pointless. I'm going
+      to make real change when I take my seat at Stratum Headquarters.
+--- !u!61 &1722968261
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722968259}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.87737226}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.7547445}
+  m_EdgeRadius: 0
 --- !u!1001 &1727959622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11119,21 +11044,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 7977894497688597755, guid: a7d1f766c54b5174090cf4e82423b8d0,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977894497688597755, guid: a7d1f766c54b5174090cf4e82423b8d0,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977894497688597755, guid: a7d1f766c54b5174090cf4e82423b8d0,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7977894497878400358, guid: a7d1f766c54b5174090cf4e82423b8d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11532,7 +11442,7 @@ GameObject:
   - component: {fileID: 1772777560}
   - component: {fileID: 1772777561}
   m_Layer: 0
-  m_Name: Favela_A4
+  m_Name: FavelaA_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11878,7 +11788,7 @@ GameObject:
   - component: {fileID: 1818685533}
   - component: {fileID: 1818685534}
   m_Layer: 0
-  m_Name: Favela_A5
+  m_Name: FavelaA_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12061,7 +11971,7 @@ GameObject:
   - component: {fileID: 1921008077}
   - component: {fileID: 1921008078}
   m_Layer: 0
-  m_Name: Favela_A6
+  m_Name: FavelaA_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12518,10 +12428,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957566162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.5, z: 0}
+  m_LocalPosition: {x: -15.92, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 559353958}
   - {fileID: 1593921464}
   - {fileID: 784038546}
   - {fileID: 1235285088}
@@ -12555,7 +12464,7 @@ GameObject:
   - component: {fileID: 1975563552}
   - component: {fileID: 1975563553}
   m_Layer: 0
-  m_Name: Favela_B4 (1)
+  m_Name: FavelaB_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12569,11 +12478,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975563551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 101.29999, y: 9.35, z: 0}
+  m_LocalPosition: {x: 111.99, y: 17.5, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 540909918}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1975563553
 SpriteRenderer:
@@ -12652,7 +12561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985841077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.13, y: -4.31, z: 0}
+  m_LocalPosition: {x: 22.96, y: -5.92, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 986305584}
@@ -12751,162 +12660,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1990808966
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1990808967}
-  - component: {fileID: 1990808969}
-  - component: {fileID: 1990808968}
-  m_Layer: 5
-  m_Name: Instructions (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1990808967
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990808966}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.043489993, y: 0.043489993, z: 0.043489993}
-  m_Children: []
-  m_Father: {fileID: 231710442}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -464.07, y: -218}
-  m_SizeDelta: {x: 390.01175, y: 49.529007}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1990808968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990808966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: SHIFT to dodge roll
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4278253055
-  m_fontColor: {r: 1, g: 0.9600028, b: 0, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_outlineColor:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 1
-  m_textAlignment: 257
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
-  m_linkedTextComponent: {fileID: 0}
-  m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_ignoreRectMaskCulling: 0
-  m_ignoreCulling: 1
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_firstVisibleCharacter: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.36946237, w: -0.3969862}
-  m_textInfo:
-    textComponent: {fileID: 1990808968}
-    characterCount: 19
-    spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
-  m_subTextObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1990808969
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990808966}
-  m_CullTransparentMesh: 0
 --- !u!1001 &1996422752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12918,11 +12671,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4851336928117684837, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
+      objectReference: {fileID: 0}
     - target: {fileID: 7228140113491894888, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7609580415325780919, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609580415325780919, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899339, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: healthBar
@@ -12933,6 +12701,16 @@ PrefabInstance:
       propertyPath: healthCanvas
       value: 
       objectReference: {fileID: 1732557424}
+    - target: {fileID: 7609580416708899339, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: attackRangeY
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609580416708899339, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: attackRangeX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899348, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_Name
@@ -12991,6 +12769,21 @@ PrefabInstance:
     - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520363172954026483, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 219729075
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520363172954026483, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520363172954026483, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -13908,7 +13701,7 @@ PrefabInstance:
     - target: {fileID: 1547401971410600125, guid: c7a79021a28697f4f8a3f0f64cbd910d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1556883728378895486, guid: c7a79021a28697f4f8a3f0f64cbd910d,
         type: 3}
@@ -14012,7 +13805,7 @@ PrefabInstance:
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: XMinValue
-      value: 13.69
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
@@ -14037,7 +13830,7 @@ PrefabInstance:
     - target: {fileID: 6298649509532807068, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.69
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6298649509532807068, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}

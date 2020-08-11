@@ -55,6 +55,7 @@ public class PlayerCombat : MonoBehaviour
     private bool isPlaying = false;
 
     public bool loggingEnabled = false;
+
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
 
@@ -67,7 +68,7 @@ public class PlayerCombat : MonoBehaviour
         regSpeed = mp.runSpeed;
         baseDamage = attackDamage;
 
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
         cs = FindObjectOfType<CameraShake>();
@@ -181,7 +182,7 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX,attackRangeY, 1));
-        Gizmos.DrawWireSphere(noteStart.position, noteStart.GetComponent<CircleCollider2D>().radius);
+        // Gizmos.DrawWireSphere(noteStart.position, noteStart.GetComponent<CircleCollider2D>().radius);
     }
 
     void Music()
