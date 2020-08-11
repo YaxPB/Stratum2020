@@ -14,7 +14,7 @@ public class Overhead : MonoBehaviour
     public int[] maxhealthPool;
     public WaveSpawner[] waveComs;
 
-    public HealthBar healthBar;
+    public EnemyHealthBar healthBar;
     public GameObject healthCanvas;
 
     public bool readyToDecrease;

@@ -43,10 +43,6 @@ public class PlayerCombat : MonoBehaviour
     public float musicCoolDown = 5f;
     private float nextMusic = 0;
 
-    private RaycastHit2D rangeRay;
-
-    private int layerMask = 1 << 8;
-
     //despawn timer lol
     public float berimgone = 4.6f;
     private float[] timerRotationZ = new float[4] { -42.5f, 42.5f, 135, -135 };
@@ -109,6 +105,8 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         anim.SetTrigger("Attack");
+        mp.runSpeed = 0f;
+        Invoke("ResetSpeed", 1f);
 
         //apply damage 
         foreach (Collider2D enemy in hitEnemies)
@@ -134,6 +132,11 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (currentHealth - damage <= 0)
+        {
+            Die();
+        }
+
         if (!mp.isDodging)
         {
             mp.runSpeed = 0f;
@@ -146,11 +149,18 @@ public class PlayerCombat : MonoBehaviour
             Invoke("ResetShake", 0.2f);
             Invoke("ResetSpeed", 0.2f);
 
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
+
         }
+    }
+
+    void ResetShake()
+    {
+        cs.shakeDistance = 0f;
+    }
+
+    void ResetSpeed()
+    {
+        mp.runSpeed = regSpeed;
     }
 
     void Die()
@@ -163,10 +173,9 @@ public class PlayerCombat : MonoBehaviour
 
         // anim.SetBool("IsDead", true);
 
-        GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         mp.enabled = false;
-        healthCanvas.SetActive(false);
+        // healthCanvas.SetActive(false);
 
         Invoke("Respawn", 3.5f);
     }

@@ -15,7 +15,7 @@ public class Berimbau : MonoBehaviour
     [SerializeField] private float currentAmount;
     [SerializeField] private float speed;
     [SerializeField] private Text hitThisButton;
-    private string[] buttonPrompts = { "J", "K", "L" };
+    private string[] buttonPrompts = { "W", "A", "S", "D"};
 
     private int count;
     private int multiplier = 0;
@@ -39,30 +39,38 @@ public class Berimbau : MonoBehaviour
             BeatHit();
         }
 
-        if(hitThisButton.text.Equals("J"))
+        if(hitThisButton.text.Equals("W"))
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 BeatHit();
             }
         }
 
-        if (hitThisButton.text.Equals("K"))
+        if (hitThisButton.text.Equals("A"))
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 BeatHit();
             }
         }
 
-        if (hitThisButton.text.Equals("L"))
+        if (hitThisButton.text.Equals("S"))
         {
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 BeatHit();
             }
         }
-        
+
+        if (hitThisButton.text.Equals("D"))
+        {
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                BeatHit();
+            }
+        }
+
         if (currentAmount < 100)
         {
             currentAmount += speed * Time.deltaTime;
