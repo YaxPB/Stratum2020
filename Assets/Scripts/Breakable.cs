@@ -9,6 +9,8 @@ public class Breakable : MonoBehaviour
     private Animator postAnim;
     private Transform thisLampPos;
 
+    HealthPickup drop;
+    public HealthPickup hp;
 
     public void Start()
     {
@@ -31,8 +33,13 @@ public class Breakable : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Lamp died!");
         AudioManagerSFX.PlaySound("lampBreak");
+
+        //this is the only breakable object currently, so small healthpickup drop chance
+        var r = Random.Range(0, 10);
+        if (r < 9)
+            drop = Instantiate<HealthPickup>(hp, transform.position, transform.rotation);
+
         this.enabled = false;
 
         Destroy(gameObject, 2f);

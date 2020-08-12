@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public GameObject floatyText;
     public Animator anim;
     private GameObject target;
+    private PlayerCombat combat;
 
     Overhead oh;
     public GameObject theCanvas;
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        combat = FindObjectOfType<PlayerCombat>();
         oh = FindObjectOfType<Overhead>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -84,7 +86,7 @@ public class Enemy : MonoBehaviour
         }
         
 
-        if (targetDistance <= stopDistance && !isStunned)
+        if (targetDistance <= stopDistance && !isStunned && !combat.dead)
         {
             if (Time.time >= nextAttack)
             {
@@ -98,9 +100,6 @@ public class Enemy : MonoBehaviour
     private void StopChasePlayer()
     {
         anim.SetBool("isWalking", false);
-        //anim.SetBool("isBlocking", false);
-        //isBlocking = false;
-        //speed = regSpeed;
     }
 
     private void ChasePlayer()
@@ -120,13 +119,14 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isBlocking)
+        anim.ResetTrigger("Hurt");
+        if (isBlocking && currentHealth > 0)
         {
             stopped = true;
             currentHealth -= damage / 3;
             StopBlock();
         }
-        else
+        else if(currentHealth > 0)
         {
             currentHealth -= damage;
         }
@@ -160,10 +160,9 @@ public class Enemy : MonoBehaviour
     {
         theCanvas.SetActive(false);
         AudioManagerSFX.PlaySound("enemyDied");
-        // anim.SetBool("IsDead", true);
-
         anim.SetBool("isWalking", false);
 
+        anim.SetBool("isDead", true);
         // enemy gameobj is not destroyed, body is left behind for 2 seconds
         this.enabled = false;
 
@@ -212,10 +211,8 @@ public class Enemy : MonoBehaviour
             switch (attackType)
             {
                 case 1:
-                    //play attack anim
                     anim.SetTrigger("basicAttack");
                     AudioManagerSFX.PlaySound("basicAttack");
-                    anim.SetTrigger("isAttacking");
                     Debug.Log("weak attack");
                     //apply damage 
                     foreach (Collider2D player in hitPlayer)
@@ -224,7 +221,6 @@ public class Enemy : MonoBehaviour
                     }
                     break;
                 case 2:
-                    //play strong attack anim
                     anim.SetTrigger("strongAttack");
                     AudioManagerSFX.PlaySound("strongAttack");
                     Debug.Log("strong attack");

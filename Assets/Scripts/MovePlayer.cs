@@ -97,6 +97,7 @@ public class MovePlayer : MonoBehaviour
                 if (Input.GetButtonDown("Dodge"))
                 {
                     isDodging = true;
+                    animator.SetTrigger("Dodging");
                     StartCoroutine(BeginDodgeRoll());
                 }
             }

@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  hp: {fileID: 7970168754074141608, guid: abcaac5c4fe447e48bae535fb05fd010, type: 3}
 --- !u!1 &7977894497878400359
 GameObject:
   m_ObjectHideFlags: 0
