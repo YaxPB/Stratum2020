@@ -119,7 +119,6 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        anim.ResetTrigger("Hurt");
         if (isBlocking && currentHealth > 0)
         {
             stopped = true;
@@ -172,8 +171,6 @@ public class Enemy : MonoBehaviour
     public void EnemyAttack()
     {
         var pc = target.GetComponent<PlayerCombat>();
-        anim.ResetTrigger("basicAttack");
-        anim.ResetTrigger("strongAttack");
         if (pc.currentHealth < 0)
         {
             isAttacking = false;
@@ -214,7 +211,6 @@ public class Enemy : MonoBehaviour
                     anim.SetTrigger("basicAttack");
                     AudioManagerSFX.PlaySound("basicAttack");
                     Debug.Log("weak attack");
-                    //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
                         pc.TakeDamage(attackDamage);
@@ -224,8 +220,6 @@ public class Enemy : MonoBehaviour
                     anim.SetTrigger("strongAttack");
                     AudioManagerSFX.PlaySound("strongAttack");
                     Debug.Log("strong attack");
-                    
-                    //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
                         pc.TakeDamage(strongDamage);
@@ -277,7 +271,6 @@ public class Enemy : MonoBehaviour
             Debug.Log("oh nooo i'm stunned");
             isStunned = true;
             speed = 0;
-            anim.StopPlayback();
             Invoke("NotStunned", stunDuration);
         }
     }
@@ -295,14 +288,12 @@ public class Enemy : MonoBehaviour
         Debug.Log("oh nooo i'm stunned");
         isStunned = true;
         speed = 0;
-        anim.StopPlayback();
     }
 
     void NotStunned()
     {
         isStunned = false;
         speed = regSpeed;
-        anim.StartPlayback();
     }
 
     void LockedOn(bool linedUp)
