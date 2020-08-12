@@ -17,18 +17,11 @@ public class CombatTrigger : MonoBehaviour
     // that just adds 1 to counter; minus 1 every time player defeats an enemy
     // Once the counter hits zero, activate NextZoneUI 
     // Need to go through Yax's Respawn/Enemy Spawn script to figure out approach
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         combatCam.enabled = false;
         isCombat = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

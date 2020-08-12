@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour
     void Awake()
     {
         pc = FindObjectOfType<PlayerCombat>();
-        healthBar = GameObject.Find("Player").GetComponentInChildren<HealthBar>();
+        healthBar = GameObject.Find("LifeForce").GetComponentInChildren<HealthBar>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

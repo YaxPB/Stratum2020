@@ -54,6 +54,8 @@ public class PlayerCombat : MonoBehaviour
 
     public bool loggingEnabled = false;
 
+    public bool dead { get; private set; }
+
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
 
@@ -61,6 +63,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
+        dead = false;
         instance = this;
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
@@ -132,10 +135,6 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (currentHealth - damage <= 0)
-        {
-            Die();
-        }
 
         if (!mp.isDodging)
         {
@@ -148,8 +147,11 @@ public class PlayerCombat : MonoBehaviour
             cs.shakeDistance = 0.06f;
             Invoke("ResetShake", 0.2f);
             Invoke("ResetSpeed", 0.2f);
+        }
 
-
+        if (currentHealth - damage <= 0)
+        {
+            Die();
         }
     }
 
@@ -165,13 +167,13 @@ public class PlayerCombat : MonoBehaviour
 
     void Die()
     {
-        //anim.SetBool("IsDead", true);
+        dead = true;
+        anim.SetBool("isWalking", false);
+        anim.SetBool("IsDead", true);
         if (loggingEnabled)
         {
             Debug.Log("You died!");
         }
-
-        // anim.SetBool("IsDead", true);
 
         this.enabled = false;
         mp.enabled = false;
@@ -196,6 +198,7 @@ public class PlayerCombat : MonoBehaviour
             Debug.Log("MUSIC!");
         }
 
+        anim.SetBool("Berimbau",true);
         StartCoroutine(BerimBeats());
         berimBeatDownTimer.SetActive(true);
     }
@@ -208,14 +211,15 @@ public class PlayerCombat : MonoBehaviour
 
         GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
         berimbauRange = flight.GetComponent<CircleCollider2D>();
-        Destroy(flight, berimgone);
 
         // Freeze the player (momentarily), play some music, button prompts
         MovePlayer.instance.canMove = false;
 
+        Destroy(flight, berimgone);
         // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
         // OR hits that happen in quick succession with each correctly timed button press
         yield return new WaitForSeconds(berimgone);
+        anim.SetBool("Berimbau", false);
         MovePlayer.instance.canMove = true;
         isPlaying = false;
         yield return new WaitForSeconds(berimgone);
@@ -244,10 +248,9 @@ public class PlayerCombat : MonoBehaviour
 
     void Respawn()
     {
-        transform.position = respawn.transform.position;
-
         anim.SetBool("IsDead", false);
-
+        transform.position = respawn.transform.position;
+        
         GetComponent<Collider2D>().enabled = true;
         this.enabled = true;
         mp.enabled = true;
