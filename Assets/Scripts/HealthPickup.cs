@@ -19,6 +19,7 @@ public class HealthPickup : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            //add healthpickup sound effect
             pc.currentHealth += healthBonus;
             healthBar.SetHealth(pc.currentHealth);
             Destroy(gameObject);
