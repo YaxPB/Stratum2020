@@ -37,7 +37,7 @@ public class Breakable : MonoBehaviour
 
         //this is the only breakable object currently, so small healthpickup drop chance
         var r = Random.Range(0, 10);
-        if (r < 9)
+        if (r > 9)
             drop = Instantiate<HealthPickup>(hp, transform.position, transform.rotation);
 
         this.enabled = false;
