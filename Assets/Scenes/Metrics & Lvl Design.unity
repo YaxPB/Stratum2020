@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1658,7 +1658,10 @@ MonoBehaviour:
   - {fileID: 1646255403}
   timeBetweenWaves: 4
   waveCountDown: 0
+  boxy: {fileID: 0}
   foos: {fileID: 1489991399}
+  maxX: 0
+  camLock: {fileID: 0}
 --- !u!4 &475588739
 Transform:
   m_ObjectHideFlags: 0
@@ -3131,7 +3134,10 @@ MonoBehaviour:
   - {fileID: 528800496}
   timeBetweenWaves: 4
   waveCountDown: 0
+  boxy: {fileID: 0}
   foos: {fileID: 1489991399}
+  maxX: 0
+  camLock: {fileID: 0}
 --- !u!4 &819233217
 Transform:
   m_ObjectHideFlags: 0
@@ -3214,16 +3220,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5136154689091353978, guid: d9d72749bbebdc646825db2ecc36577a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25633
-      objectReference: {fileID: 0}
-    - target: {fileID: 5136154689091353978, guid: d9d72749bbebdc646825db2ecc36577a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25633
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9d72749bbebdc646825db2ecc36577a, type: 3}
@@ -4778,7 +4774,10 @@ MonoBehaviour:
   - {fileID: 932013920}
   timeBetweenWaves: 4
   waveCountDown: 0
+  boxy: {fileID: 0}
   foos: {fileID: 1489991399}
+  maxX: 0
+  camLock: {fileID: 0}
 --- !u!4 &1176186994
 Transform:
   m_ObjectHideFlags: 0
@@ -7949,7 +7948,10 @@ MonoBehaviour:
   - {fileID: 717252506}
   timeBetweenWaves: 4
   waveCountDown: 0
+  boxy: {fileID: 0}
   foos: {fileID: 1489991399}
+  maxX: 0
+  camLock: {fileID: 0}
 --- !u!4 &2017861751
 Transform:
   m_ObjectHideFlags: 0
