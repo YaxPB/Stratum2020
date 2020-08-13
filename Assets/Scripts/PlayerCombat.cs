@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     private bool isCombat;
 
     public GameObject respawn;
+    public GameObject floatyText;
 
     public Animator anim;
 
@@ -149,10 +150,21 @@ public class PlayerCombat : MonoBehaviour
             Invoke("ResetSpeed", 0.2f);
         }
 
+        if (floatyText != null && currentHealth > 0)
+        {
+            ShowFloatyText(damage);
+        }
+
         if (currentHealth - damage <= 0)
         {
             Die();
         }
+    }
+
+    void ShowFloatyText(int damage)
+    {
+        var go = Instantiate(floatyText, transform.position + transform.up * 3, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = damage.ToString();
     }
 
     void ResetShake()

@@ -227,9 +227,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7609580415325780918}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.132, y: -0.033, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4851336928117684837}
   m_RootOrder: 0
@@ -375,9 +375,11 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthCanvas: {fileID: 0}
   respawn: {fileID: 1739612662274496384}
+  floatyText: {fileID: 2686320548070579237, guid: d9d72749bbebdc646825db2ecc36577a,
+    type: 3}
   anim: {fileID: 4678573819506897542}
   attackPoint: {fileID: 7609580415325780919}
-  attackRangeX: 2.42
+  attackRangeX: 2
   attackRangeY: 3.69
   enemyLayers:
     serializedVersion: 2
@@ -441,7 +443,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.7}
+  m_Size: {x: 1, y: 1.7}
   m_EdgeRadius: 0
 --- !u!114 &7609580416708899340
 MonoBehaviour:
