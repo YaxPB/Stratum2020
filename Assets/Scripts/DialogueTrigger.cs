@@ -6,7 +6,6 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue theDialogue;
     private bool withinRange;
-    // private bool hasStarted;
 
     public void Update()
     {
