@@ -6,7 +6,7 @@ public class AudioManagerSFX : MonoBehaviour
 {
     public static AudioManagerSFX instance;
     public static AudioSource theSource;
-    public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, doorOpen, typingText, lampBreak, pandeiro;
+    public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, doorOpen, typingText, lampBreak, pandeiro, attackUP;
     public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHit, enemyDie;
     public static float pitchRandom = 0.1f;
 
@@ -26,6 +26,7 @@ public class AudioManagerSFX : MonoBehaviour
         playerFootsteps = Resources.Load<AudioClip>("Sounds/aud_footsteps1");
         playerHit = Resources.Load<AudioClip>("Sounds/aud_kick4");
         playerHitLamp = Resources.Load<AudioClip>("Sounds/aud_lampHit1");
+        attackUP = Resources.Load<AudioClip>("Sounds/berimbauPowerUP");
         
         theSource = GetComponent<AudioSource>();
         if(theSource == null)
@@ -86,6 +87,9 @@ public class AudioManagerSFX : MonoBehaviour
                 theSource.PlayOneShot(pandeiro);
                 theSource.pitch = 1.2f;
                 theSource.PlayOneShot(berimBAM);
+                break;
+            case "attackUP":
+                theSource.PlayOneShot(attackUP);
                 break;
         }
 
