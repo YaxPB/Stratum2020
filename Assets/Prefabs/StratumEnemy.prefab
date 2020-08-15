@@ -415,6 +415,7 @@ MonoBehaviour:
   vomitPrefab: {fileID: 4418971504066246878, guid: dd99d154667734741a7c33f6a221b829,
     type: 3}
   despawn: 1.5
+  hp: {fileID: 7970168754074141608, guid: abcaac5c4fe447e48bae535fb05fd010, type: 3}
 --- !u!61 &3613096323288549440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -736,7 +737,7 @@ SpriteRenderer:
   m_Size: {x: 6.68, y: 8.62}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &5103427470869850905

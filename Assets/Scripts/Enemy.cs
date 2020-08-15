@@ -56,6 +56,10 @@ public class Enemy : MonoBehaviour
     public Vomiting vomitPrefab;
     public float despawn = 2f;
 
+    //health drop chance
+    HealthPickup drop;
+    public HealthPickup hp;
+
     void Start()
     {
         combat = FindObjectOfType<PlayerCombat>();
@@ -152,7 +156,15 @@ public class Enemy : MonoBehaviour
     void ShowFloatyText(int damage)
     {
         var go = Instantiate(floatyText, transform.position + transform.up * 3, Quaternion.identity, transform);
+        if(isBlocking)
+        {
+            int blockdamo = damage / 3;
+            go.GetComponent<TextMesh>().text = blockdamo.ToString();
+        }
+        else
+        {
         go.GetComponent<TextMesh>().text = damage.ToString();
+        }
     }
 
     void Die()
@@ -164,6 +176,10 @@ public class Enemy : MonoBehaviour
         anim.SetBool("isDead", true);
         // enemy gameobj is not destroyed, body is left behind for 2 seconds
         this.enabled = false;
+
+        var r = Random.Range(0, 10);
+        if (r < 9)
+            drop = Instantiate<HealthPickup>(hp, transform.position + transform.right * 1, transform.rotation);
 
         Destroy(gameObject, 2f);
     }

@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: 8e7caae7882ac7040bf317ff3edc640d
+guid: 9c68d74d36375bb47a824bb11c748dc2
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3404381931842817448
+    second: ArenaTile-multi_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
