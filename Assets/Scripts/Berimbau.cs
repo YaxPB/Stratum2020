@@ -10,6 +10,7 @@ public class Berimbau : MonoBehaviour
     public Image timerFill;
     public Image beatZone;
     private Animator beatZoneAnim;
+    MovePlayer mp;
 
     private RectTransform textRotation;
     [SerializeField] private float currentAmount;
@@ -18,11 +19,14 @@ public class Berimbau : MonoBehaviour
     private string[] buttonPrompts = { "W", "A", "S", "D"};
 
     private int count;
+    private float regSpeed;
     private int multiplier = 0;
     private Canvas berimBAM;
 
     void Start()
     {
+        mp = FindObjectOfType<MovePlayer>();
+        regSpeed = mp.runSpeed;
         count = 4;
         ResetPrompt();
         beatZoneAnim = beatZone.GetComponent<Animator>();
@@ -92,6 +96,7 @@ public class Berimbau : MonoBehaviour
             beatZoneAnim.SetTrigger("isHit");
             AudioManagerSFX.PlaySound("berimBAM");
             multiplier++;
+            mp.runSpeed = mp.runSpeed + 1.5f;
             // Add some kind of value +1 to PlayerCombat?
         }
         else
@@ -107,6 +112,7 @@ public class Berimbau : MonoBehaviour
         if (count == 0)
         {
             PlayerCombat.instance.SendMessage("BuffBoi", multiplier);
+            Invoke("ResetSpeed", 5f);
             multiplier = 0;
             count = 4;
             beatTimer.gameObject.SetActive(false);
@@ -128,4 +134,8 @@ public class Berimbau : MonoBehaviour
         count--;
     }
 
+    public void ResetSpeed()
+    {
+        mp.runSpeed = regSpeed;
+    }
 }

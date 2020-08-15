@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
+    private int Lives;
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
@@ -61,6 +62,11 @@ public class PlayerCombat : MonoBehaviour
     public static PlayerCombat instance;
 
     CameraShake cs;
+
+    private void Awake()
+    {
+        Lives = 3;
+    }
 
     void Start()
     {
@@ -179,6 +185,8 @@ public class PlayerCombat : MonoBehaviour
 
     void Die()
     {
+        Lives--;
+        Debug.Log(Lives);
         dead = true;
         anim.SetBool("isWalking", false);
         anim.SetBool("IsDead", true);
@@ -260,14 +268,21 @@ public class PlayerCombat : MonoBehaviour
 
     void Respawn()
     {
-        anim.SetBool("IsDead", false);
-        transform.position = respawn.transform.position;
+        if(Lives > 0)
+        {
+            anim.SetBool("IsDead", false);
+            transform.position = respawn.transform.position;
         
-        GetComponent<Collider2D>().enabled = true;
-        this.enabled = true;
-        mp.enabled = true;
-        healthCanvas.SetActive(true);
+            GetComponent<Collider2D>().enabled = true;
+            this.enabled = true;
+            mp.enabled = true;
+            healthCanvas.SetActive(true);
 
-        Start();
+            Start();
+        }
+        else
+        {
+            Debug.Log("Game Over foo!");
+        }
     }
 }
