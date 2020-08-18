@@ -10,6 +10,7 @@ public class Berimbau : MonoBehaviour
     public Image timerFill;
     public Image beatZone;
     private Animator beatZoneAnim;
+    public ParticleSystem attackUP;
     MovePlayer mp;
 
     private RectTransform textRotation;
@@ -34,10 +35,7 @@ public class Berimbau : MonoBehaviour
 
     private void Update()
     {
-        // find a way to get playerInput data 
-        // every time the attack button is pressed during berimbau ability,
-        // check to see if it lines up with the highlighted area
-
+        // Mostly for testing, enables left-click to shortcut berimbau prompts
         if (Input.GetButtonDown("Fire1"))
         {
             BeatHit();
@@ -94,13 +92,15 @@ public class Berimbau : MonoBehaviour
         {
             Debug.Log("Hit!");
             beatZoneAnim.SetTrigger("isHit");
-            AudioManagerSFX.PlaySound("berimBAM");
+            AudioManagerSFX.PlaySound("attackUP");
+            attackUP.Play();
             multiplier++;
             mp.runSpeed = mp.runSpeed + 1.5f;
             // Add some kind of value +1 to PlayerCombat?
         }
         else
         {
+            AudioManagerSFX.PlaySound("berimBAM");
             Debug.Log("Miss");
             // AudioManagerSFX.PlaySound("berimMiss");
         }

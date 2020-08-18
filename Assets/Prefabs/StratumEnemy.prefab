@@ -389,7 +389,7 @@ MonoBehaviour:
   currentHealth: 0
   speed: 4
   regSpeed: 0
-  chaseDistance: 15
+  chaseDistance: 20
   stopDistance: 2
   floatyText: {fileID: 2686320548070579237, guid: d9d72749bbebdc646825db2ecc36577a,
     type: 3}

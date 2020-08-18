@@ -5,7 +5,7 @@ using UnityEngine;
 public class CombatZone : MonoBehaviour
 {
     // Reference to the LifeForce Canvas that holds the HealthBar info
-    public Canvas healthBar;
+    private Canvas healthBar;
     public static bool isCombat;
     private Collider2D[] hitEnemies;
     public Collider2D zoneWall;
@@ -16,6 +16,7 @@ public class CombatZone : MonoBehaviour
     
     void Start()
     {
+        healthBar = FindObjectOfType<HealthBar>().GetComponentInParent<Canvas>();
         isCombat = false;
         // Detect all enemies within a combat area
         hitEnemies = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, enemyLayers);

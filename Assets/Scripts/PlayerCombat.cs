@@ -29,8 +29,8 @@ public class PlayerCombat : MonoBehaviour
     private Enemy currentTarget;
     private GameObject flight;
 
-    public int attackDamage = 25;
-    private int baseDamage;
+    [SerializeField] private int attackDamage;
+    private int baseDamage = 25;
 
     public float attackRate = 1.5f;
     float nextAttack = 0f;
@@ -74,7 +74,7 @@ public class PlayerCombat : MonoBehaviour
         instance = this;
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
-        baseDamage = attackDamage;
+        attackDamage = baseDamage;
 
         healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
