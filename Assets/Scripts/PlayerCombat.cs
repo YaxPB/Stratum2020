@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public GameObject healthCanvas;
+    [SerializeField]
     private bool isCombat;
 
     public GameObject respawn;
