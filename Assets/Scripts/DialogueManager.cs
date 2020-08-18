@@ -10,6 +10,9 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;   // The animator in charge of enter/exit animation of the dialogue box
     private bool convoStarted;  // Boolean to determine if a conversation has started
     private int pressedTimes;   // Number of times the F key is pressed
+    private bool isGrandmaSpeaking;
+    private Transform playerPos;
+    private GrandmaTrigger grandmaZone;
 
     // Uses a Queue (of Strings) data structure (FIFO)
     public Queue<string> sentences;
@@ -21,7 +24,7 @@ public class DialogueManager : MonoBehaviour
         convoStarted = false;
     }
 
-    // ONLY TOOK ME TWO FULL [working] DAYS BUT I FINALLY FUCKING FIXED IT ON 5/30/20 @ 12:38 AM
+    // ONLY TOOK ME TWO FULL [working] DAYS BUT I FINALLY FIXED IT ON 5/30/20 @ 12:38 AM
     private void Update()
     {
         // THE DUMB BANDAID IF-STATEMENT THAT FIXED THIS FOR OUR PROJECT ON 7/8/20 @ 7:47 PM 
@@ -44,7 +47,8 @@ public class DialogueManager : MonoBehaviour
     } // Update
 
     public void StartDialogue(Dialogue theDialogue)
-    {   
+    {
+        MovePlayer.instance.canMove = false;
         // Activates the animator that brings up the DialogueBox
         animator.SetBool("isOpen", true);
         // Just a boolean to determine whether or not a conversation has started
@@ -102,8 +106,22 @@ public class DialogueManager : MonoBehaviour
         AudioManagerSFX.theSource.Stop();
     }
 
+    public void CueGrandma(GrandmaTrigger grandma)
+    {
+        isGrandmaSpeaking = true;
+        grandmaZone = grandma;
+    }
+
     void EndDialogue()
     {
+        if (isGrandmaSpeaking)
+        {
+
+            grandmaZone.SendMessage("ResetCam");
+            isGrandmaSpeaking = false;
+        }
+        AudioManagerSFX.theSource.Stop();
+        MovePlayer.instance.canMove = true;
         // Closes the dialogue box and ends the conversation
         Debug.Log("End of conversation.");
         animator.SetBool("isOpen", false);
