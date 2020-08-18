@@ -127,18 +127,21 @@ public class Enemy : MonoBehaviour
         {
             stopped = true;
             currentHealth -= damage / 3;
+
+            if (oh != null && oh.readyToDecrease)
+                oh.AdjustPool(damage/3);
             StopBlock();
         }
         else if(currentHealth > 0)
         {
-            currentHealth -= damage;
+            currentHealth -= damage;    
+            if (oh != null && oh.readyToDecrease)
+                oh.AdjustPool(damage);
         }
         
         isStunned = true;
         anim.SetTrigger("Hurt");
         healthBar.SetHealth(currentHealth);
-        if(oh != null && oh.readyToDecrease)
-            oh.AdjustPool(damage);
         
         Invoke("NotStunned", timeAfterDamo);
         

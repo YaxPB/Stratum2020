@@ -140,7 +140,7 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f/_wave.rate);
         }
 
-        oh.SetOverhead(nextWave);
+        oh.SetOverhead(this, nextWave);
 
         state = SpawnState.WAITING;
 
