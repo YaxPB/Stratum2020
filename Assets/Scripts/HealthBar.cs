@@ -34,9 +34,9 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    void StartBeat(bool startOrEnd)
+    void StartBeat(bool theStart)
     {
-        if (!startOrEnd)
+        if (!theStart)
         {
             isCombat = false;
             heartBeat.enabled = false;
@@ -47,4 +47,11 @@ public class HealthBar : MonoBehaviour
         heartBeat.enabled = true;
         heartBeat.SetBool("isCombat", true);
     }
+
+    /*
+    void BerimbauBeats()
+    {
+        heartBeat.SetTrigger("isPlaying");
+    }
+    */
 }

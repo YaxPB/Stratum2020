@@ -30,11 +30,17 @@ public class WaveSpawner : MonoBehaviour
     bool beginTheWaves;
     //public bool allSpawned { get; private set; }
 
+    public GameObject boxy;
     public GameObject foos;
     Overhead oh;
+    CameraFollow cf;
+
+    public float maxX;
+    public Transform camLock;
 
     private void Start()
     {
+        cf = FindObjectOfType<CameraFollow>();
         oh = FindObjectOfType<Overhead>();
         //oh.SetActive(false);
         if(spawnPoints.Length == 0)
@@ -42,7 +48,9 @@ public class WaveSpawner : MonoBehaviour
             Debug.LogError("no spawn points foo");
         }
 
+        camLock = boxy.gameObject.transform.GetChild(2);
         waveCountDown = timeBetweenWaves;
+        maxX = cf.XMaxValue;
     }
 
     private void Update()
@@ -81,16 +89,19 @@ public class WaveSpawner : MonoBehaviour
         waveCountDown = timeBetweenWaves;
 
         //waves.length will stop wave looping but is beyond index
+        //Wave check to stop spawning
         if(nextWave + 1 > waves.Length - 1)
         {
             completed = true;
             Debug.Log("all done");
             foos.SetActive(true);
+            boxy.SetActive(false);
+            cf.XMaxValue = maxX;
         }
 
         if (!completed)
         {
-            Debug.Log("next wave");
+            //Debug.Log("next wave");
             nextWave++;
         }
     }
@@ -113,6 +124,13 @@ public class WaveSpawner : MonoBehaviour
     IEnumerator SpawnWave(Wave _wave)
     {
         foos.SetActive(false);
+        if(boxy != null)
+        {
+            boxy.SetActive(true);
+            //manipulate camera values
+            cf.XMinValue = camLock.transform.position.x;
+            cf.XMaxValue = camLock.transform.position.x;
+        }
         Debug.Log("Spawning wave:" + _wave.name);
         state = SpawnState.SPAWNING;
 
@@ -122,7 +140,7 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f/_wave.rate);
         }
 
-        oh.SetOverhead(nextWave);
+        oh.SetOverhead(this, nextWave);
 
         state = SpawnState.WAITING;
 
