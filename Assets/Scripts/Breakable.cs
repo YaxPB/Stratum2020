@@ -7,20 +7,22 @@ public class Breakable : MonoBehaviour
     public int maxHealth = 25;
     int currentHealth;
     private Animator postAnim;
+    private Transform thisLampPos;
 
+    HealthPickup drop;
+    public HealthPickup hp;
 
     public void Start()
     {
         currentHealth = maxHealth;
         postAnim = gameObject.GetComponent<Animator>();
+        thisLampPos = gameObject.GetComponent<Transform>();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
-        //play hurt anim
-        // anim.SetTrigger("Hurt");
         postAnim.SetTrigger("isHit");
         if (currentHealth <= 0)
         {
@@ -31,11 +33,13 @@ public class Breakable : MonoBehaviour
 
     void Die()
     {
-        // theTarget.SetBool("CombatMode", false);
-        Debug.Log("Lamp died!");
+        AudioManagerSFX.PlaySound("lampBreak");
 
-        //enemy gameobj is not destroyed, body is left behind
-        GetComponent<Collider2D>().enabled = false;
+        //this is the only breakable object currently, so small healthpickup drop chance
+        var r = Random.Range(0, 10);
+        if (r > 9)
+            drop = Instantiate<HealthPickup>(hp, transform.position + transform.up * -1, transform.rotation);
+
         this.enabled = false;
 
         Destroy(gameObject, 2f);
