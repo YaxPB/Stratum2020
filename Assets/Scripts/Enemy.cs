@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    private bool dead = false;
 
     public float speed;
     public float regSpeed;
@@ -123,36 +124,39 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isBlocking && currentHealth > 0)
+        if (!dead)
         {
-            stopped = true;
-            currentHealth -= damage / 3;
+            if (isBlocking && currentHealth > 0)
+            {
+                stopped = true;
+                currentHealth -= damage / 3;
 
-            if (oh != null && oh.readyToDecrease)
-                oh.AdjustPool(damage/3);
-            StopBlock();
-        }
-        else if(currentHealth > 0)
-        {
-            currentHealth -= damage;    
-            if (oh != null && oh.readyToDecrease)
-                oh.AdjustPool(damage);
-        }
-        
-        isStunned = true;
-        anim.SetTrigger("Hurt");
-        healthBar.SetHealth(currentHealth);
-        
-        Invoke("NotStunned", timeAfterDamo);
-        
-        if (floatyText != null && currentHealth > 0)
-        {
-            ShowFloatyText(damage);
-        }
+                if (oh != null && oh.readyToDecrease)
+                    oh.AdjustPool(damage / 3);
+                StopBlock();
+            }
+            else if (currentHealth > 0)
+            {
+                currentHealth -= damage;
+                if (oh != null && oh.readyToDecrease)
+                    oh.AdjustPool(damage);
+            }
 
-        if (currentHealth <= 0)
-        {
-            Die();
+            isStunned = true;
+            anim.SetTrigger("Hurt");
+            healthBar.SetHealth(currentHealth);
+
+            Invoke("NotStunned", timeAfterDamo);
+
+            if (floatyText != null && currentHealth > 0)
+            {
+                ShowFloatyText(damage);
+            }
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -172,6 +176,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        dead = true;
         theCanvas.SetActive(false);
         AudioManagerSFX.PlaySound("enemyDied");
         anim.SetBool("isWalking", false);
