@@ -22,19 +22,19 @@ public class CombatZone : MonoBehaviour
         hitEnemies = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, enemyLayers);
     }
 
-    private void Update()
-    {
-        // Because enemy objects are destroyed, if index 0 is null, it SHOULD be that the zone has been cleared
-        // i.e. Check if there are any enemies left in a given combatZone
-        if(hitEnemies[0] == null)
-        {
-            // If all enemies have been defeated, player may progress to next area
-            zoneWall.enabled = false;
-            nextZone.SetTrigger("allClear");
-            // Might rethink this next line so commented out for now
-            Destroy(this.gameObject, 4f);
-        }
-    }
+    //private void Update()
+    //{
+    //    // Because enemy objects are destroyed, if index 0 is null, it SHOULD be that the zone has been cleared
+    //    // i.e. Check if there are any enemies left in a given combatZone
+    //    if(hitEnemies[0] == null)
+    //    {
+    //        // If all enemies have been defeated, player may progress to next area
+    //        zoneWall.enabled = false;
+    //        nextZone.SetTrigger("allClear");
+    //        // Might rethink this next line so commented out for now
+    //        Destroy(this.gameObject, 4f);
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -50,7 +50,7 @@ public class CombatZone : MonoBehaviour
         // Update isCombat boolean to false once player exits the combat zone
         isCombat = false;
         // Immediately stop playing the combat beat (NOTE: thinking of writing a quick fade out script)
-        AudioManagerBG.SwitchTrack("previous");
+        // AudioManagerBG.SwitchTrack("previous");
         // Tells the HealthBar to stop playing CombatMode animations **Should probably find an alternative to SendMessage like this
         HealthBar.instance.gameObject.SendMessage("StartBeat", false);
         // PlayerCombat.instance.gameObject.SendMessage("TimeToFight", false);
