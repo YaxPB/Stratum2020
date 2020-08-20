@@ -29,6 +29,7 @@ public class PlayerCombat : MonoBehaviour
     private Animator enemyAnim;
     private Enemy currentTarget;
     private GameObject flight;
+    private LevelLoader ll;
 
     [SerializeField] private int attackDamage;
     private int baseDamage = 25;
@@ -61,6 +62,7 @@ public class PlayerCombat : MonoBehaviour
 
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
+    public bool nextLevel = false;
 
     CameraShake cs;
 
@@ -81,6 +83,7 @@ public class PlayerCombat : MonoBehaviour
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
         cs = FindObjectOfType<CameraShake>();
+        ll = FindObjectOfType<LevelLoader>();
     }
 
     // Update is called once per frame
@@ -200,7 +203,14 @@ public class PlayerCombat : MonoBehaviour
         mp.enabled = false;
         // healthCanvas.SetActive(false);
 
-        Invoke("Respawn", 3.5f);
+        if (ll != null && nextLevel)
+        {
+            ll.LoadNextLevel();
+        }
+        else
+        {
+            Invoke("Respawn", 3.5f);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -283,7 +293,19 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
+            //add game over screen
             Debug.Log("Game Over foo!");
         }
     }
+
+    //if player dies in tutorial swarm area
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "DeathCheck")
+        {
+            Debug.Log("touched me");
+            nextLevel = true;
+        }
+    }
 }
+
