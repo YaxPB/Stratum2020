@@ -477,6 +477,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 552313392590284427, guid: 950be4f05e0db094190e1b7b14a37741,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 552313392590284427, guid: 950be4f05e0db094190e1b7b14a37741,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 552313392590284427, guid: 950be4f05e0db094190e1b7b14a37741,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 552313392590284427, guid: 950be4f05e0db094190e1b7b14a37741,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 552313392590284427, guid: 950be4f05e0db094190e1b7b14a37741,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2552370735599090258, guid: 950be4f05e0db094190e1b7b14a37741,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -592,7 +617,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2552370735371823783, guid: 950be4f05e0db094190e1b7b14a37741, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 950be4f05e0db094190e1b7b14a37741, type: 3}
 --- !u!1 &418582770
 GameObject:

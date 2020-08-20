@@ -8261,8 +8261,8 @@ MonoBehaviour:
   theDialogue:
     name: Xadri
     sentences:
-    - I was so little then, when grandma used to take me to train in the city. I miss
-      her. Is it wrong to miss someone who's better off now?
+    - I was so little then, when grandma used to take me to train in the city. I
+      miss her. Is it wrong to miss someone who's better off now?
     - A bunch of subspirited revolutionaries vandalized the statue a few years later,
       painting the King a crown of blood in "honor" of my hometown, Cineria.
     - Honor's a... strong word. Honor is not smearing the statue of our leader. Honor
@@ -11267,8 +11267,8 @@ MonoBehaviour:
     - My Grandma Xela won the tournament 10 years ago. She was so reolutionary that
       subspees cast "X" marks in her memory to this day.
     - Sometimes I wish champions didn't have to leave home. I know working for Stratum
-      is a dream, but without Cineria's brightest lights, these familiar streets feel
-      a little dimmer.
+      is a dream, but without Cineria's brightest lights, these familiar streets
+      feel a little dimmer.
     - Snap out of it, Xadri. You'll be taking your seat beside her any day now. And
       you've got big shoes to fill.
   prompt: {fileID: 634186791}
@@ -18923,8 +18923,8 @@ MonoBehaviour:
     - When I was little, the other subspirited kids and I would run around and destroy
       the surveillance cams in our neighborhood so officers couldn't catch us practicing
       magic.
-    - The officers would just storm in and plant more, until eventually the only safe
-      place to be ourselves was behind the walls of our tiny homes...
+    - The officers would just storm in and plant more, until eventually the only
+      safe place to be ourselves was behind the walls of our tiny homes...
     - I've grown more sensible than this. Destroying cams is pointless. I'm going
       to make real change when I take my seat at Stratum Headquarters.
   prompt: {fileID: 634186791}
@@ -20899,22 +20899,12 @@ PrefabInstance:
     - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 168.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
