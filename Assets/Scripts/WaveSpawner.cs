@@ -35,11 +35,27 @@ public class WaveSpawner : MonoBehaviour
     Overhead oh;
     CameraFollow cf;
 
-    public float maxX;
-    public Transform camLock;
+    public Collider2D borderL;
+    public Collider2D borderR;
+    private ParticleSystem[] leftFlames;
+    private ParticleSystem[] rightFlames;
+    private bool allWavesComplete = false;
+
+
+    private float maxX;
+    // Added minX to allow larger "locked" combat area
+    private float minX;
+
+    // Access to nextZone animation moved from CombatZone
+    public Animator nextArrow;
 
     private void Start()
     {
+        borderL.enabled = false;
+        borderR.enabled = false;
+        leftFlames = borderL.GetComponentsInChildren<ParticleSystem>();
+        rightFlames = borderR.GetComponentsInChildren<ParticleSystem>();
+
         cf = FindObjectOfType<CameraFollow>();
         oh = FindObjectOfType<Overhead>();
         //oh.SetActive(false);
@@ -48,13 +64,23 @@ public class WaveSpawner : MonoBehaviour
             Debug.LogError("no spawn points foo");
         }
 
-        camLock = boxy.gameObject.transform.GetChild(2);
         waveCountDown = timeBetweenWaves;
         maxX = cf.XMaxValue;
+        minX = cf.XMinValue;
     }
 
     private void Update()
     {
+        // Need a way to check if all enemies in a given "zone" are defeated
+        if (allWavesComplete)
+        {
+            nextArrow.enabled = true;
+            nextArrow.SetTrigger("allClear");
+            Destroy(borderL.gameObject);
+            Destroy(borderR.gameObject);
+
+            Destroy(nextArrow.gameObject, 30f);
+        }
         if (beginTheWaves)
         {
             if (state == SpawnState.WAITING)
@@ -95,7 +121,7 @@ public class WaveSpawner : MonoBehaviour
             completed = true;
             Debug.Log("all done");
             foos.SetActive(true);
-            boxy.SetActive(false);
+            
             cf.XMaxValue = maxX;
         }
 
@@ -115,6 +141,7 @@ public class WaveSpawner : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Enemy") == null)
             {
                 Debug.Log("all done");
+                
                 return false;
             }
         }
@@ -126,10 +153,9 @@ public class WaveSpawner : MonoBehaviour
         foos.SetActive(false);
         if(boxy != null)
         {
-            boxy.SetActive(true);
             //manipulate camera values
-            cf.XMinValue = camLock.transform.position.x;
-            cf.XMaxValue = camLock.transform.position.x;
+            cf.XMinValue = borderL.transform.position.x + 5;
+            cf.XMaxValue = borderR.transform.position.x - 5;
         }
         Debug.Log("Spawning wave:" + _wave.name);
         state = SpawnState.SPAWNING;
@@ -156,9 +182,21 @@ public class WaveSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
             beginTheWaves = true;
+            borderL.enabled = true;     // Turns on left wall of combat area
+            borderR.enabled = true;     // Turns on right wall of combat area
+
+            // Activates magical flame walls to confine player
+            foreach (ParticleSystem ps in leftFlames)
+            {
+                ps.Play();
+            }
+            foreach (ParticleSystem ps in rightFlames)
+            {
+                ps.Play();
+            }
         }
     }
 }
