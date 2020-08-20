@@ -399,7 +399,7 @@ MonoBehaviour:
   healthCanvas: {fileID: 1675828497071084139}
   attackPoint: {fileID: 3613096323859899478}
   pukePoint: {fileID: 5939818661619307057}
-  attackRangeX: 3
+  attackRangeX: 3.3
   attackRangeY: 4.5
   playerLayer:
     serializedVersion: 2

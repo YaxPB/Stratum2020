@@ -28,6 +28,7 @@ public class MovePlayer : MonoBehaviour
     public bool isDodging { get; private set; }
 
     private Transform berimbauBeatDownTimer;
+    private TrailRenderer tr;
 
     bool isRolling;
 
@@ -40,6 +41,8 @@ public class MovePlayer : MonoBehaviour
 
     private void Start()
     {
+        tr = GetComponentInChildren<TrailRenderer>();
+        tr.enabled = false;
         instance = this;
         canMove = true;
         rb = GetComponent<Rigidbody2D>();
@@ -146,6 +149,7 @@ public class MovePlayer : MonoBehaviour
 
     private IEnumerator BeginDodgeRoll()
     {
+        tr.enabled = true;
         switch (direction)
         {
             case 1:
@@ -183,6 +187,7 @@ public class MovePlayer : MonoBehaviour
             rollTime = startRollTime;
             rb.velocity = Vector2.zero;
             isDodging = false;
+            tr.enabled = false;
         }
     }
 
