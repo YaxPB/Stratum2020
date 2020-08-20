@@ -259,7 +259,6 @@ GameObject:
   - component: {fileID: 6415657506572193404}
   - component: {fileID: 6415657506572193405}
   - component: {fileID: 6415657506572193394}
-  - component: {fileID: 30056802}
   m_Layer: 5
   m_Name: HeartBeat
   m_TagString: Beat
@@ -342,18 +341,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &30056802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6415657506572193392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b8671763c561e443bb475b55c435681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6415657507708683955
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 230}
+  m_AnchoredPosition: {x: -365, y: 250}
   m_SizeDelta: {x: 250, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6415657507708683964

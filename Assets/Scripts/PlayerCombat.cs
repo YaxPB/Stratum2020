@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
+    private int Lives;
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
@@ -11,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
     private bool isCombat;
 
     public GameObject respawn;
+    public GameObject floatyText;
 
     public Animator anim;
 
@@ -24,14 +27,18 @@ public class PlayerCombat : MonoBehaviour
     private GameObject nearbyEnemy;
     private Animator enemyAnim;
     private Enemy currentTarget;
+    private GameObject flight;
+    private LevelLoader ll;
 
-    public int attackDamage = 40;
+    [SerializeField] private int attackDamage;
+    private int baseDamage = 25;
 
     public float attackRate = 1.5f;
     float nextAttack = 0f;
 
     public Transform noteStart;
     public GameObject notePrefab;
+    private CircleCollider2D berimbauRange;
 
     public MovePlayer mp;
     public float regSpeed;
@@ -39,28 +46,43 @@ public class PlayerCombat : MonoBehaviour
     public float musicCoolDown = 5f;
     private float nextMusic = 0;
 
-    private RaycastHit2D rangeRay;
-
-    // Make sure layerMask is configured correctly
-    private int layerMask = 1 << 8;
-    // private LayerMask mask = LayerMask.GetMask("Wall");
-
     //despawn timer lol
-    public float berimgone = 4f;
-    private Canvas temp;
+    public float berimgone = 4.6f;
+    private float[] timerRotationZ = new float[4] { -42.5f, 42.5f, 135, -135 };
+    Collider2D[] hitEnemies;
+    Collider2D[] hitBreakables;
+
+    public GameObject berimBeatDownTimer;
+    private bool isPlaying = false;
 
     public bool loggingEnabled = false;
+
+    public bool dead { get; private set; }
+
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
-    
+    public bool nextLevel = false;
+
+    CameraShake cs;
+
+    private void Awake()
+    {
+        Lives = 3;
+    }
+
     void Start()
     {
+        dead = false;
         instance = this;
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
+        attackDamage = baseDamage;
 
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
+        berimBeatDownTimer.SetActive(false);
+        cs = FindObjectOfType<CameraShake>();
+        ll = FindObjectOfType<LevelLoader>();
     }
 
     // Update is called once per frame
@@ -68,22 +90,23 @@ public class PlayerCombat : MonoBehaviour
     {
         if (isCombat)
         {
-            // Detects if enemy is within range to attack (targeting function)
-            TargetAssist();
-        }
+            //detect enemies in range
+            hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, enemyLayers);
 
-        if (Time.time >= nextAttack)
-        {
-            if (Input.GetButtonDown("Fire1"))
+            hitBreakables = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, breakableLayers);
+            if (Time.time >= nextAttack && !isPlaying)
             {
-                Attack();
-                nextAttack = Time.time + 1f / attackRate;
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Attack();
+                    nextAttack = Time.time + 1f / attackRate;
+                }
             }
-        }
 
+        }
         if (Time.time > nextMusic)
         {
-            mp.runSpeed = regSpeed;
+            //mp.runSpeed = regSpeed;
             if (Input.GetButtonDown("Berimbau"))
             {
                 Music();
@@ -95,14 +118,11 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         anim.SetTrigger("Attack");
+        mp.runSpeed = 0f;
+        Invoke("ResetSpeed", 1f);
 
-        //detect enemies in range
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY),0 , enemyLayers);
-       
-        Collider2D[] hitBreakables = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRangeX, attackRangeY), 0, breakableLayers);
-        
         //apply damage 
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
             var damo = enemy.GetComponent<Enemy>();
             if (damo.currentHealth > attackDamage)
@@ -113,47 +133,83 @@ public class PlayerCombat : MonoBehaviour
             {
                 damo.TakeDamage(damo.currentHealth);
             }
-            //AudioManagerSFX.PlaySound("kick");
+            AudioManagerSFX.PlaySound("kickEnemy");
         }
+
         foreach (Collider2D breakable in hitBreakables)
         {
-            //AudioManagerSFX.PlaySound("kick");
+            AudioManagerSFX.PlaySound("kickLamp");
             breakable.GetComponent<Breakable>().TakeDamage(attackDamage);
         }
     }
 
     public void TakeDamage(int damage)
     {
+
         if (!mp.isDodging)
         {
+            mp.runSpeed = 0f;
             currentHealth -= damage;
 
             anim.SetTrigger("Hurt");
             healthBar.SetHealth(currentHealth);
 
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
+            cs.shakeDistance = 0.06f;
+            Invoke("ResetShake", 0.2f);
+            Invoke("ResetSpeed", 0.2f);
         }
+
+        if (floatyText != null && currentHealth > 0)
+        {
+            ShowFloatyText(damage);
+        }
+
+        if (currentHealth - damage <= 0)
+        {
+            Die();
+        }
+    }
+
+    void ShowFloatyText(int damage)
+    {
+        var go = Instantiate(floatyText, transform.position + transform.up * 3, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = damage.ToString();
+    }
+
+    void ResetShake()
+    {
+        cs.shakeDistance = 0f;
+    }
+
+    void ResetSpeed()
+    {
+        mp.runSpeed = regSpeed;
     }
 
     void Die()
     {
-        //anim.SetBool("IsDead", true);
+        Lives--;
+        Debug.Log(Lives);
+        dead = true;
+        anim.SetBool("isWalking", false);
+        anim.SetBool("IsDead", true);
         if (loggingEnabled)
         {
             Debug.Log("You died!");
         }
 
-        // anim.SetBool("IsDead", true);
-
-        GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         mp.enabled = false;
-        healthCanvas.SetActive(false);
+        // healthCanvas.SetActive(false);
 
-        Invoke("Respawn", 5f);
+        if (ll != null && nextLevel)
+        {
+            ll.LoadNextLevel();
+        }
+        else
+        {
+            Invoke("Respawn", 3.5f);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -161,7 +217,8 @@ public class PlayerCombat : MonoBehaviour
         if (attackPoint == null)
             return;
 
-        Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX,attackRangeY, 1));
+        Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackRangeX, attackRangeY, 1));
+        // Gizmos.DrawWireSphere(noteStart.position, noteStart.GetComponent<CircleCollider2D>().radius);
     }
 
     void Music()
@@ -170,72 +227,84 @@ public class PlayerCombat : MonoBehaviour
         {
             Debug.Log("MUSIC!");
         }
-        mp.runSpeed = mp.runSpeed / 3;
-        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation);
-        // Maybe SendMessage to nearby enemies (check Enemy script first) to display notesAnim
-        // Freeze the player (momentarily), play some music (lower volume of bg music), button prompts
-        // I'm thinking of a radial wipe (pie chart with triangular sections for when to time hits)
-        // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
-        // OR hits that happen in quick succession with each correctly timed button press
-        Destroy(flight, berimgone);
+
+        anim.SetBool("Berimbau",true);
+        StartCoroutine(BerimBeats());
+        berimBeatDownTimer.SetActive(true);
     }
 
-    void TargetAssist()
+    // Will probably be an IEnumerator so we can add a quick yield delay for switching things off/on
+    IEnumerator BerimBeats()
     {
-        if (isCombat)
-        {
-            if (loggingEnabled)
-            {
-                Debug.Log("In Combat Mode");
-            }
-            rangeRay = Physics2D.Raycast(attackPoint.position, new Vector2(transform.rotation.y, 0f),attackRangeX, layerMask);
+        isPlaying = true;
+        AudioManagerBG.SwitchTrack("berimBAM");
 
-            if (rangeRay.collider != null)
-            {
-                if (loggingEnabled)
-                {
-                    Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.yellow);
-                    Debug.Log("Hit!");
-                }
+        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
+        berimbauRange = flight.GetComponent<CircleCollider2D>();
 
-                enemyCollision = rangeRay.collider;
-                nearbyEnemy = enemyCollision.gameObject;
+        // Freeze the player (momentarily), play some music, button prompts
+        MovePlayer.instance.canMove = false;
 
-                nearbyEnemy.SendMessage("LockedOn", true);
+        Destroy(flight, berimgone);
+        // Then either a combo multiplies total damage to affect enemies all at once at the end of the ability
+        // OR hits that happen in quick succession with each correctly timed button press
+        yield return new WaitForSeconds(berimgone);
+        anim.SetBool("Berimbau", false);
+        MovePlayer.instance.canMove = true;
+        isPlaying = false;
+        yield return new WaitForSeconds(berimgone);
+        attackDamage = baseDamage;
 
-            }
-            else
-            {
-                if (loggingEnabled)
-                {
-                    Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.right) * rangeRay.distance, Color.white);
-                    Debug.Log("Miss!");
-                }
-            }
-        }
+    }
+
+    void BuffBoi(int powMultiplier)
+    {
+        attackDamage += powMultiplier * 10;
     }
 
     void TimeToFight(bool combatMode)
     {
-        if (!combatMode)
+        isCombat = combatMode;
+        if (isCombat == false)
         {
             instance.enabled = false;
         }
-        isCombat = combatMode;
-        instance.enabled = true;
+        else
+        {
+            instance.enabled = true;
+        }
+
     }
 
     void Respawn()
     {
-        transform.position = respawn.transform.position;
+        if(Lives > 0)
+        {
+            anim.SetBool("IsDead", false);
+            transform.position = respawn.transform.position;
+        
+            GetComponent<Collider2D>().enabled = true;
+            this.enabled = true;
+            mp.enabled = true;
+            healthCanvas.SetActive(true);
 
-        //anim.SetBool("IsDead", false);
+            Start();
+        }
+        else
+        {
+            //add game over screen
+            Debug.Log("Game Over foo!");
+        }
+    }
 
-        GetComponent<Collider2D>().enabled = true;
-        this.enabled = true;
-        mp.enabled = true;
-        healthCanvas.SetActive(true);
-
-        Start();
+    //if player dies in tutorial swarm area
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "DeathCheck")
+        {
+            Debug.Log("touched me");
+            nextLevel = true;
+        }
     }
 }
+

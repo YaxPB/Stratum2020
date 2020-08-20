@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    private bool dead = false;
 
     public float speed;
     public float regSpeed;
@@ -15,22 +16,24 @@ public class Enemy : MonoBehaviour
     public GameObject floatyText;
     public Animator anim;
     private GameObject target;
+    private PlayerCombat combat;
 
     Overhead oh;
     public GameObject theCanvas;
     private Animator hitMe;
 
-    public HealthBar healthBar;
+    public EnemyHealthBar healthBar;
     public GameObject healthCanvas;
 
     public Transform attackPoint;
+    public Transform pukePoint;
     //public float attackRange = 0.5f;
     public float attackRangeX;
     public float attackRangeY;
 
     public LayerMask playerLayer;
-    public int attackDamage = 15;
-    public int strongDamage = 30;
+    public int attackDamage = 10;
+    public int strongDamage = 20;
     private int attackType;
 
     private float targetDistance;
@@ -38,23 +41,29 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1.5f;
     float nextAttack = 0f;
 
-    public int noteDamo = 10;
+    public int noteDamo = 20;
     public bool isStunned;
     public float stunDuration = 2f;
-    public float timeAfterDamo = 1.8f;
+    public float timeAfterDamo = 1.4f;
     bool isAttacking;
     bool isBlocking;
 
     int arrCount;
 
     public bool loggingEnabled = false;
+    private bool stopped;
 
     Vomiting flight;
     public Vomiting vomitPrefab;
     public float despawn = 2f;
 
+    //health drop chance
+    HealthPickup drop;
+    public HealthPickup hp;
+
     void Start()
     {
+        combat = FindObjectOfType<PlayerCombat>();
         oh = FindObjectOfType<Overhead>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -63,7 +72,6 @@ public class Enemy : MonoBehaviour
         theCanvas.SetActive(false);
         regSpeed = speed;
         target = GameObject.FindGameObjectWithTag("Player");
-        hitMe = theCanvas.GetComponentInChildren<Animator>();
     }
     
     void Update()
@@ -78,9 +86,12 @@ public class Enemy : MonoBehaviour
             ChasePlayer(); 
         }
         else
+        {
             StopChasePlayer();
+        }
+        
 
-        if (targetDistance <= stopDistance)
+        if (targetDistance <= stopDistance && !isStunned && !combat.dead)
         {
             if (Time.time >= nextAttack)
             {
@@ -94,9 +105,6 @@ public class Enemy : MonoBehaviour
     private void StopChasePlayer()
     {
         anim.SetBool("isWalking", false);
-        //anim.SetBool("isBlocking", false);
-        //isBlocking = false;
-        //speed = regSpeed;
     }
 
     private void ChasePlayer()
@@ -116,57 +124,70 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isBlocking)
+        if (!dead)
         {
-            currentHealth -= damage / 3;
-            isBlocking = false;
-            anim.SetBool("isBlocking", false);
-            speed = regSpeed;
-        }
-        else
-        {
-            currentHealth -= damage;
-        }
-        
-        isStunned = true;
-        //anim.SetTrigger("Hurt");
-        healthBar.SetHealth(currentHealth);
+            if (isBlocking && currentHealth > 0)
+            {
+                stopped = true;
+                currentHealth -= damage / 3;
 
-        if(oh.readyToDecrease)
-            oh.AdjustPool(damage);
+                if (oh != null && oh.readyToDecrease)
+                    oh.AdjustPool(damage / 3);
+                StopBlock();
+            }
+            else if (currentHealth > 0)
+            {
+                currentHealth -= damage;
+                if (oh != null && oh.readyToDecrease)
+                    oh.AdjustPool(damage);
+            }
 
-        Invoke("NotStunned", timeAfterDamo);
+            isStunned = true;
+            anim.SetTrigger("Hurt");
+            healthBar.SetHealth(currentHealth);
 
-        if (floatyText != null && currentHealth > 0)
-        {
-            ShowFloatyText(damage);
-        }
+            Invoke("NotStunned", timeAfterDamo);
 
-        if (currentHealth <= 0)
-        {
-            Die();
+            if (floatyText != null && currentHealth > 0)
+            {
+                ShowFloatyText(damage);
+            }
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
     void ShowFloatyText(int damage)
     {
-        var go = Instantiate(floatyText, transform.position, Quaternion.identity, transform);
+        var go = Instantiate(floatyText, transform.position + transform.up * 3, Quaternion.identity, transform);
+        if(isBlocking)
+        {
+            int blockdamo = damage / 3;
+            go.GetComponent<TextMesh>().text = blockdamo.ToString();
+        }
+        else
+        {
         go.GetComponent<TextMesh>().text = damage.ToString();
+        }
     }
 
     void Die()
     {
-        //theTarget.SetBool("CombatMode", false);
+        dead = true;
         theCanvas.SetActive(false);
-        hitMe.SetBool("isCombat", false);
-        Debug.Log("Enemy died!");
-
+        AudioManagerSFX.PlaySound("enemyDied");
         anim.SetBool("isWalking", false);
-        //anim.SetBool("IsDead", true);
 
-        //enemy gameobj is not destroyed, body is left behind
-        GetComponent<Collider2D>().enabled = false;
+        anim.SetBool("isDead", true);
+        // enemy gameobj is not destroyed, body is left behind for 2 seconds
         this.enabled = false;
+
+        var r = Random.Range(0, 10);
+        if (r < 9)
+            drop = Instantiate<HealthPickup>(hp, transform.position + transform.right * 1, transform.rotation);
 
         Destroy(gameObject, 2f);
     }
@@ -174,7 +195,6 @@ public class Enemy : MonoBehaviour
     public void EnemyAttack()
     {
         var pc = target.GetComponent<PlayerCombat>();
-
         if (pc.currentHealth < 0)
         {
             isAttacking = false;
@@ -191,7 +211,7 @@ public class Enemy : MonoBehaviour
                 //60% probability WEAK
                 attackType = 1;
             }
-            else if(r >60 && r < 75)
+            else if (r >60 && r < 75)
             {
                 //15% probability STRONG
                 attackType = 2;
@@ -212,23 +232,21 @@ public class Enemy : MonoBehaviour
             switch (attackType)
             {
                 case 1:
-                    //play attack anim
-                    anim.SetTrigger("isAttacking");
+                    anim.SetTrigger("basicAttack");
+                    AudioManagerSFX.PlaySound("basicAttack");
                     Debug.Log("weak attack");
-                    //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        // player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                        pc.TakeDamage(attackDamage);
                     }
                     break;
                 case 2:
-                    //play strong attack anim
-                    anim.SetTrigger("SAttack");
+                    anim.SetTrigger("strongAttack");
+                    AudioManagerSFX.PlaySound("strongAttack");
                     Debug.Log("strong attack");
-                    //apply damage 
                     foreach (Collider2D player in hitPlayer)
                     {
-                        player.GetComponent<PlayerCombat>().TakeDamage(strongDamage);
+                        pc.TakeDamage(strongDamage);
                     }
                     break;
                 case 3:
@@ -239,16 +257,21 @@ public class Enemy : MonoBehaviour
                     {
                         direction = Vector2.left;
                     }
-                    flight = Vomiting.CreateVomit(vomitPrefab, attackPoint, direction);
+                    flight = Vomiting.CreateVomit(vomitPrefab, pukePoint, direction);
                     Invoke("ByeVomit", despawn);
                     break;
                 case 4:
+                    stopped = false;
+                    Debug.Log("blocking");
                     speed = speed/2;
                     anim.SetBool("isBlocking", true);
                     anim.SetTrigger("Block");
                     anim.SetBool("isWalking", false);
                     isBlocking = true;
-                    Debug.Log("blocking");
+                    if (!stopped)
+                    {
+                        Invoke("StopBlock", 3f);
+                    }
                     break;
                 default:
                     Debug.Log("welp that happened");
@@ -267,27 +290,28 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Music") && isStunned == false)
+        if (other.CompareTag("Music"))
         {
-            Debug.Log("ouch");
+            Debug.Log("oh nooo i'm stunned");
             isStunned = true;
-            TakeDamage(noteDamo);
             speed = 0;
             Invoke("NotStunned", stunDuration);
-        }
-        if (other.CompareTag("PewPew"))
-        {
-            Debug.Log("Raycast detected.");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("PewPew"))
+        if (collision.CompareTag("Music"))
         {
-            Debug.Log("Raycast has left the building");
-            hitMe.SetBool("withinRange", false);
+            NotStunned();
         }
+    }
+
+    void Stunned()
+    {
+        Debug.Log("oh nooo i'm stunned");
+        isStunned = true;
+        speed = 0;
     }
 
     void NotStunned()
@@ -314,5 +338,12 @@ public class Enemy : MonoBehaviour
         {
             Destroy(flight);
         }
+    }
+
+    void StopBlock()
+    {
+        isBlocking = false;
+        anim.SetBool("isBlocking", false);
+        speed = regSpeed;
     }
 }
