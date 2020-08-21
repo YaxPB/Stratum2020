@@ -20,20 +20,24 @@ public class Overhead : MonoBehaviour
         healthCanvas.SetActive(false);
     }
 
-    public void SetOverhead(WaveSpawner spawner,int wave)
+    public void SetOverhead(WaveSpawner spawner, int numWaves)
     {
-        if (!spawner.completed)
+        if(spawner.waves[0] == null)
         {
-            count = spawner.waves[wave].count;
-            totalPool = count * 100;
-            changingPool = totalPool;
-            Debug.Log(totalPool);
-            healthBar.SetMaxHealth(totalPool);
-            healthCanvas.SetActive(true);
-            readyToDecrease = true;
+            Debug.Log("Oops. No wave here.");
+            return;
         }
+        // Number of Waves * Count * Number of SpawnPoints = total number of enemies
+        count = numWaves * spawner.waves[0].count * spawner.spawnPoints.Length;
+        totalPool = count * 100;
+        changingPool = totalPool;
+
+        Debug.Log("Total enemy health is: " + totalPool);
+        healthBar.SetMaxHealth(totalPool);
+        healthCanvas.SetActive(true);
+        readyToDecrease = true;
     }
-    
+
     void Update()
     {
         if (healthBar.slider.value <= 0)
@@ -46,6 +50,10 @@ public class Overhead : MonoBehaviour
     //called to adjust the health pool after each enemy death
     public void AdjustPool(int damage)
     {
+        if(changingPool - damage <= 0)
+        {
+            Debug.Log("CombatZone complete.");
+        }
         changingPool -= damage;
         Debug.Log(changingPool);
         healthBar.SetHealth(changingPool);
