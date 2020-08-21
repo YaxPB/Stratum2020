@@ -8107,6 +8107,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1479197996}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &886886219 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7228140114664218549, guid: dd04ea1b7654be243b39838fce2a508b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2065681968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &910282085
 GameObject:
   m_ObjectHideFlags: 0
@@ -20804,11 +20810,21 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 581239998}
+    - target: {fileID: 7609580416708899339, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: berimgone
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899348, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7609580416708899349, guid: dd04ea1b7654be243b39838fce2a508b,
+        type: 3}
+      propertyPath: berimbauBeatDownTimer
+      value: 
+      objectReference: {fileID: 886886219}
     - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_LocalPosition.x
