@@ -9,16 +9,16 @@ public class HealthBar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
     // because there should only ever be this one healthbar object at any given time
-    // also so other scripts can reference this 
+    // also so other scripts can reference this
     public static HealthBar instance;
-    private Animator heartBeat;
+    private Animator lives;
     private bool isCombat = false;
 
     private void Start()
     {
         instance = this;
         this.enabled = false;
-        heartBeat = GetComponentInChildren<Animator>();
+        lives = GetComponentInChildren<Animator>();
     }
 
     public void SetMaxHealth(int health)
@@ -34,24 +34,25 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
+    public void AdjustLives(int count)
+    {
+        if (count == 2)
+            lives.SetBool("2", true);
+        else if (count == 1)
+            lives.SetBool("1", true);
+    }
+
     void StartBeat(bool theStart)
     {
         if (!theStart)
         {
             isCombat = false;
-            heartBeat.enabled = false;
-            heartBeat.SetBool("isCombat", false);
+            //heartBeat.enabled = false;
+            //heartBeat.SetBool("isCombat", false);
             return;
         }
         isCombat = true;
-        heartBeat.enabled = true;
-        heartBeat.SetBool("isCombat", true);
+        //heartBeat.enabled = true;
+        //heartBeat.SetBool("isCombat", true);
     }
-
-    /*
-    void BerimbauBeats()
-    {
-        heartBeat.SetTrigger("isPlaying");
-    }
-    */
 }
