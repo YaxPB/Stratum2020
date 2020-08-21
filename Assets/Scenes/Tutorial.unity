@@ -8365,8 +8365,8 @@ MonoBehaviour:
   theDialogue:
     name: Xadri
     sentences:
-    - I was so little then, when grandma used to take me to train in the city. I
-      miss her. Is it wrong to miss someone who's better off now?
+    - I was so little then, when grandma used to take me to train in the city. I miss
+      her. Is it wrong to miss someone who's better off now?
     - A bunch of subspirited revolutionaries vandalized the statue a few years later,
       painting the King a crown of blood in "honor" of my hometown, Cineria.
     - Honor's a... strong word. Honor is not smearing the statue of our leader. Honor
@@ -11376,8 +11376,8 @@ MonoBehaviour:
     - My Grandma Xela won the tournament 10 years ago. She was so reolutionary that
       subspees cast "X" marks in her memory to this day.
     - Sometimes I wish champions didn't have to leave home. I know working for Stratum
-      is a dream, but without Cineria's brightest lights, these familiar streets
-      feel a little dimmer.
+      is a dream, but without Cineria's brightest lights, these familiar streets feel
+      a little dimmer.
     - Snap out of it, Xadri. You'll be taking your seat beside her any day now. And
       you've got big shoes to fill.
   prompt: {fileID: 634186791}
@@ -17435,7 +17435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1316434609
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17479,6 +17479,8 @@ MonoBehaviour:
     enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
     count: 35
     rate: 1
+  numWaves: 0
+  numEnemies: 0
   spawnPoints:
   - {fileID: 1087337906}
   - {fileID: 1951130771}
@@ -17486,6 +17488,7 @@ MonoBehaviour:
   - {fileID: 675901709}
   timeBetweenWaves: 2
   waveCountDown: 0
+  completed: 0
   boxy: {fileID: 1934448894}
   foos: {fileID: 77865636}
   borderL: {fileID: 0}
@@ -19188,8 +19191,8 @@ MonoBehaviour:
     - When I was little, the other subspirited kids and I would run around and destroy
       the surveillance cams in our neighborhood so officers couldn't catch us practicing
       magic.
-    - The officers would just storm in and plant more, until eventually the only
-      safe place to be ourselves was behind the walls of our tiny homes...
+    - The officers would just storm in and plant more, until eventually the only safe
+      place to be ourselves was behind the walls of our tiny homes...
     - I've grown more sensible than this. Destroying cams is pointless. I'm going
       to make real change when I take my seat at Stratum Headquarters.
   prompt: {fileID: 634186791}
