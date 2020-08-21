@@ -17,27 +17,37 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave[] waves;
     private int nextWave = 0;
+    
+    // Keeping track of total number of waves per Spawner
+    [SerializeField] private int numWaves;
+    // Keeping track of total number of enemies per CombatZone
+    [SerializeField] private int numEnemies;
+
+    // The collider that activates a given CombatZone / WaveSpawner area
+    private Collider2D activationBox;
 
     public Transform[] spawnPoints;
 
     public float timeBetweenWaves = 5f;
     public float waveCountDown;
 
-    private float searchCountDown = 1f;
-
     private SpawnState state = SpawnState.COUNTING;
-    public bool completed { get; private set; }
-    bool beginTheWaves;
-    //public bool allSpawned { get; private set; }
+    // Keeping track of when each wave is completed in a given Spawner
+    [SerializeField] private bool completed;
+    private bool beginTheWaves;
 
     public GameObject boxy;
     public GameObject foos;
     Overhead oh;
     CameraFollow cf;
 
+    // Reference to the LeftBorder of an enclosed CombatZone
     public Collider2D borderL;
+    // Reference to the RightBorder of an enclosed CombatZone
     public Collider2D borderR;
+    // Firewall particle effects attached to LeftBorder
     private ParticleSystem[] leftFlames;
+    // Firewall particle effects attached to RightBorder
     private ParticleSystem[] rightFlames;
     private bool allWavesComplete = false;
 
@@ -51,11 +61,23 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
+        // Grab number of waves from start
+        numWaves = waves.Length;
+        // Make sure both borders start off disabled
         borderL.enabled = false;
         borderR.enabled = false;
         leftFlames = borderL.GetComponentsInChildren<ParticleSystem>();
         rightFlames = borderR.GetComponentsInChildren<ParticleSystem>();
+        activationBox = GetComponent<Collider2D>();
 
+        foreach(Transform sp in spawnPoints)
+        {
+            foreach(Wave leWave in waves)
+            {
+                numEnemies += leWave.count;
+            }
+        }
+        
         cf = FindObjectOfType<CameraFollow>();
         oh = FindObjectOfType<Overhead>();
         //oh.SetActive(false);
@@ -76,11 +98,10 @@ public class WaveSpawner : MonoBehaviour
         {
             nextArrow.enabled = true;
             nextArrow.SetTrigger("allClear");
-            Destroy(borderL.gameObject);
-            Destroy(borderR.gameObject);
-
-            Destroy(nextArrow.gameObject, 30f);
+            StartCoroutine(SelfDestruct());
+            return;
         }
+
         if (beginTheWaves)
         {
             if (state == SpawnState.WAITING)
@@ -89,87 +110,89 @@ public class WaveSpawner : MonoBehaviour
                 {
                     WaveCompleted();
                 }
-                else
-                    return;
             }
 
-            if (waveCountDown <= 0)
+            if (waveCountDown <= 0 && completed)
             {
                 if (state != SpawnState.SPAWNING)
                 {
+                    StopAllCoroutines();
                     StartCoroutine(SpawnWave(waves[nextWave]));
                 }
             }
-            else if (!completed)
+
+            if (state == SpawnState.COUNTING)
             {
                 waveCountDown -= Time.deltaTime;
             }
         }
     }
 
+    IEnumerator SelfDestruct()
+    {
+        borderL.enabled = false;
+        borderR.enabled = false;
+        boxy.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(5f);
+        nextArrow.enabled = false;
+        Destroy(this.gameObject);
+    }
+
     void WaveCompleted()
     {
         Debug.Log("wave completed");
-
-        state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
+        completed = true;
 
-        //waves.length will stop wave looping but is beyond index
-        //Wave check to stop spawning
-        if(nextWave + 1 > waves.Length - 1)
+        // Decrement every time a wave is completed
+        numWaves--;
+        state = SpawnState.COUNTING;
+        
+        // Check if all waves have been completed
+        if(numWaves <= 0)
         {
-            completed = true;
-            Debug.Log("all done");
-            foos.SetActive(true);
-            
+            allWavesComplete = true;
             cf.XMaxValue = maxX;
-        }
-
-        if (!completed)
-        {
-            //Debug.Log("next wave");
-            nextWave++;
+            cf.XMinValue = minX;
+            return;
         }
     }
 
     bool EnemyIsAlive()
     {
-        searchCountDown -= Time.deltaTime;
-        if (searchCountDown <= 0f)
+        //searchCountDown = 1f;
+        if (GameObject.FindGameObjectWithTag("Enemy") == null)
         {
-            //searchCountDown = 1f;
-            if (GameObject.FindGameObjectWithTag("Enemy") == null)
-            {
-                Debug.Log("all done");
-                
-                return false;
-            }
+            Debug.Log("all done");
+
+            return false;
         }
         return true;
     }
 
     IEnumerator SpawnWave(Wave _wave)
     {
-        foos.SetActive(false);
-        if(boxy != null)
-        {
-            //manipulate camera values
-            cf.XMinValue = borderL.transform.position.x + 5;
-            cf.XMaxValue = borderR.transform.position.x - 5;
-        }
+        completed = false;
+        // foos.SetActive(false);
+
         Debug.Log("Spawning wave:" + _wave.name);
         state = SpawnState.SPAWNING;
 
-        for(int i = 0; i<_wave.count; i++)
+        foreach(Transform sp in spawnPoints)
         {
-            SpawnEnemy(_wave.enemy);
-            yield return new WaitForSeconds(1f/_wave.rate);
+            for (int i = 0; i < _wave.count; i++)
+            {
+                SpawnEnemy(_wave.enemy);
+                yield return new WaitForSeconds(1f / _wave.rate);
+            }
         }
-
-        oh.SetOverhead(this, nextWave);
-
         state = SpawnState.WAITING;
-
+        if(nextWave + 1 >= waves.Length)
+        {
+            yield break;
+        }
+        nextWave++;
         yield break;
     }
 
@@ -184,9 +207,18 @@ public class WaveSpawner : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
-            beginTheWaves = true;
+            oh.SetOverhead(this, numWaves);
+            Debug.Log("Total number of enemies on this floor: " + numEnemies);
+            StartCoroutine(SpawnWave(waves[nextWave])); 
             borderL.enabled = true;     // Turns on left wall of combat area
             borderR.enabled = true;     // Turns on right wall of combat area
+
+            if (boxy != null)
+            {
+                //manipulate camera values
+                cf.XMinValue = borderL.transform.position.x + 5;
+                cf.XMaxValue = borderR.transform.position.x - 5;
+            }
 
             // Activates magical flame walls to confine player
             foreach (ParticleSystem ps in leftFlames)
@@ -197,6 +229,9 @@ public class WaveSpawner : MonoBehaviour
             {
                 ps.Play();
             }
+
+            activationBox.enabled = false;
+            beginTheWaves = true;
         }
     }
 }

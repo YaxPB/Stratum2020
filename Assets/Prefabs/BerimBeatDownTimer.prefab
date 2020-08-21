@@ -231,6 +231,7 @@ MonoBehaviour:
   particleFXHolder: {fileID: 6690911817360064330}
   timerFill: {fileID: 6690911817395208143}
   beatZone: {fileID: 6690911819017457283}
+  attackUP: {fileID: 6690911818858869255}
   currentAmount: 0
   speed: 100
   hitThisButton: {fileID: 6690911818170800826}
