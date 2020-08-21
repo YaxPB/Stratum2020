@@ -153,6 +153,7 @@ public class WaveSpawner : MonoBehaviour
         if(numWaves <= 0)
         {
             allWavesComplete = true;
+            // Reset CamFollow max and min x-coordinates
             cf.XMaxValue = maxX;
             cf.XMinValue = minX;
             return;
@@ -161,11 +162,10 @@ public class WaveSpawner : MonoBehaviour
 
     bool EnemyIsAlive()
     {
-        //searchCountDown = 1f;
+        // Removed timer that was preventing the Enemy check
         if (GameObject.FindGameObjectWithTag("Enemy") == null)
         {
             Debug.Log("all done");
-
             return false;
         }
         return true;
@@ -173,6 +173,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave(Wave _wave)
     {
+        // Reset completed every time a new wave is spawning
         completed = false;
         // foos.SetActive(false);
 
@@ -187,11 +188,14 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(1f / _wave.rate);
             }
         }
+        // So the waveCountDown knows when to start counting down
         state = SpawnState.WAITING;
+        // Prevents an out of bounds index exception
         if(nextWave + 1 >= waves.Length)
         {
             yield break;
         }
+        // Only increment nextWave if there is another wave to increment by
         nextWave++;
         yield break;
     }
@@ -207,8 +211,10 @@ public class WaveSpawner : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
+            // Set the overhead bar ONCE--fixed an issue where it was resetting health for every enemy spawn
             oh.SetOverhead(this, numWaves);
             Debug.Log("Total number of enemies on this floor: " + numEnemies);
+            // Immediately spawn first wave upon walking into activationBox
             StartCoroutine(SpawnWave(waves[nextWave])); 
             borderL.enabled = true;     // Turns on left wall of combat area
             borderR.enabled = true;     // Turns on right wall of combat area
@@ -229,7 +235,8 @@ public class WaveSpawner : MonoBehaviour
             {
                 ps.Play();
             }
-
+            // Disables activationBox so we don't accidentally re-trigger the WaveSpawner
+            // (Also handled through SelfDestruct Coroutine)
             activationBox.enabled = false;
             beginTheWaves = true;
         }

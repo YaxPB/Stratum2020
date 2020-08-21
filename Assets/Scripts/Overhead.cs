@@ -20,6 +20,7 @@ public class Overhead : MonoBehaviour
         healthCanvas.SetActive(false);
     }
 
+    // Changed to reflect overall health per CombatZone (WaveSpawner area)
     public void SetOverhead(WaveSpawner spawner, int numWaves)
     {
         if(spawner.waves[0] == null)
