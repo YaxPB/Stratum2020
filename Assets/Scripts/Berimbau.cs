@@ -23,10 +23,12 @@ public class Berimbau : MonoBehaviour
     private float regSpeed;
     private int multiplier = 0;
     private Canvas berimBAM;
+    private Cooldown cool;
 
     void Start()
     {
         mp = FindObjectOfType<MovePlayer>();
+        cool = FindObjectOfType<Cooldown>();
         regSpeed = mp.runSpeed;
         count = 4;
         ResetPrompt();
@@ -95,7 +97,7 @@ public class Berimbau : MonoBehaviour
             AudioManagerSFX.PlaySound("attackUP");
             attackUP.Play();
             multiplier++;
-            mp.runSpeed = mp.runSpeed + 1.5f;
+            mp.runSpeed += 1.5f;
             // Add some kind of value +1 to PlayerCombat?
         }
         else
@@ -112,7 +114,7 @@ public class Berimbau : MonoBehaviour
         if (count == 0)
         {
             PlayerCombat.instance.SendMessage("BuffBoi", multiplier);
-            Invoke("ResetSpeed", 5f);
+            Invoke("ResetStuff", 5f);
             multiplier = 0;
             count = 4;
             beatTimer.gameObject.SetActive(false);
@@ -134,8 +136,9 @@ public class Berimbau : MonoBehaviour
         count--;
     }
 
-    public void ResetSpeed()
+    public void ResetStuff()
     {
         mp.runSpeed = regSpeed;
+        cool.berimbauIsCooling = true;
     }
 }
