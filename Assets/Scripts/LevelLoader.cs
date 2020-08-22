@@ -31,9 +31,21 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        mp.load = false;
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        //change index after adding credits and comic
+        if (levelIndex <= 3)
+        {
+            mp.load = false;
+            transition.SetTrigger("Start");
+            yield return new WaitForSeconds(transitionTime);
+            SceneManager.LoadScene(levelIndex);
+        }
+        else
+        {
+            levelIndex = 0;
+            mp.load = false;
+            transition.SetTrigger("Start");
+            yield return new WaitForSeconds(transitionTime);
+            SceneManager.LoadScene(levelIndex);
+        }
     }
 }
