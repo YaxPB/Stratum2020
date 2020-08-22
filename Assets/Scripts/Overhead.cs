@@ -12,13 +12,14 @@ public class Overhead : MonoBehaviour
 
     public HealthBar healthBar;
     public GameObject healthCanvas;
+    public Animator waveInfo;
 
     public bool readyToDecrease;
 
-    private void Start()
+    /*private void Start()
     {
         healthCanvas.SetActive(false);
-    }
+    }*/
 
     public void SetOverhead(WaveSpawner spawner, int numWaves)
     {
@@ -34,15 +35,18 @@ public class Overhead : MonoBehaviour
 
         Debug.Log("Total enemy health is: " + totalPool);
         healthBar.SetMaxHealth(totalPool);
-        healthCanvas.SetActive(true);
+        waveInfo.SetBool("OverheadUp", true);
+        //healthCanvas.SetActive(true);
         readyToDecrease = true;
     }
 
     void Update()
     {
-        if (healthBar.slider.value <= 0)
+        if (changingPool <= 0)
         {
-            healthCanvas.SetActive(false);
+            Debug.Log("empty");
+            waveInfo.SetBool("OverheadUp", false);
+            //healthCanvas.SetActive(false);
             readyToDecrease = false;
         }
     }

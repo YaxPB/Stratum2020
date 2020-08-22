@@ -207,7 +207,8 @@ public class WaveSpawner : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
-            oh.SetOverhead(this, numWaves);
+            if(oh != null)
+                oh.SetOverhead(this, numWaves);
             Debug.Log("Total number of enemies on this floor: " + numEnemies);
             StartCoroutine(SpawnWave(waves[nextWave])); 
             borderL.enabled = true;     // Turns on left wall of combat area
