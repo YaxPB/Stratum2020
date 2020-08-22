@@ -5009,7 +5009,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c69a36694c3d44847ae1097a253e3d56, type: 2}
+  - {fileID: 2100000, guid: 8c8ec7f6096f3654989f118bd767030d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5033,7 +5033,7 @@ TrailRenderer:
   m_Time: 0.7
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 2
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -5048,7 +5048,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -5060,18 +5060,18 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.040395662, b: 0, a: 1}
+      key0: {r: 0.8313726, g: 0.36078432, b: 0.10980393, a: 1}
       key1: {r: 1, g: 0.97981787, b: 0, a: 1}
       key2: {r: 1, g: 1, b: 1, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 1, g: 1, b: 1, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 14456
-      ctime1: 39321
+      ctime0: 58596
+      ctime1: 62066
       ctime2: 65535
-      ctime3: 0
+      ctime3: 65535
       ctime4: 0
       ctime5: 0
       ctime6: 0
@@ -5084,7 +5084,7 @@ TrailRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_NumColorKeys: 3
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -5216,7 +5216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7609580416708899348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.06, y: -7.77, z: -1}
+  m_LocalPosition: {x: -3.34, y: -8.2, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4851336928117684837}
@@ -5268,6 +5268,7 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 0}
   healthCanvas: {fileID: 0}
+  isCombat: 0
   respawn: {fileID: 1739612662274496384}
   floatyText: {fileID: 2686320548070579237, guid: d9d72749bbebdc646825db2ecc36577a,
     type: 3}

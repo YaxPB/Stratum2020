@@ -27,14 +27,14 @@ RectTransform:
   m_GameObject: {fileID: 1668604869003794924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3475, y: 0.3475, z: 0.3475}
+  m_LocalScale: {x: 0.3993282, y: 0.3993282, z: 0.3993282}
   m_Children: []
   m_Father: {fileID: 8740853106806432252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.80000305, y: 0}
+  m_AnchoredPosition: {x: -4.4, y: 0}
   m_SizeDelta: {x: 235.67885, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &654428833451306361
@@ -58,13 +58,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.62352943}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 63645f88eb38ca64ab45eca7f0b17dd4, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -147,14 +147,14 @@ RectTransform:
   m_GameObject: {fileID: 2723786386702596835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3475, y: 0.3475, z: 0.35857}
+  m_LocalScale: {x: 0.3993282, y: 0.3993282, z: 0.35857}
   m_Children: []
   m_Father: {fileID: 7697140594462225552}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.4, y: -0.3}
+  m_AnchoredPosition: {x: -2.3, y: 3.4}
   m_SizeDelta: {x: 235.6788, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8152063193608206957
@@ -178,13 +178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 63645f88eb38ca64ab45eca7f0b17dd4, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 6610640246848929841}
   - component: {fileID: 2423367598188402389}
   - component: {fileID: 292594726519934114}
+  - component: {fileID: 34902223572939005}
   m_Layer: 5
   m_Name: Note
   m_TagString: Untagged
@@ -362,6 +363,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &34902223572939005
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4564314670005807389}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ebe2423f24f73b54cb07fb31b59ac81f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5888630131896148413
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,8 +393,9 @@ GameObject:
   - component: {fileID: 6319697465675030611}
   - component: {fileID: 3764382836532609037}
   - component: {fileID: 4450476591640118962}
+  - component: {fileID: 4468958167223908265}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Futbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,6 +457,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &4468958167223908265
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5888630131896148413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e2aa90514b36984bb9181d9b285d2c1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6415657505755074193
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,8 +894,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   berimbauimageCooldown: {fileID: 7687894216352823303}
   futbolimageCooldown: {fileID: 7345241653453980627}
-  berimDown: 4
-  futbolDown: 4
+  berimanim: {fileID: 34902223572939005}
+  futbolanim: {fileID: 4468958167223908265}
+  berimDown: 5
+  futbolDown: 2
   berimbauIsCooling: 0
   ballIsCooling: 0
 --- !u!1 &7171444031267362434
