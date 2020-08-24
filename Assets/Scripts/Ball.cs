@@ -13,6 +13,12 @@ public class Ball : MonoBehaviour
     private float nextBall = 0;
     
     BallBall flight;
+    private Cooldown cool;
+
+    private void Awake()
+    {
+        cool = FindObjectOfType<Cooldown>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,6 +28,7 @@ public class Ball : MonoBehaviour
             if (Input.GetButtonDown("Kick"))
             {
                 Shoot();
+                cool.ballIsCooling = true;
                 nextBall = Time.time + ballCoolDown;
             }
         }

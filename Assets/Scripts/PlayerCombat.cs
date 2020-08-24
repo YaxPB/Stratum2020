@@ -10,10 +10,12 @@ public class PlayerCombat : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public GameObject healthCanvas;
+    [SerializeField]
     private bool isCombat;
 
     public GameObject respawn;
     public GameObject floatyText;
+    private GameObject GameOver;
 
     public Animator anim;
 
@@ -67,6 +69,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void Awake()
     {
+        GameOver = GameObject.Find("GameOver");
         Lives = 3;
     }
 
@@ -78,6 +81,7 @@ public class PlayerCombat : MonoBehaviour
         regSpeed = mp.runSpeed;
         attackDamage = baseDamage;
 
+        GameOver.SetActive(false);
         healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
@@ -172,6 +176,7 @@ public class PlayerCombat : MonoBehaviour
 
     void ShowFloatyText(int damage)
     {
+        //cause floaty text to flip with Player object
         var go = Instantiate(floatyText, transform.position + transform.up * 3, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = damage.ToString();
     }
@@ -189,7 +194,7 @@ public class PlayerCombat : MonoBehaviour
     void Die()
     {
         Lives--;
-        Debug.Log(Lives);
+        healthBar.AdjustLives(Lives);
         dead = true;
         anim.SetBool("isWalking", false);
         anim.SetBool("IsDead", true);
@@ -286,13 +291,13 @@ public class PlayerCombat : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
             this.enabled = true;
             mp.enabled = true;
-            healthCanvas.SetActive(true);
 
             Start();
         }
         else
         {
-            //add game over screen
+            GameOver.SetActive(true);
+            healthCanvas.SetActive(false);
             Debug.Log("Game Over foo!");
         }
     }
