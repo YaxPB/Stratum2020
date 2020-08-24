@@ -12,20 +12,33 @@ public class ComicCamera : MonoBehaviour
 
     private int pageLocation = 0;
 
+    private LevelLoader LL;
+
+    void Awake()
+    {
+        LL = FindObjectOfType<LevelLoader>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.D) && pageLocation + 1 < cameraPos.Length)
         {
             StartCoroutine(ChangePOS(cameraPos[pageLocation].position, cameraPos[pageLocation + 1].position));
             pageLocation++;
-            Debug.Log(pageLocation);
+            //Debug.Log(pageLocation);
+        } else if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (LL != null)
+            {
+                LL.LoadNextLevel();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.A) && pageLocation > 0)
         {
             StartCoroutine(ChangePOS(cameraPos[pageLocation].position, cameraPos[pageLocation - 1].position));
             pageLocation--;
-            Debug.Log(pageLocation);
+            //Debug.Log(pageLocation);
         }
     }
 
