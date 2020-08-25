@@ -20,6 +20,11 @@ public class BallBall : MonoBehaviour
         rb.velocity = transform.right * speed;
     }
 
+    private void Update()
+    {
+        transform.Rotate(new Vector3(0, 0, -135 * Time.deltaTime));
+    }
+
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Debug.Log(hitInfo.name);

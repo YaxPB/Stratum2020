@@ -12,33 +12,41 @@ public class Overhead : MonoBehaviour
 
     public HealthBar healthBar;
     public GameObject healthCanvas;
+    public Animator waveInfo;
 
     public bool readyToDecrease;
 
-    private void Start()
+    /*private void Start()
     {
         healthCanvas.SetActive(false);
+    }*/
+
+    public void SetOverhead(WaveSpawner spawner, int numWaves)
+    {
+        if(spawner.waves[0] == null)
+        {
+            Debug.Log("Oops. No wave here.");
+            return;
+        }
+        // Number of Waves * Count * Number of SpawnPoints = total number of enemies
+        count = numWaves * spawner.waves[0].count * spawner.spawnPoints.Length;
+        totalPool = count * 100;
+        changingPool = totalPool;
+
+        Debug.Log("Total enemy health is: " + totalPool);
+        healthBar.SetMaxHealth(totalPool);
+        waveInfo.SetBool("OverheadUp", true);
+        //healthCanvas.SetActive(true);
+        readyToDecrease = true;
     }
 
-    public void SetOverhead(WaveSpawner spawner,int wave)
-    {
-        if (!spawner.completed)
-        {
-            count = spawner.waves[wave].count;
-            totalPool = count * 100;
-            changingPool = totalPool;
-            Debug.Log(totalPool);
-            healthBar.SetMaxHealth(totalPool);
-            healthCanvas.SetActive(true);
-            readyToDecrease = true;
-        }
-    }
-    
     void Update()
     {
-        if (healthBar.slider.value <= 0)
+        if (changingPool <= 0)
         {
-            healthCanvas.SetActive(false);
+            Debug.Log("empty");
+            waveInfo.SetBool("OverheadUp", false);
+            //healthCanvas.SetActive(false);
             readyToDecrease = false;
         }
     }
@@ -46,6 +54,10 @@ public class Overhead : MonoBehaviour
     //called to adjust the health pool after each enemy death
     public void AdjustPool(int damage)
     {
+        if(changingPool - damage <= 0)
+        {
+            Debug.Log("CombatZone complete.");
+        }
         changingPool -= damage;
         Debug.Log(changingPool);
         healthBar.SetHealth(changingPool);

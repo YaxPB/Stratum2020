@@ -17,10 +17,13 @@ public class LevelLoader : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(mp.load)
+    {   
+        if(mp != null)
         {
-            LoadNextLevel();
+            if (mp.load)
+            {
+                LoadNextLevel();
+            }
         }
     }
 
@@ -31,9 +34,27 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        mp.load = false;
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        //change index after adding credits and comic
+        if (levelIndex <= 4)
+        {
+            if (mp != null)
+            {
+                mp.load = false;
+            }
+            transition.SetTrigger("Start");
+            yield return new WaitForSeconds(transitionTime);
+            SceneManager.LoadScene(levelIndex);
+        }
+        else
+        {
+            if (mp != null)
+            {
+                mp.load = false;
+            }
+            levelIndex = 0;
+            transition.SetTrigger("Start");
+            yield return new WaitForSeconds(transitionTime);
+            SceneManager.LoadScene(levelIndex);
+        }
     }
 }
