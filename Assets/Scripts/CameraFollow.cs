@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
         }
         else if (YMaxEnabled)
         {
-            targetPos.y = Mathf.Clamp(target.position.y, target.position.y, YMaxValue);
+            targetPos.y = Mathf.Clamp(target.position.y, target.position.y, YMaxValue * Screen.height);
         }
 
         //Horizontal

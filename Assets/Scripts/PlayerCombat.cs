@@ -177,7 +177,7 @@ public class PlayerCombat : MonoBehaviour
     void ShowFloatyText(int damage)
     {
         //cause floaty text to flip with Player object
-        var go = Instantiate(floatyText, transform.position + transform.up * 3, Quaternion.identity, transform);
+        var go = Instantiate(floatyText, transform.position + transform.up * 4, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = damage.ToString();
     }
 
