@@ -8222,6 +8222,10 @@ MonoBehaviour:
     - Sup NERD
     - Yes, it is I... grandma Xela! -starts shredding a ghostly electric guitar-
     - Well? Ready to learn some shit? (Left Click to attack and Shift to dodge)
+    responses:
+    - Sup Gma
+    - Damn... still shreddin in the after life I see...
+    - HELL YEAH I AM BRING IT!
   theCam: {fileID: 1342856285}
   granGran: {fileID: 1997074459}
   playerPos: {fileID: 1623648725}
@@ -8491,7 +8495,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.52, y: -6.63, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children: [{fileID: 784009817}]
+  m_Children:
+  - {fileID: 784009817}
   m_Father: {fileID: 986305584}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8560,13 +8565,14 @@ MonoBehaviour:
   theDialogue:
     name: Xadri
     sentences:
-    - I was so little then, when grandma used to take me to train in the city. I miss
-      her. Is it wrong to miss someone who's better off now?
+    - I was so little then, when grandma used to take me to train in the city. I
+      miss her. Is it wrong to miss someone who's better off now?
     - A bunch of subspirited revolutionaries vandalized the statue a few years later,
       painting the King a crown of blood in "honor" of my hometown, Cineria.
     - Honor's a... strong word. Honor is not smearing the statue of our leader. Honor
       is winning Stratum's tournament and getting out of this hellhole once and for
       all.
+    responses: []
   prompt: {fileID: 634186791}
 --- !u!61 &675732074
 BoxCollider2D:
@@ -14627,10 +14633,165 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 61
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2148329700490797009, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_Text
+      value: Press 'F' To continue...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.35794666
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173205078078907272, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173205078078907272, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173205078078907272, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173205078078907272, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568677610501783718, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42be39c924e1f684f82f5ef4fff6a28f, type: 3}
@@ -14670,6 +14831,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 811647580}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &823737160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+    type: 3}
+  m_PrefabInstance: {fileID: 811647580}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &834391737
 GameObject:
   m_ObjectHideFlags: 0
@@ -21166,7 +21339,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.75, y: -0.5, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
-  m_Children: [{fileID: 834391738}]
+  m_Children:
+  - {fileID: 834391738}
   m_Father: {fileID: 986305584}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21188,10 +21362,11 @@ MonoBehaviour:
     - My Grandma Xela won the tournament 10 years ago. She was so reolutionary that
       subspees cast "X" marks in her memory to this day.
     - Sometimes I wish champions didn't have to leave home. I know working for Stratum
-      is a dream, but without Cineria's brightest lights, these familiar streets feel
-      a little dimmer.
+      is a dream, but without Cineria's brightest lights, these familiar streets
+      feel a little dimmer.
     - Snap out of it, Xadri. You'll be taking your seat beside her any day now. And
       you've got big shoes to fill.
+    responses: []
   prompt: {fileID: 634186791}
 --- !u!61 &1073769904
 BoxCollider2D:
@@ -33664,10 +33839,11 @@ MonoBehaviour:
     - When I was little, the other subspirited kids and I would run around and destroy
       the surveillance cams in our neighborhood so officers couldn't catch us practicing
       magic.
-    - The officers would just storm in and plant more, until eventually the only safe
-      place to be ourselves was behind the walls of our tiny homes...
+    - The officers would just storm in and plant more, until eventually the only
+      safe place to be ourselves was behind the walls of our tiny homes...
     - I've grown more sensible than this. Destroying cams is pointless. I'm going
       to make real change when I take my seat at Stratum Headquarters.
+    responses: []
   prompt: {fileID: 634186791}
 --- !u!210 &1722968262
 SortingGroup:
@@ -34312,6 +34488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 811647582}
   dialogueText: {fileID: 811647581}
+  responseText: {fileID: 823737160}
   animator: {fileID: 811647583}
 --- !u!4 &1793472667
 Transform:
@@ -35493,7 +35670,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 22.96, y: -5.92, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
-  m_Children: [{fileID: 1396086264}]
+  m_Children:
+  - {fileID: 1396086264}
   m_Father: {fileID: 986305584}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35564,6 +35742,7 @@ MonoBehaviour:
     sentences:
     - This is that lethal magic goo that grandma always warned me about...
     - They must be near.
+    responses: []
   prompt: {fileID: 634186791}
 --- !u!61 &1985841081
 BoxCollider2D:
@@ -41791,6 +41970,7 @@ MonoBehaviour:
     - i'm so proud of u... but also some shit goin' down and i can't tell u why bc
       the laws of ghostism require me to be at least 45% cryptic
     - so... yeah. (Q to Berimbau POWER UP)...ok bye
+    responses: []
   theCam: {fileID: 1342856285}
   granGran: {fileID: 15427029}
   playerPos: {fileID: 1623648725}
@@ -41958,6 +42138,7 @@ MonoBehaviour:
     - Kick the air and magically conjure a ball! Use that shit to knock back deez
       foos
     - Seriously, give it a try! (Hit Space to kick futbol)
+    responses: []
   theCam: {fileID: 1342856285}
   granGran: {fileID: 917667097}
   playerPos: {fileID: 1623648725}
