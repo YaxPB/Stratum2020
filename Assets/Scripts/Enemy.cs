@@ -185,8 +185,8 @@ public class Enemy : MonoBehaviour
         // enemy gameobj is not destroyed, body is left behind for 2 seconds
         this.enabled = false;
 
-        var r = Random.Range(0, 10);
-        if (r < 9)
+        var r = Random.Range(0, 100);
+        if (r > 90)
             drop = Instantiate<HealthPickup>(hp, transform.position + transform.right * 1, transform.rotation);
 
         Destroy(gameObject, 2f);
