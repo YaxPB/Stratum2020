@@ -114,6 +114,7 @@ public class Berimbau : MonoBehaviour
         if (count == 0)
         {
             PlayerCombat.instance.SendMessage("BuffBoi", multiplier);
+            // NEVER put "stuff" or "thing" in code
             Invoke("ResetStuff", 5f);
             multiplier = 0;
             count = 4;

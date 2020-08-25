@@ -21,6 +21,7 @@ public class Overhead : MonoBehaviour
         healthCanvas.SetActive(false);
     }*/
 
+    // Changed to reflect overall health per CombatZone (WaveSpawner area)
     public void SetOverhead(WaveSpawner spawner, int numWaves)
     {
         if(spawner.waves[0] == null)
@@ -38,17 +39,6 @@ public class Overhead : MonoBehaviour
         waveInfo.SetBool("OverheadUp", true);
         //healthCanvas.SetActive(true);
         readyToDecrease = true;
-    }
-
-    void Update()
-    {
-        if (changingPool <= 0)
-        {
-            Debug.Log("empty");
-            waveInfo.SetBool("OverheadUp", false);
-            //healthCanvas.SetActive(false);
-            readyToDecrease = false;
-        }
     }
 
     //called to adjust the health pool after each enemy death
