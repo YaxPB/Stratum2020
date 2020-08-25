@@ -41,17 +41,6 @@ public class Overhead : MonoBehaviour
         readyToDecrease = true;
     }
 
-    void Update()
-    {
-        if (changingPool <= 0)
-        {
-            Debug.Log("empty");
-            waveInfo.SetBool("OverheadUp", false);
-            //healthCanvas.SetActive(false);
-            readyToDecrease = false;
-        }
-    }
-
     //called to adjust the health pool after each enemy death
     public void AdjustPool(int damage)
     {

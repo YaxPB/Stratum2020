@@ -86,7 +86,9 @@ public class WaveSpawner : MonoBehaviour
             Debug.LogError("no spawn points foo");
         }
 
+        // Set waveCountDown to the value of timeBetweenWaves at the start
         waveCountDown = timeBetweenWaves;
+        // Store the camFollow min and max x-values for later reference
         maxX = cf.XMaxValue;
         minX = cf.XMinValue;
     }
@@ -96,29 +98,37 @@ public class WaveSpawner : MonoBehaviour
         // Need a way to check if all enemies in a given "zone" are defeated
         if (allWavesComplete)
         {
+            // Enables the nextZone sprite and animation
             nextArrow.enabled = true;
             nextArrow.SetTrigger("allClear");
+            // Coroutine that gradually destroys completed combatZones to prevent accidental repetition or NullReferenceExceptions
             StartCoroutine(SelfDestruct());
             return;
         }
 
+        // Once wave spawning is triggered
         if (beginTheWaves)
         {
             if (state == SpawnState.WAITING)
             {
+                // Check if all enemies in a given wave are defeated/still exist
                 if (!EnemyIsAlive())
                 {
+                    // Signal that the wave has been completed
                     WaveCompleted();
-                }
-            }
+                } // if all enemies in a given wave are defeated
+            } // if current spawn state is WAITING
 
+            // Added second conditional check to consolidate multiple ifs
             if (waveCountDown <= 0 && completed)
             {
                 if (state != SpawnState.SPAWNING)
                 {
+                    // Make sure any currently running Coroutines stop before spawning a new wave
                     StopAllCoroutines();
+                    // Spawn the next wave of enemies if there are any left
                     StartCoroutine(SpawnWave(waves[nextWave]));
-                }
+                } // if current spawn state is SPAWNING
             }
 
             if (state == SpawnState.COUNTING)
@@ -142,7 +152,9 @@ public class WaveSpawner : MonoBehaviour
     void WaveCompleted()
     {
         Debug.Log("wave completed");
+        // Reset the waveCountDown timer
         waveCountDown = timeBetweenWaves;
+        // represents the state of the current wave (completed or not)
         completed = true;
 
         // Decrement every time a wave is completed
@@ -167,7 +179,7 @@ public class WaveSpawner : MonoBehaviour
         {
             Debug.Log("all done");
             return false;
-        }
+        } // if there are no more active Enemy objects in the current scene
         return true;
     }
 
@@ -175,7 +187,6 @@ public class WaveSpawner : MonoBehaviour
     {
         // Reset completed every time a new wave is spawning
         completed = false;
-        // foos.SetActive(false);
 
         Debug.Log("Spawning wave:" + _wave.name);
         state = SpawnState.SPAWNING;
