@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public Text nameText;       // Holds the name of the NPC or object being interacted with
     public Text dialogueText;   // Holds the text to be displayed upon interaction
+    public Text responseText;   // If MC has response to NPC dialogue (quick fix?)
     public Animator animator;   // The animator in charge of enter/exit animation of the dialogue box
     private bool convoStarted;  // Boolean to determine if a conversation has started
     private int pressedTimes;   // Number of times the F key is pressed
@@ -16,11 +17,13 @@ public class DialogueManager : MonoBehaviour
 
     // Uses a Queue (of Strings) data structure (FIFO)
     public Queue<string> sentences;
+    public Queue<string> responses;
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        responses = new Queue<string>();
         convoStarted = false;
     }
 
@@ -60,13 +63,17 @@ public class DialogueManager : MonoBehaviour
 
         // Makes sure the Queue is empty before starting conversation
         sentences.Clear();
+        responses.Clear();
 
         foreach(string sentence in theDialogue.sentences)
         {
             // Queue each sentence in the target object/NPC
             sentences.Enqueue(sentence);
         } 
-
+        foreach(string response in theDialogue.responses)
+        {
+            responses.Enqueue(response);
+        }
         // Runs the DisplayNextSentence without button prompt to display the first queued sentence
         DisplayNextSentence();
     }
@@ -85,16 +92,17 @@ public class DialogueManager : MonoBehaviour
         // Pop the bottom (first) sentence off the queue
         string sentence = sentences.Dequeue();
         //Debug.Log(sentence);
+        string response = responses.Dequeue();
 
         // Makes sure the previous animation stops before starting a new one
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        StartCoroutine(TypeSentence(sentence, response));
     }
 
-    IEnumerator TypeSentence(string sentence)
+    IEnumerator TypeSentence(string sentence, string response)
     {
-
         dialogueText.text = "";
+        responseText.text = "";
         AudioManagerSFX.PlaySound("dialogue");
         foreach(char letter in sentence.ToCharArray())
         {
@@ -104,6 +112,15 @@ public class DialogueManager : MonoBehaviour
             yield return null;
         }
         AudioManagerSFX.theSource.Stop();
+        if(response == null || response == "")
+        {
+            response = "Press 'F' to Continue...";
+        }
+        foreach (char letter in response.ToCharArray())
+        {
+            responseText.text += letter;
+            yield return null;
+        }
     }
 
     public void CueGrandma(GrandmaTrigger grandma)
@@ -116,7 +133,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (isGrandmaSpeaking)
         {
-
             grandmaZone.SendMessage("ResetCam");
             isGrandmaSpeaking = false;
         }
