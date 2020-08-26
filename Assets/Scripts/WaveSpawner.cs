@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public string name;
-        public Transform enemy;
+        public GameObject enemy;
         public int count;
         public float rate;
     }
@@ -146,7 +146,7 @@ public class WaveSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
         nextArrow.enabled = false;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     void WaveCompleted()
@@ -211,17 +211,23 @@ public class WaveSpawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(Transform _enemy)
+    void SpawnEnemy(GameObject waveEnemy)
     {
-        Debug.Log("Spawning Enemy: " + _enemy.name);
+        Debug.Log("Spawning Enemy: " + waveEnemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        Instantiate(waveEnemy, _sp.position, _sp.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
+            if(numWaves <= 0)
+            {
+                Debug.Log("There are no waves!");
+                StartCoroutine(SelfDestruct());
+                return;
+            }
             // Set the overhead bar ONCE--fixed an issue where it was resetting health for every enemy spawn
             oh.SetOverhead(this, numWaves);
             Debug.Log("Total number of enemies on this floor: " + numEnemies);

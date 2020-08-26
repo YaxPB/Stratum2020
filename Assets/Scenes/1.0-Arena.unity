@@ -1552,7 +1552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 94227591}
   - component: {fileID: 94227592}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2165,7 +2165,7 @@ GameObject:
   - component: {fileID: 128303928}
   - component: {fileID: 128303930}
   - component: {fileID: 128303929}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2240,9 +2240,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1526717448}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2739,7 +2759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162423261}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NEXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3031,7 +3051,7 @@ GameObject:
   - component: {fileID: 174604557}
   - component: {fileID: 174604559}
   - component: {fileID: 174604558}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4229,7 +4249,7 @@ GameObject:
   - component: {fileID: 237234931}
   - component: {fileID: 237234933}
   - component: {fileID: 237234932}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NextZoneIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4922,7 +4942,7 @@ GameObject:
   - component: {fileID: 273009340}
   - component: {fileID: 273009342}
   - component: {fileID: 273009341}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MidSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4987,13 +5007,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - name: StratumWave
-    enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+  - name: MidWave1
+    enemy: {fileID: 3613096323288549444, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
     count: 3
     rate: 1
-  - name: StratumWave
-    enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
-    count: 4
+  - name: MidWave2
+    enemy: {fileID: 3613096323288549444, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+    count: 2
     rate: 1
   numWaves: 0
   numEnemies: 0
@@ -8033,7 +8053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484510589}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NEXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8548,9 +8568,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1526717448}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8756,7 +8796,7 @@ GameObject:
   - component: {fileID: 550311110}
   - component: {fileID: 550311112}
   - component: {fileID: 550311111}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BridgeSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8822,16 +8862,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - name: StratumWave
-    enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+    enemy: {fileID: 3613096323288549444, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
     count: 2
     rate: 1
   - name: StratumWave
-    enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+    enemy: {fileID: 3613096323288549444, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
     count: 3
     rate: 1
   - name: StratumWave
-    enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
-    count: 5
+    enemy: {fileID: 3613096323288549444, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+    count: 2
     rate: 1
   numWaves: 0
   numEnemies: 0
@@ -8938,7 +8978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569505062}
   - component: {fileID: 569505063}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10222,7 +10262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 627167997}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnBoxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10749,7 +10789,7 @@ GameObject:
   - component: {fileID: 668464036}
   - component: {fileID: 668464038}
   - component: {fileID: 668464037}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
@@ -10898,6 +10938,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &671415251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2413957248250544988, guid: 11fbf162a57de76408b185034bd53aa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 999272281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &672679520
 GameObject:
   m_ObjectHideFlags: 0
@@ -11150,7 +11202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682155796}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnBoxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12543,9 +12595,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1772331779}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13817,9 +13889,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 94227591}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15602,7 +15694,7 @@ GameObject:
   - component: {fileID: 954049550}
   - component: {fileID: 954049552}
   - component: {fileID: 954049551}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
@@ -15677,9 +15769,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569505062}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15962,9 +16074,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1772331779}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16166,9 +16298,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569505062}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16419,6 +16571,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2413957247373819406, guid: 11fbf162a57de76408b185034bd53aa0,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 2125178359}
     - target: {fileID: 2413957247373819407, guid: 11fbf162a57de76408b185034bd53aa0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16474,12 +16631,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2413957247840848200, guid: 11fbf162a57de76408b185034bd53aa0,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyOH
+      objectReference: {fileID: 0}
     - target: {fileID: 2413957248250544987, guid: 11fbf162a57de76408b185034bd53aa0,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2413957247840848202, guid: 11fbf162a57de76408b185034bd53aa0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 11fbf162a57de76408b185034bd53aa0, type: 3}
 --- !u!1 &1002685388
 GameObject:
@@ -17514,9 +17677,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 94227591}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18346,9 +18529,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569505062}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18874,9 +19077,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1772331779}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19252,9 +19475,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2042783631}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19507,9 +19750,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1728770631}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22445,7 +22708,7 @@ GameObject:
   - component: {fileID: 1358818645}
   - component: {fileID: 1358818644}
   - component: {fileID: 1358818643}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RBorder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22632,7 +22895,7 @@ GameObject:
   - component: {fileID: 1360997051}
   - component: {fileID: 1360997053}
   - component: {fileID: 1360997052}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22790,7 +23053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1371858274}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NEXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24069,7 +24332,7 @@ GameObject:
   - component: {fileID: 1463193335}
   - component: {fileID: 1463193334}
   - component: {fileID: 1463193333}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LBorder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25591,7 +25854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1526717448}
   - component: {fileID: 1526717449}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26134,7 +26397,7 @@ GameObject:
   - component: {fileID: 1573443582}
   - component: {fileID: 1573443584}
   - component: {fileID: 1573443583}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27906,7 +28169,7 @@ GameObject:
   - component: {fileID: 1673438468}
   - component: {fileID: 1673438467}
   - component: {fileID: 1673438466}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LBorder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28056,9 +28319,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1728770631}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28511,7 +28794,7 @@ GameObject:
   - component: {fileID: 1695114125}
   - component: {fileID: 1695114127}
   - component: {fileID: 1695114126}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NextZoneIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28798,7 +29081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1728770631}
   - component: {fileID: 1728770632}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29083,9 +29366,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2042783631}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29453,7 +29756,7 @@ GameObject:
   - component: {fileID: 1762138961}
   - component: {fileID: 1762138960}
   - component: {fileID: 1762138959}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lower Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29500,7 +29803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - name: StratumWave
-    enemy: {fileID: 3613096323288549446, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
+    enemy: {fileID: 3613096323288549444, guid: 843d976301ecf2448aa0a603a19a0b51, type: 3}
     count: 3
     rate: 1
   numWaves: 0
@@ -29625,7 +29928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1772331779}
   - component: {fileID: 1772331780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30076,7 +30379,7 @@ GameObject:
   - component: {fileID: 1789495999}
   - component: {fileID: 1789496001}
   - component: {fileID: 1789496000}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NextZoneIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31981,9 +32284,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1526717448}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32529,7 +32852,7 @@ GameObject:
   - component: {fileID: 1936416987}
   - component: {fileID: 1936416986}
   - component: {fileID: 1936416985}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RBorder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33363,7 +33686,7 @@ GameObject:
   - component: {fileID: 1983221974}
   - component: {fileID: 1983221973}
   - component: {fileID: 1983221972}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LBorder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34451,7 +34774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2042783631}
   - component: {fileID: 2042783632}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34495,7 +34818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2044129667}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnBoxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34525,9 +34848,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 94227591}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34735,9 +35078,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1728770631}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35622,7 +35985,7 @@ GameObject:
   - component: {fileID: 2084055943}
   - component: {fileID: 2084055945}
   - component: {fileID: 2084055944}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35701,7 +36064,7 @@ GameObject:
   - component: {fileID: 2088073659}
   - component: {fileID: 2088073661}
   - component: {fileID: 2088073660}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: spawnPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36346,6 +36709,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2125178356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2413957247840848200, guid: 11fbf162a57de76408b185034bd53aa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 999272281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2125178358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2413957247840848203, guid: 11fbf162a57de76408b185034bd53aa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 999272281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125178356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2125178359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125178356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4284a611381d034b8d005b697e63f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2125178358}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0.571619, b: 0, a: 1}
+    key2: {r: 1, g: 0.9037433, b: 0, a: 0}
+    key3: {r: 0, g: 1, b: 0.06844115, a: 0}
+    key4: {r: 0, g: 1, b: 0.06844115, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16384
+    ctime2: 42598
+    ctime3: 65535
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  fill: {fileID: 671415251}
 --- !u!1 &2127453144
 GameObject:
   m_ObjectHideFlags: 0
@@ -36434,9 +36858,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2042783631}
     m_Modifications:
+    - target: {fileID: 111298, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147812, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178580, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 183068, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_Name
       value: FlamethrowerAlphaBlendBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199852, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 439084, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36643,7 +37087,7 @@ GameObject:
   - component: {fileID: 2138938670}
   - component: {fileID: 2138938669}
   - component: {fileID: 2138938668}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RBorder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
