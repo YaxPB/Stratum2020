@@ -70,10 +70,18 @@ public class DialogueManager : MonoBehaviour
             // Queue each sentence in the target object/NPC
             sentences.Enqueue(sentence);
         } 
-        foreach(string response in theDialogue.responses)
+        if(theDialogue.responses != null)
         {
-            responses.Enqueue(response);
+            foreach (string response in theDialogue.responses)
+            {
+                responses.Enqueue(response);
+            }
         }
+        foreach (string blankResponse in theDialogue.sentences)
+        {
+            responses.Enqueue("");
+        }
+
         // Runs the DisplayNextSentence without button prompt to display the first queued sentence
         DisplayNextSentence();
     }
