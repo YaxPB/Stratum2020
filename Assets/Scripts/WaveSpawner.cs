@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public string name;
-        public Transform enemy;
+        public GameObject enemy;
         public int count;
         public float rate;
     }
@@ -56,7 +56,6 @@ public class WaveSpawner : MonoBehaviour
     // Added minX to allow larger "locked" combat area
     private float minX;
 
-    // Access to nextZone animation moved from CombatZone
     public Animator nextArrow;
 
     private void Start()
@@ -70,13 +69,13 @@ public class WaveSpawner : MonoBehaviour
         rightFlames = borderR.GetComponentsInChildren<ParticleSystem>();
         activationBox = GetComponent<Collider2D>();
 
-        foreach(Transform sp in spawnPoints)
+        /*foreach(Transform sp in spawnPoints)
         {
             foreach(Wave leWave in waves)
             {
                 numEnemies += leWave.count;
             }
-        }
+        }*/
         
         cf = FindObjectOfType<CameraFollow>();
         oh = FindObjectOfType<Overhead>();
@@ -146,7 +145,7 @@ public class WaveSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
         nextArrow.enabled = false;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     void WaveCompleted()
@@ -211,17 +210,29 @@ public class WaveSpawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(Transform _enemy)
+    void SpawnEnemy(GameObject waveEnemy)
     {
-        Debug.Log("Spawning Enemy: " + _enemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        foreach(var enemy in FindObjectsOfType<Enemy>())
+        {
+            if(enemy.transform.position == _sp.position)
+            {
+                _sp.position += transform.right * 2;
+            }
+        }
+        Instantiate(waveEnemy, _sp.position, _sp.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
+            if(numWaves <= 0)
+            {
+                Debug.Log("There are no waves!");
+                StartCoroutine(SelfDestruct());
+                return;
+            }
             // Set the overhead bar ONCE--fixed an issue where it was resetting health for every enemy spawn
             oh.SetOverhead(this, numWaves);
             Debug.Log("Total number of enemies on this floor: " + numEnemies);

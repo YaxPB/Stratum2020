@@ -95,8 +95,13 @@ public class Enemy : MonoBehaviour
         {
             if (Time.time >= nextAttack)
             {
-                isAttacking = true;
-                EnemyAttack();
+                //random chance for enemy to attack player so they're not constantly aggressive
+                var r = Random.Range(0, 100);
+                if (r < 80)
+                {
+                    isAttacking = true;
+                    EnemyAttack();
+                }
                 nextAttack = Time.time + 1f / attackRate;
             }
         }

@@ -11,14 +11,13 @@ public class HealthBar : MonoBehaviour
     // because there should only ever be this one healthbar object at any given time
     // also so other scripts can reference this
     public static HealthBar instance;
-    private Animator lives;
+    public Animator lives;
     private bool isCombat = false;
 
     private void Start()
     {
         instance = this;
         this.enabled = false;
-        lives = GetComponentInChildren<Animator>();
     }
 
     public void SetMaxHealth(int health)
@@ -47,12 +46,8 @@ public class HealthBar : MonoBehaviour
         if (!theStart)
         {
             isCombat = false;
-            //heartBeat.enabled = false;
-            //heartBeat.SetBool("isCombat", false);
             return;
         }
         isCombat = true;
-        //heartBeat.enabled = true;
-        //heartBeat.SetBool("isCombat", true);
     }
 }
