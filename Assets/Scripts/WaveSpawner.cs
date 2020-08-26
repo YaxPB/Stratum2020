@@ -220,7 +220,7 @@ public class WaveSpawner : MonoBehaviour
                 _sp.position += transform.right * 2;
             }
         }
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        Instantiate(waveEnemy, _sp.position, _sp.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

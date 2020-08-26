@@ -22,19 +22,19 @@ public class Overhead : MonoBehaviour
     {
         enemyPerWave = 0;
         count = 0;
-        if(spawner.waves[0] == null || numWaves < 1)
+        if (spawner.waves[0] == null || numWaves < 1)
         {
             Debug.Log("Oops. No wave here.");
             return;
         } // if there are no waves for whatever reason
 
-        for(int i = 0; i < spawner.waves.Length; i++)
+        for (int i = 0; i < spawner.waves.Length; i++)
         {
             // The number of enemies per wave = Wave.count * number of SpawnPoints
             enemyPerWave = spawner.waves[i].count * spawner.spawnPoints.Length;
             // Add value of enemyPerWave to total count value
             count += enemyPerWave;
-            Debug.Log("There are " + enemyPerWave + " enemies in wave " + (i+1) + ".");
+            Debug.Log("There are " + enemyPerWave + " enemies in wave " + (i + 1) + ".");
         } // for iterating through each wave's info in the given WaveSpawner
 
         Debug.Log("Count is " + count);
@@ -46,6 +46,7 @@ public class Overhead : MonoBehaviour
         waveInfo.SetBool("OverheadUp", true);
         //healthCanvas.SetActive(true);
         readyToDecrease = true;
+    }
 
     void Update()
     {

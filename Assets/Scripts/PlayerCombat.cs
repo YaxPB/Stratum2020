@@ -294,10 +294,6 @@ public class PlayerCombat : MonoBehaviour
             this.enabled = true;
             mp.enabled = true;
 
-            //change xabi from black back to normal within 3ish secs
-            sp.color = new Color(0f,0f,0f,1f);
-            Debug.Log(sp.color);
-
             Start();
             Invoke("Respawning", 3f);
         }
