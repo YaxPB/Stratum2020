@@ -44,7 +44,6 @@ public class Overhead : MonoBehaviour
     {
         if (changingPool <= 0)
         {
-            Debug.Log("empty");
             waveInfo.SetBool("OverheadUp", false);
             //healthCanvas.SetActive(false);
             readyToDecrease = false;

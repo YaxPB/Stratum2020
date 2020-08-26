@@ -66,27 +66,28 @@ public class PlayerCombat : MonoBehaviour
     public bool nextLevel = false;
 
     CameraShake cs;
+    SpriteRenderer sp;
 
     private void Awake()
     {
         GameOver = GameObject.Find("GameOver");
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
+        cs = FindObjectOfType<CameraShake>();
+        ll = FindObjectOfType<LevelLoader>();
+        sp = GetComponentInChildren<SpriteRenderer>();
+        GameOver.SetActive(false);
         Lives = 3;
     }
 
     void Start()
     {
-        dead = false;
         instance = this;
         currentHealth = maxHealth;
         regSpeed = mp.runSpeed;
         attackDamage = baseDamage;
 
-        GameOver.SetActive(false);
-        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
-        cs = FindObjectOfType<CameraShake>();
-        ll = FindObjectOfType<LevelLoader>();
     }
 
     // Update is called once per frame
@@ -149,28 +150,30 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
-        if (!mp.isDodging)
+        if (!dead)
         {
-            mp.runSpeed = 0f;
-            currentHealth -= damage;
+            if (!mp.isDodging)
+            {
+                mp.runSpeed = 0f;
+                currentHealth -= damage;
 
-            anim.SetTrigger("Hurt");
-            healthBar.SetHealth(currentHealth);
+                anim.SetTrigger("Hurt");
+                healthBar.SetHealth(currentHealth);
 
-            cs.shakeDistance = 0.06f;
-            Invoke("ResetShake", 0.2f);
-            Invoke("ResetSpeed", 0.2f);
-        }
+                cs.shakeDistance = 0.06f;
+                Invoke("ResetShake", 0.2f);
+                Invoke("ResetSpeed", 0.2f);
+            }
 
-        if (floatyText != null && currentHealth > 0)
-        {
-            ShowFloatyText(damage);
-        }
+            if (floatyText != null && currentHealth > 0)
+            {
+                ShowFloatyText(damage);
+            }
 
-        if (currentHealth - damage <= 0)
-        {
-            Die();
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -278,7 +281,6 @@ public class PlayerCombat : MonoBehaviour
         {
             instance.enabled = true;
         }
-
     }
 
     void Respawn()
@@ -292,13 +294,17 @@ public class PlayerCombat : MonoBehaviour
             this.enabled = true;
             mp.enabled = true;
 
+            //change xabi from black back to normal within 3ish secs
+            sp.color = new Color(0f,0f,0f,1f);
+            Debug.Log(sp.color);
+
             Start();
+            Invoke("Respawning", 3f);
         }
         else
         {
             GameOver.SetActive(true);
             healthCanvas.SetActive(false);
-            Debug.Log("Game Over foo!");
         }
     }
 
@@ -310,6 +316,11 @@ public class PlayerCombat : MonoBehaviour
             Debug.Log("touched me");
             nextLevel = true;
         }
+    }
+
+    void Respawning()
+    {
+        dead = false;
     }
 }
 

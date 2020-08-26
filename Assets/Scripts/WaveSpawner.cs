@@ -56,7 +56,6 @@ public class WaveSpawner : MonoBehaviour
     // Added minX to allow larger "locked" combat area
     private float minX;
 
-    // Access to nextZone animation moved from CombatZone
     public Animator nextArrow;
 
     private void Start()
@@ -70,13 +69,13 @@ public class WaveSpawner : MonoBehaviour
         rightFlames = borderR.GetComponentsInChildren<ParticleSystem>();
         activationBox = GetComponent<Collider2D>();
 
-        foreach(Transform sp in spawnPoints)
+        /*foreach(Transform sp in spawnPoints)
         {
             foreach(Wave leWave in waves)
             {
                 numEnemies += leWave.count;
             }
-        }
+        }*/
         
         cf = FindObjectOfType<CameraFollow>();
         oh = FindObjectOfType<Overhead>();
@@ -198,8 +197,14 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(Transform _enemy)
     {
-        Debug.Log("Spawning Enemy: " + _enemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        foreach(var enemy in FindObjectsOfType<Enemy>())
+        {
+            if(enemy.transform.position == _sp.position)
+            {
+                _sp.position += transform.right * 2;
+            }
+        }
         Instantiate(_enemy, _sp.position, _sp.rotation);
     }
 
@@ -209,7 +214,7 @@ public class WaveSpawner : MonoBehaviour
         {
             if(oh != null)
                 oh.SetOverhead(this, numWaves);
-            Debug.Log("Total number of enemies on this floor: " + numEnemies);
+            //Debug.Log("Total number of enemies on this floor: " + numEnemies);
             StartCoroutine(SpawnWave(waves[nextWave])); 
             borderL.enabled = true;     // Turns on left wall of combat area
             borderR.enabled = true;     // Turns on right wall of combat area
