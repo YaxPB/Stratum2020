@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -14809,6 +14809,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -71.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 70.403
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86560bd21fae8a64a90cd52c20865758,
+        type: 3}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_Text
+      value: Xadri
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
       propertyPath: m_SizeDelta.y
       value: 33
       objectReference: {fileID: 0}
@@ -14872,6 +14903,53 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 800
       objectReference: {fileID: 0}
+    - target: {fileID: 2148329700490797020, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.84936
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -14.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 541.3237
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 139.56659
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 165511c4f8a82e444a34cb833e2de192,
+        type: 3}
+    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 3aa446e08e3166c42854e539335c8f7e,
+        type: 3}
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -33880,6 +33958,32 @@ MonoBehaviour:
       just keep out of it and focus on the way out."
     responses: []
   prompt: {fileID: 634186791}
+--- !u!61 &1722968261
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722968259}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03190756, y: -0.47840405}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0848722, y: 4.125574}
+  m_EdgeRadius: 0
 --- !u!210 &1722968262
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -40537,7 +40641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985841077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.96, y: -5.92, z: 0}
+  m_LocalPosition: {x: 28.2, y: -5.92, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1396086264}
