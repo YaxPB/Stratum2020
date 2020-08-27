@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8803,8 +8803,8 @@ MonoBehaviour:
   theDialogue:
     name: Xadri
     sentences:
-    - I was so little then, when grandma used to take me to train in the city. I miss
-      her. Is it wrong to miss someone who's better off now?
+    - I was so little then, when grandma used to take me to train in the city. I
+      miss her. Is it wrong to miss someone who's better off now?
     - A bunch of subspirited revolutionaries vandalized the statue a few years later,
       painting the King a crown of blood in "honor" of my hometown, Cineria.
     - Honor's a... strong word. Honor is not smearing the statue of our leader. Honor
@@ -9417,9 +9417,10 @@ MonoBehaviour:
   theDialogue:
     name: Grandma Xela
     sentences:
-    - Sup NERD
-    - LEGGO MY EGGO XADRI UR OUTTA SHAPE
-    - Wee woo wee woo Xadri Xela Stratum Beep Bop
+    - "You\u2019re out of shape, I see. Tsk, tsk. So close to the competition? Don't
+      tell me all that fried coxinha's made you go soft."
+    - "C\u2019mon now, there isn\u2019t much time. If you want to be a legend like
+      me, you\u2019re gonna have to work for it, Xadrinha."
     responses:
     - 
     - 
@@ -14810,33 +14811,12 @@ PrefabInstance:
     - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -71.58
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 70.403
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 86560bd21fae8a64a90cd52c20865758,
-        type: 3}
-    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_Text
-      value: Xadri
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_FontData.m_RichText
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14857,16 +14837,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 61
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14895,6 +14865,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86560bd21fae8a64a90cd52c20865758,
+        type: 3}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_Text
+      value: Xadri
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
       objectReference: {fileID: 0}
@@ -14911,22 +14902,37 @@ PrefabInstance:
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.84936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.8
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 541.3237
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 139.56659
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14944,52 +14950,17 @@ PrefabInstance:
       propertyPath: m_FontData.m_LineSpacing
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 3aa446e08e3166c42854e539335c8f7e,
         type: 3}
-    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -33949,13 +33920,13 @@ MonoBehaviour:
     sentences:
     - "I can\u2019t believe they still have these up \u2018round here. Stratum initially
       installed them to make sure we wouldn\u2019t practice our \u201Cdirty magic\u201D
-      in public. Don\u2019t love the reminder of our suppression, but it is what it
-      is."
+      in public. Don\u2019t love the reminder of our suppression, but it is what
+      it is."
     - "Subspee revolutionaries shatter these to create spaces for vigilantes to practice,
       while Stratum claims they keep them up \u201Cjust to keep an eye on trouble.\u201D
       What they mean is, we\u2019re the trouble."
-    - "Officers love an excuse to tie a Cinerian\u2019s hands behind their back. I
-      just keep out of it and focus on the way out."
+    - "Officers love an excuse to tie a Cinerian\u2019s hands behind their back.
+      I just keep out of it and focus on the way out."
     responses: []
   prompt: {fileID: 634186791}
 --- !u!61 &1722968261
@@ -34864,9 +34835,13 @@ MonoBehaviour:
   theDialogue:
     name: Grandma Xela
     sentences:
-    - Aha, I see your capoeira is strong, but how's your futebol?
-    - When it's too much to handle, one good kick of your soccerball should throw
-      'em back and slow them down. Buys you a second to breathe.
+    - You've grown strong, Xadrinha.
+    - I have, but I forgot to teach you something very important before I left...
+    - When you're out there fighting, Xadri, I need you to remember who the real
+      enemy is...
+    - Xadri. Look at me. The enemy isn't who you think it is.
+    - "I can\u2019t tell you that, beb\xEA. Just promise me you'll keep your eyes
+      open."
     responses: []
   theCam: {fileID: 1342856285}
   granGran: {fileID: 142504299}
@@ -40717,8 +40692,8 @@ MonoBehaviour:
     - "Stratum\u2019s soldiers are heartless. They\u2013like their goo\u2013are designed
       to impair subspees, and they anticipate our behavior in a scary precise way.
       Almost like they\u2026 understand us."
-    - "Brainless, crippled, and subspee-like? You can imagine how Stratum treats them.
-      They\u2019re as good as feeder fish for the tournament."
+    - "Brainless, crippled, and subspee-like? You can imagine how Stratum treats
+      them. They\u2019re as good as feeder fish for the tournament."
     - This trail is fresh. They must be near.
     responses: []
   prompt: {fileID: 634186791}
@@ -46990,8 +46965,8 @@ MonoBehaviour:
     name: Grandma Xela
     sentences:
     - Huh. Guess you haven't lost your touch, afterall.
-    - But look, these enemies bite. When they come for you, swing out of the way like
-      a monkey to dodge.
+    - But look, these enemies bite. When they come for you, swing out of the way
+      like a monkey to dodge.
     responses: []
   theCam: {fileID: 1342856285}
   granGran: {fileID: 917667097}
