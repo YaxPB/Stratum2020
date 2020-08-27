@@ -4,12 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: [{enabled: 1, path: Assets/Scenes/Main Menu.unity, guid: 39041d49df39dde41a127c91a72299d0},
-    {enabled: 1, path: Assets/Scenes/Tutorial.unity, guid: d8e794027b249ae4baa794563e1be559},
-    {enabled: 1, path: Assets/Scenes/Train Cutscene.unity, guid: c800b29d7adecec45bad2587b664b6f2},
-    {enabled: 1, path: Assets/Scenes/Train.unity, guid: e2bb536feb9cd5d4db059b735686d10d},
-    {enabled: 1, path: Assets/Scenes/Arena.unity, guid: 98cf7a99fa7b6454192d5f9106e23031},
-    {enabled: 1, path: Assets/Scenes/Comic.unity, guid: 58e417ff2eb1a1f4785bb23a647ad4a1},
-    {enabled: 1, path: Assets/Scenes/Comic.unity, guid: 58e417ff2eb1a1f4785bb23a647ad4a1},
-    {enabled: 1, path: Assets/Scenes/Credits.unity, guid: 026cfa9f3a0f12848801ab208ff4afde}]
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 39041d49df39dde41a127c91a72299d0
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: d8e794027b249ae4baa794563e1be559
+  - enabled: 1
+    path: Assets/Scenes/Train Cutscene.unity
+    guid: c800b29d7adecec45bad2587b664b6f2
+  - enabled: 1
+    path: Assets/Scenes/Train.unity
+    guid: e2bb536feb9cd5d4db059b735686d10d
+  - enabled: 1
+    path: Assets/Scenes/Arena.unity
+    guid: 98cf7a99fa7b6454192d5f9106e23031
+  - enabled: 1
+    path: Assets/Scenes/Comic.unity
+    guid: 58e417ff2eb1a1f4785bb23a647ad4a1
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 026cfa9f3a0f12848801ab208ff4afde
   m_configObjects: {}
