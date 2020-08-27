@@ -293,7 +293,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5566b174c89055747be7894fe478f239, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8627451}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1016,7 +1016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &140134492
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7565,7 +7565,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5566b174c89055747be7894fe478f239, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.98039216}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7751,7 +7751,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5566b174c89055747be7894fe478f239, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.98039216}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8801,17 +8801,14 @@ MonoBehaviour:
   theDialogue:
     name: XADRI
     sentences:
-    - I was so little then, when grandma used to take me to train in the city. I
-      miss her. Is it wrong to miss someone who's better off now?
+    - I was so little then, when grandma used to take me to train in the city. I miss
+      her. Is it wrong to miss someone who's better off now?
     - A bunch of subspirited revolutionaries vandalized the statue a few years later,
       painting the King a crown of blood in "honor" of my hometown, Cineria.
     - Honor's a... strong word. Honor is not smearing the statue of our leader. Honor
       is winning Stratum's tournament and getting out of this hellhole once and for
       all.
-    responses:
-    - Press "F" to continue...
-    - Press "F" to continue...
-    - Press "F" to continue...
+    responses: [Press "F" to continue..., Press "F" to continue..., Press "F" to continue...]
   prompt: {fileID: 634186791}
 --- !u!61 &675732074
 BoxCollider2D:
@@ -16948,63 +16945,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1095571127
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1095571129}
-  - component: {fileID: 1095571128}
-  m_Layer: 0
-  m_Name: NextLevelTrigger
-  m_TagString: NextLevel
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!61 &1095571128
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095571127}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!4 &1095571129
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095571127}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.24, y: 3.38, z: -3.1367188}
-  m_LocalScale: {x: 8.6875, y: 29.836563, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1100824528
 GameObject:
   m_ObjectHideFlags: 0
@@ -22879,8 +22819,8 @@ MonoBehaviour:
   completed: 0
   boxy: {fileID: 1934448894}
   foos: {fileID: 77865636}
-  borderL: {fileID: 0}
-  borderR: {fileID: 0}
+  borderL: {fileID: 985264523}
+  borderR: {fileID: 1822652328}
   nextArrow: {fileID: 0}
 --- !u!4 &1316434611
 Transform:
@@ -33930,17 +33870,14 @@ MonoBehaviour:
     sentences:
     - "I can\u2019t believe they still have these up \u2018round here. Stratum initially
       installed them to make sure we wouldn\u2019t practice our \u201Cdirty magic\u201D
-      in public. Don\u2019t love the reminder of our suppression, but it is what
-      it is."
+      in public. Don\u2019t love the reminder of our suppression, but it is what it
+      is."
     - "Subspee revolutionaries shatter these to create spaces for vigilantes to practice,
       while Stratum claims they keep them up \u201Cjust to keep an eye on trouble.\u201D
       What they mean is, we\u2019re the trouble."
-    - "Officers love an excuse to tie a Cinerian\u2019s hands behind their back.
-      I just keep out of it and focus on the way out."
-    responses:
-    - Press "F" to continue...
-    - Press "F" to continue...
-    - Press "F" to continue...
+    - "Officers love an excuse to tie a Cinerian\u2019s hands behind their back. I
+      just keep out of it and focus on the way out."
+    responses: [Press "F" to continue..., Press "F" to continue..., Press "F" to continue...]
   prompt: {fileID: 634186791}
 --- !u!61 &1722968261
 BoxCollider2D:
@@ -34736,7 +34673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822652326}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 14.3, y: -0.22, z: 30.84375}
+  m_LocalPosition: {x: 23.5, y: -0.22, z: 30.84375}
   m_LocalScale: {x: 17.942972, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1934448895}
@@ -34850,18 +34787,14 @@ MonoBehaviour:
     sentences:
     - You've grown strong, Xadrinha.
     - I have, but I forgot to teach you something very important before I left...
-    - When you're out there fighting, Xadri, I need you to remember who the real
-      enemy is...
+    - When you're out there fighting, Xadri, I need you to remember who the real enemy
+      is...
     - Xadri. Look at me. The enemy isn't who you think it is.
     - "I can\u2019t tell you that, beb\xEA. Just promise me you'll keep your eyes
       open."
-    responses:
-    - 'XADRI: You''ve taught me well.'
-    - 'XADRI: ...'
-    - "XADRI: Don't worry, vov\xF3, I'm gonna kick those Stratum bots\u2019 butts
-      and win the tournament, just like you!"
-    - 'XADRI: What do you mean?'
-    - 'XADRI: Grandma?! Grandma!'
+    responses: ['XADRI: You''ve taught me well.', 'XADRI: ...', "XADRI: Don't worry,
+        vov\xF3, I'm gonna kick those Stratum bots\u2019 butts and win the tournament,
+        just like you!", 'XADRI: What do you mean?', 'XADRI: Grandma?! Grandma!']
   theCam: {fileID: 1342856285}
   granGran: {fileID: 142504299}
   playerPos: {fileID: 1623648725}
@@ -40711,14 +40644,11 @@ MonoBehaviour:
     - "Stratum\u2019s soldiers are heartless. They\u2013like their goo\u2013are designed
       to impair subspees, and they anticipate our behavior in a scary precise way.
       Almost like they\u2026 understand us."
-    - "Brainless, crippled, and subspee-like? You can imagine how Stratum treats
-      them. They\u2019re as good as feeder fish for the tournament."
+    - "Brainless, crippled, and subspee-like? You can imagine how Stratum treats them.
+      They\u2019re as good as feeder fish for the tournament."
     - This trail is fresh. They must be near.
-    responses:
-    - Press "F" to continue...
-    - Press "F" to continue...
-    - Press "F" to continue...
-    - Press "F" to continue...
+    responses: [Press "F" to continue..., Press "F" to continue..., Press "F" to continue...,
+      Press "F" to continue...]
   prompt: {fileID: 634186791}
 --- !u!61 &1985841081
 BoxCollider2D:
@@ -40808,7 +40738,7 @@ PrefabInstance:
     - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.59
+      value: 169.49
       objectReference: {fileID: 0}
     - target: {fileID: 7609580416708899351, guid: dd04ea1b7654be243b39838fce2a508b,
         type: 3}
@@ -46823,9 +46753,7 @@ MonoBehaviour:
     - Aha, I see your capoeira is strong, but how's your futebol?
     - When it's too much to handle, one good kick of your soccerball should throw
       'em back and slow them down. Buys you a second to breathe.
-    responses:
-    - Press "F" to continue...
-    - Hit spacebar to knockback.
+    responses: [Press "F" to continue..., Hit spacebar to knockback.]
   theCam: {fileID: 1342856285}
   granGran: {fileID: 15427029}
   playerPos: {fileID: 1623648725}
@@ -46990,11 +46918,9 @@ MonoBehaviour:
     name: GRANDMA XELA
     sentences:
     - Huh. Guess you haven't lost your touch, afterall.
-    - But look, these enemies bite. When they come for you, swing out of the way
-      like a monkey to dodge.
-    responses:
-    - Press "F" to continue...
-    - 'Hit _ to perform a macaco. '
+    - But look, these enemies bite. When they come for you, swing out of the way like
+      a monkey to dodge.
+    responses: [Press "F" to continue..., 'Hit _ to perform a macaco. ']
   theCam: {fileID: 1342856285}
   granGran: {fileID: 917667097}
   playerPos: {fileID: 1623648725}

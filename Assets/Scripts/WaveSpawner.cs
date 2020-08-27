@@ -234,7 +234,10 @@ public class WaveSpawner : MonoBehaviour
                 return;
             }
             // Set the overhead bar ONCE--fixed an issue where it was resetting health for every enemy spawn
-            oh.SetOverhead(this, numWaves);
+            if (oh != null)
+            {
+                oh.SetOverhead(this, numWaves);
+            }
             Debug.Log("Total number of enemies on this floor: " + numEnemies);
             // Immediately spawn first wave upon walking into activationBox
             StartCoroutine(SpawnWave(waves[nextWave])); 

@@ -30,7 +30,7 @@ public class BallBall : MonoBehaviour
         Debug.Log(hitInfo.name);
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         Rigidbody2D enemyRb = hitInfo.GetComponent<Rigidbody2D>();
-        if (enemy != null)
+        if (enemy != null && !didHit)
         {
             didHit = true;
             //KNOCKBACK CODE
