@@ -10,10 +10,12 @@ public class PlayerCombat : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public GameObject healthCanvas;
+    [SerializeField]
     private bool isCombat;
 
     public GameObject respawn;
     public GameObject floatyText;
+    private GameObject GameOver;
 
     public Animator anim;
 
@@ -28,6 +30,7 @@ public class PlayerCombat : MonoBehaviour
     private Animator enemyAnim;
     private Enemy currentTarget;
     private GameObject flight;
+    private LevelLoader ll;
 
     [SerializeField] private int attackDamage;
     private int baseDamage = 25;
@@ -60,11 +63,13 @@ public class PlayerCombat : MonoBehaviour
 
     // this will be the only instance of PlayerCombat at any given time; can be referenced by other scripts
     public static PlayerCombat instance;
+    public bool nextLevel = false;
 
     CameraShake cs;
 
     private void Awake()
     {
+        GameOver = GameObject.Find("GameOver");
         Lives = 3;
     }
 
@@ -76,10 +81,12 @@ public class PlayerCombat : MonoBehaviour
         regSpeed = mp.runSpeed;
         attackDamage = baseDamage;
 
+        GameOver.SetActive(false);
         healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
         cs = FindObjectOfType<CameraShake>();
+        ll = FindObjectOfType<LevelLoader>();
     }
 
     // Update is called once per frame
@@ -169,6 +176,7 @@ public class PlayerCombat : MonoBehaviour
 
     void ShowFloatyText(int damage)
     {
+        //cause floaty text to flip with Player object
         var go = Instantiate(floatyText, transform.position + transform.up * 3, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = damage.ToString();
     }
@@ -186,7 +194,7 @@ public class PlayerCombat : MonoBehaviour
     void Die()
     {
         Lives--;
-        Debug.Log(Lives);
+        healthBar.AdjustLives(Lives);
         dead = true;
         anim.SetBool("isWalking", false);
         anim.SetBool("IsDead", true);
@@ -199,7 +207,14 @@ public class PlayerCombat : MonoBehaviour
         mp.enabled = false;
         // healthCanvas.SetActive(false);
 
-        Invoke("Respawn", 3.5f);
+        if (ll != null && nextLevel)
+        {
+            ll.LoadNextLevel();
+        }
+        else
+        {
+            Invoke("Respawn", 3.5f);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -276,13 +291,25 @@ public class PlayerCombat : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
             this.enabled = true;
             mp.enabled = true;
-            healthCanvas.SetActive(true);
 
             Start();
         }
         else
         {
+            GameOver.SetActive(true);
+            healthCanvas.SetActive(false);
             Debug.Log("Game Over foo!");
         }
     }
+
+    //if player dies in tutorial swarm area
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "DeathCheck")
+        {
+            Debug.Log("touched me");
+            nextLevel = true;
+        }
+    }
 }
+

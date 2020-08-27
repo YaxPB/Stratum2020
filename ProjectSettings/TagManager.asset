@@ -14,6 +14,8 @@ TagManager:
   - Door
   - SFX
   - NextLevel
+  - DeathCheck
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
