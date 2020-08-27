@@ -44,7 +44,7 @@ public class Ball : MonoBehaviour
     {
         if(!flight.didHit)
         {
-            Destroy(flight);
+            Destroy(flight.gameObject);
         }
     }
 }

@@ -45,7 +45,7 @@ public class PlayerCombat : MonoBehaviour
     public MovePlayer mp;
     public float regSpeed;
 
-    public float musicCoolDown = 5f;
+    public float musicCoolDown = 5f;    
     private float nextMusic = 0;
 
     //despawn timer lol
@@ -68,10 +68,13 @@ public class PlayerCombat : MonoBehaviour
     CameraShake cs;
     SpriteRenderer sp;
 
+    public Color StartColor = new Color(1, 1, 1, 0);
+    public Color EndColor = new Color(1,1,1,1);
+    public float respawn_time = 3f;
+
     private void Awake()
     {
         GameOver = GameObject.Find("GameOver");
-        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         cs = FindObjectOfType<CameraShake>();
         ll = FindObjectOfType<LevelLoader>();
         sp = GetComponentInChildren<SpriteRenderer>();
@@ -83,6 +86,7 @@ public class PlayerCombat : MonoBehaviour
     {
         instance = this;
         currentHealth = maxHealth;
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         regSpeed = mp.runSpeed;
         attackDamage = baseDamage;
 
@@ -295,7 +299,7 @@ public class PlayerCombat : MonoBehaviour
             mp.enabled = true;
 
             Start();
-            Invoke("Respawning", 3f);
+            StartCoroutine(Respawning());
         }
         else
         {
@@ -314,8 +318,20 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    void Respawning()
+    private IEnumerator Respawning()
     {
+        //receive second opinion of this routine
+        float timeElapsed = 0f;
+        float totalTime = respawn_time;
+
+        while (timeElapsed < totalTime)
+        {
+            Debug.Log("changing color");
+            timeElapsed += Time.deltaTime;
+            sp.color = Color.Lerp(new Color(1,1,1,0), new Color(1,1,1,1), timeElapsed / totalTime);
+            yield return null;
+        }
+
         dead = false;
     }
 }
