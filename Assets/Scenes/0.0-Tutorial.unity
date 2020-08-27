@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8456,14 +8456,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Grandma Xela
+    name: GRANDMA XELA
     sentences:
     - You know these moves like the back of your hand. When you're close enough to
       an enemy, strike them with a kick the strength of a hammer.
     responses:
-    - Sup Gma
-    - Damn... still shreddin in the after life I see...
-    - HELL YEAH I AM BRING IT!
+    - "Left click to perform a martelo de ch\xE3o."
   theCam: {fileID: 1342856285}
   granGran: {fileID: 1997074459}
   playerPos: {fileID: 1623648725}
@@ -8801,7 +8799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Xadri
+    name: XADRI
     sentences:
     - I was so little then, when grandma used to take me to train in the city. I
       miss her. Is it wrong to miss someone who's better off now?
@@ -8810,7 +8808,10 @@ MonoBehaviour:
     - Honor's a... strong word. Honor is not smearing the statue of our leader. Honor
       is winning Stratum's tournament and getting out of this hellhole once and for
       all.
-    responses: []
+    responses:
+    - Press "F" to continue...
+    - Press "F" to continue...
+    - Press "F" to continue...
   prompt: {fileID: 634186791}
 --- !u!61 &675732074
 BoxCollider2D:
@@ -9415,16 +9416,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Grandma Xela
+    name: GRANDMA XELA
     sentences:
     - "You\u2019re out of shape, I see. Tsk, tsk. So close to the competition? Don't
       tell me all that fried coxinha's made you go soft."
     - "C\u2019mon now, there isn\u2019t much time. If you want to be a legend like
       me, you\u2019re gonna have to work for it, Xadrinha."
     responses:
-    - 
-    - 
-    - 
+    - 'XADRI: Grandma? Is that you? '
+    - Press "F" to continue...
   theCam: {fileID: 1342856285}
   granGran: {fileID: 1992739978}
   playerPos: {fileID: 1623648725}
@@ -14872,7 +14872,7 @@ PrefabInstance:
     - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_Text
-      value: Xadri
+      value: XADRI
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14907,7 +14907,7 @@ PrefabInstance:
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14943,7 +14943,7 @@ PrefabInstance:
     - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14954,6 +14954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14969,7 +14974,7 @@ PrefabInstance:
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 15
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14979,17 +14984,22 @@ PrefabInstance:
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.745283
       objectReference: {fileID: 0}
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.35794666
+      value: 0.25220963
       objectReference: {fileID: 0}
     - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5173205078078907272, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -14999,7 +15009,7 @@ PrefabInstance:
     - target: {fileID: 5173205078078907272, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -69
+      value: -65.499954
       objectReference: {fileID: 0}
     - target: {fileID: 5173205078078907272, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -33916,7 +33926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Xadri
+    name: XADRI
     sentences:
     - "I can\u2019t believe they still have these up \u2018round here. Stratum initially
       installed them to make sure we wouldn\u2019t practice our \u201Cdirty magic\u201D
@@ -33927,7 +33937,10 @@ MonoBehaviour:
       What they mean is, we\u2019re the trouble."
     - "Officers love an excuse to tie a Cinerian\u2019s hands behind their back.
       I just keep out of it and focus on the way out."
-    responses: []
+    responses:
+    - Press "F" to continue...
+    - Press "F" to continue...
+    - Press "F" to continue...
   prompt: {fileID: 634186791}
 --- !u!61 &1722968261
 BoxCollider2D:
@@ -34833,7 +34846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Grandma Xela
+    name: GRANDMA XELA
     sentences:
     - You've grown strong, Xadrinha.
     - I have, but I forgot to teach you something very important before I left...
@@ -34842,7 +34855,13 @@ MonoBehaviour:
     - Xadri. Look at me. The enemy isn't who you think it is.
     - "I can\u2019t tell you that, beb\xEA. Just promise me you'll keep your eyes
       open."
-    responses: []
+    responses:
+    - 'XADRI: You''ve taught me well.'
+    - 'XADRI: ...'
+    - "XADRI: Don't worry, vov\xF3, I'm gonna kick those Stratum bots\u2019 butts
+      and win the tournament, just like you!"
+    - 'XADRI: What do you mean?'
+    - 'XADRI: Grandma?! Grandma!'
   theCam: {fileID: 1342856285}
   granGran: {fileID: 142504299}
   playerPos: {fileID: 1623648725}
@@ -40686,7 +40705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Enemy Goo
+    name: XADRI
     sentences:
     - This is that lethal magic goo that grandma always warned me about...
     - "Stratum\u2019s soldiers are heartless. They\u2013like their goo\u2013are designed
@@ -40695,7 +40714,11 @@ MonoBehaviour:
     - "Brainless, crippled, and subspee-like? You can imagine how Stratum treats
       them. They\u2019re as good as feeder fish for the tournament."
     - This trail is fresh. They must be near.
-    responses: []
+    responses:
+    - Press "F" to continue...
+    - Press "F" to continue...
+    - Press "F" to continue...
+    - Press "F" to continue...
   prompt: {fileID: 634186791}
 --- !u!61 &1985841081
 BoxCollider2D:
@@ -46795,12 +46818,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Grandma Xela
+    name: GRANDMA XELA
     sentences:
     - Aha, I see your capoeira is strong, but how's your futebol?
     - When it's too much to handle, one good kick of your soccerball should throw
       'em back and slow them down. Buys you a second to breathe.
-    responses: []
+    responses:
+    - Press "F" to continue...
+    - Hit spacebar to knockback.
   theCam: {fileID: 1342856285}
   granGran: {fileID: 15427029}
   playerPos: {fileID: 1623648725}
@@ -46962,12 +46987,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Grandma Xela
+    name: GRANDMA XELA
     sentences:
     - Huh. Guess you haven't lost your touch, afterall.
     - But look, these enemies bite. When they come for you, swing out of the way
       like a monkey to dodge.
-    responses: []
+    responses:
+    - Press "F" to continue...
+    - 'Hit _ to perform a macaco. '
   theCam: {fileID: 1342856285}
   granGran: {fileID: 917667097}
   playerPos: {fileID: 1623648725}

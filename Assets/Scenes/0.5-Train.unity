@@ -16698,7 +16698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Poster
+    name: XADRI
     sentences:
     - -sigh- That's Riley. They're last year's champion and made history as Stratum's
       first single-armed champion. They're also forever too cool for me.
@@ -16707,7 +16707,10 @@ MonoBehaviour:
       arm. I hope they\u2019re up there pointing their flame at Stratum normies and
       demanding justice for subspees as I speak."
     - Riley had the best biceps. Mm... anyway.
-    responses: []
+    responses:
+    - Press "F" to continue...
+    - Press "F" to continue...
+    - Press "F" to continue...
   prompt: {fileID: 1112906423}
 --- !u!61 &1391237202
 BoxCollider2D:
@@ -22727,7 +22730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theDialogue:
-    name: Graffiti
+    name: XADRI
     sentences:
     - "This movement for equal rights for the subspirited has been around for as
       long as I can remember. Cinerians are tired of being policed, shackled, segregated,
@@ -22739,7 +22742,10 @@ MonoBehaviour:
     - "But I mean, doesn't Stratum give us a way out? My Grandma\u2019s victory shows
       that this tournament\u2019s our chance to prove ourselves, and I dunno about
       the rest of \u2018em, but I\u2019ll take my ticket out, thanks."
-    responses: []
+    responses:
+    - Press "F" to continue...
+    - Press "F" to continue...
+    - Press "F" to continue...
   prompt: {fileID: 1112906423}
 --- !u!61 &2009255648
 BoxCollider2D:
