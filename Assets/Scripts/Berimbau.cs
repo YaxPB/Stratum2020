@@ -11,6 +11,8 @@ public class Berimbau : MonoBehaviour
     public Image beatZone;
     private Animator beatZoneAnim;
     public ParticleSystem attackUP;
+    //particle system to show berimbau buff on/off
+    public ParticleSystem buffVisual;
     MovePlayer mp;
 
     private RectTransform textRotation;
@@ -37,11 +39,11 @@ public class Berimbau : MonoBehaviour
 
     private void Update()
     {
-        // Mostly for testing, enables left-click to shortcut berimbau prompts
+        /*Mostly for testing, enables left-click to shortcut berimbau prompts
         if (Input.GetButtonDown("Fire1"))
         {
             BeatHit();
-        }
+        }*/
 
         if(hitThisButton.text.Equals("W"))
         {
@@ -114,11 +116,11 @@ public class Berimbau : MonoBehaviour
         if (count == 0)
         {
             PlayerCombat.instance.SendMessage("BuffBoi", multiplier);
-            // NEVER put "stuff" or "thing" in code
-            Invoke("ResetStuff", 5f);
+            Invoke("ResetStats", 5f);
             multiplier = 0;
             count = 4;
             beatTimer.gameObject.SetActive(false);
+            buffVisual.Play();
         }
         int timerRotationZ = Random.Range(0, 360);
         int whichButton = Random.Range(0, 3);
@@ -137,8 +139,9 @@ public class Berimbau : MonoBehaviour
         count--;
     }
 
-    public void ResetStuff()
+    public void ResetStats()
     {
+        buffVisual.Stop();
         mp.runSpeed = regSpeed;
         cool.berimbauIsCooling = true;
     }

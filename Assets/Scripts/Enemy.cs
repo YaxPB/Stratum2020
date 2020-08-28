@@ -304,7 +304,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Music"))
         {
@@ -317,7 +317,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("oh nooo i'm stunned");
         isStunned = true;
         speed = 0;
-    }
+    }*/
 
     void NotStunned()
     {

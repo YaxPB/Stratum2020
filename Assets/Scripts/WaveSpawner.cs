@@ -233,7 +233,7 @@ public class WaveSpawner : MonoBehaviour
                 StartCoroutine(SelfDestruct());
                 return;
             }
-            // Set the overhead bar ONCE--fixed an issue where it was resetting health for every enemy spawn
+            
             if (oh != null)
             {
                 oh.SetOverhead(this, numWaves);
@@ -248,7 +248,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 //manipulate camera values
                 cf.XMinValue = borderL.transform.position.x + 5;
-                cf.XMaxValue = borderR.transform.position.x - 5;
+                //cf.XMaxValue = borderR.transform.position.x - 5;
             }
 
             // Activates magical flame walls to confine player
