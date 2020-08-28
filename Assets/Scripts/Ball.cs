@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
     
     BallBall flight;
     private Cooldown cool;
+    public Animator anim;
 
     private void Awake()
     {
@@ -27,7 +28,8 @@ public class Ball : MonoBehaviour
         {
             if (Input.GetButtonDown("Kick"))
             {
-                Shoot();
+                anim.SetTrigger("Ballin");
+                Invoke("Shoot",0.35f);
                 cool.ballIsCooling = true;
                 nextBall = Time.time + ballCoolDown;
             }
