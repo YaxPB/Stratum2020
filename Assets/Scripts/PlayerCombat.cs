@@ -68,9 +68,9 @@ public class PlayerCombat : MonoBehaviour
     CameraShake cs;
     SpriteRenderer sp;
 
-    public Color StartColor = new Color(1, 1, 1, 0);
-    public Color EndColor = new Color(1,1,1,1);
-    public float respawn_time = 3f;
+    private float respawn_time = 3f;
+
+    public bool timeToRestart = false;
 
     private void Awake()
     {
@@ -287,7 +287,7 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    void Respawn()
+    public void Respawn()
     {
         if(Lives > 0)
         {
@@ -303,6 +303,7 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
+            timeToRestart = true;
             GameOver.SetActive(true);
             healthCanvas.SetActive(false);
         }
@@ -313,25 +314,20 @@ public class PlayerCombat : MonoBehaviour
     {
         if(collision.tag == "DeathCheck")
         {
-            Debug.Log("touched me");
             nextLevel = true;
         }
     }
 
     private IEnumerator Respawning()
     {
-        //receive second opinion of this routine
         float timeElapsed = 0f;
         float totalTime = respawn_time;
-
         while (timeElapsed < totalTime)
         {
-            Debug.Log("changing color");
             timeElapsed += Time.deltaTime;
             sp.color = Color.Lerp(new Color(1,1,1,0), new Color(1,1,1,1), timeElapsed / totalTime);
             yield return null;
         }
-
         dead = false;
     }
 }

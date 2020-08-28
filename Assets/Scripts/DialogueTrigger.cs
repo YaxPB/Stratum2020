@@ -37,7 +37,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             prompt.SetActive(true);
             withinRange = true;
-            Debug.Log("Entering interactable area.");
+            //Debug.Log("Entering interactable area.");
         } // If the player enters the isTrigger collider of an interactable object
     }
 
@@ -48,13 +48,13 @@ public class DialogueTrigger : MonoBehaviour
         {
             prompt.SetActive(false);
             withinRange = false;
-            Debug.Log("Now exiting interactable area.");
+            //Debug.Log("Now exiting interactable area.");
         } // If the player exits the isTrigger collider of an interactable object
     }
 
     public void TriggerDialogue()
     {
-        Debug.Log("Dialogue Triggered.");
+        //Debug.Log("Dialogue Triggered.");
         FindObjectOfType<DialogueManager>().StartDialogue(theDialogue);
     }
 }
