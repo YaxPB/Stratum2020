@@ -8,7 +8,7 @@ public class AudioManagerSFX : MonoBehaviour
     public static AudioSource theSource;
     public static AudioClip playerFootsteps, playerHIT, playerHITLamp, berimBAM, attackUP;
     public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHIT, enemyDie;
-    public static AudioClip ballIsLife, ballHIT, dodge, doorOpen, healthPickup, lampBreak, pandeiro, typingText;
+    public static AudioClip ballIsLife, ballHIT, crowdCheer, crowdClaps, dodge, doorOpen, healthPickup, lampBreak, pandeiro, typingText;
     public static float pitchRandom = 0.1f;
 
     // Start is called before the first frame update
@@ -17,6 +17,8 @@ public class AudioManagerSFX : MonoBehaviour
         ballHIT = Resources.Load<AudioClip>("Sounds/aud_ballHit1");
         ballIsLife = Resources.Load<AudioClip>("Sounds/aud_ballKick1");
         berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimbauNote2");
+        crowdCheer = Resources.Load<AudioClip>("Sounds/aud_crowdCheer1");
+        crowdClaps = Resources.Load<AudioClip>("Sounds/aud_crowdClap1");
         dodge = Resources.Load<AudioClip>("Sounds/aud_dodge1");
         doorOpen = Resources.Load<AudioClip>("Sounds/aud_doorOpen");
         healthPickup = Resources.Load<AudioClip>("Sounds/aud_healthPickup");
@@ -108,6 +110,11 @@ public class AudioManagerSFX : MonoBehaviour
                 break;
             case "healthUP":
                 theSource.PlayOneShot(healthPickup);
+                break;
+            case "hoorah":
+                theSource.loop = true;
+                theSource.clip = crowdCheer;
+                theSource.PlayOneShot(crowdClaps);
                 break;
         }
 
