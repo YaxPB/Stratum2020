@@ -6,15 +6,16 @@ public class AudioManagerSFX : MonoBehaviour
 {
     public static AudioManagerSFX instance;
     public static AudioSource theSource;
-    public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, doorOpen, typingText, lampBreak, pandeiro, attackUP;
+    public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, attackUP;
     public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHit, enemyDie;
-    public static AudioClip healthPickup;
+    public static AudioClip dodge, doorOpen, healthPickup, lampBreak, pandeiro, typingText;
     public static float pitchRandom = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
         berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimbauNote2");
+        dodge = Resources.Load<AudioClip>("Sounds/aud_dodge1");
         doorOpen = Resources.Load<AudioClip>("Sounds/aud_doorOpen");
         lampBreak = Resources.Load<AudioClip>("Sounds/aud_lampCrash1");
         pandeiro = Resources.Load<AudioClip>("Sounds/aud_pandeiro1");
@@ -49,6 +50,9 @@ public class AudioManagerSFX : MonoBehaviour
             case "run":
                 theSource.pitch = Random.Range(1.0f - pitchRandom, 1.0f + pitchRandom);
                 theSource.PlayOneShot(playerFootsteps); 
+                break;
+            case "dodge":
+                theSource.PlayOneShot(dodge);
                 break;
             case "kickEnemy":
                 // theSource.PlayOneShot(berimBAM);

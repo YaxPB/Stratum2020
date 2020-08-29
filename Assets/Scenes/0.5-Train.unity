@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 101957051}
   - component: {fileID: 101957050}
   m_Layer: 0
-  m_Name: GrandmaTrigger_0
+  m_Name: DialogueTrigger_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
     sentences:
     - yall bout to die.
     responses:
-    - F to do the thing
+    - 
   theCam: {fileID: 357245703}
   granGran: {fileID: 1054841078}
   playerPos: {fileID: 845693173}
@@ -184,7 +184,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 25}
+  m_Size: {x: 3, y: 25}
   m_EdgeRadius: 0
 --- !u!4 &101957052
 Transform:
@@ -194,11 +194,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101957049}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.53, y: -4.66, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalPosition: {x: 16, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &189109718
 GameObject:
@@ -5067,7 +5067,7 @@ Transform:
   - {fileID: 949647251}
   - {fileID: 1564139522}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &275640830
 GameObject:
@@ -10268,7 +10268,7 @@ PrefabInstance:
     - target: {fileID: 2552370735599090258, guid: 950be4f05e0db094190e1b7b14a37741,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2552370735599090258, guid: 950be4f05e0db094190e1b7b14a37741,
         type: 3}
@@ -25635,6 +25635,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4326413263352028204, guid: 1f0081dedd29a6f4aa3ebc78720d17eb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 800
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f0081dedd29a6f4aa3ebc78720d17eb, type: 3}
 --- !u!1001 &995554925
@@ -25907,11 +25912,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054841078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.31, y: -3.32, z: -5.723633}
+  m_LocalPosition: {x: -0.31, y: -3.31, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1081191726
 GameObject:
@@ -26309,7 +26314,7 @@ Transform:
   m_LocalScale: {x: 8.6875, y: 29.836563, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1365200499
 GameObject:
@@ -26430,13 +26435,14 @@ MonoBehaviour:
       first single-armed champion. They're also forever too cool for me.
     - "Their victory made the papers, but Riley would\u2019ve set someone aflame
       if they knew Stratum\u2019s been referring to their flaming forearm as a \u201Cmissing\u201D
-      arm. I hope they\u2019re up there pointing their flame at Stratum normies and
-      demanding justice for subspees as I speak."
+      arm. "
+    - "I hope they\u2019re up there pointing their flame at Stratum normies and demanding
+      justice for subspees as I speak."
     - Riley had the best biceps. Mm... anyway.
     responses:
-    - Press "F" to continue...
-    - Press "F" to continue...
-    - Press "F" to continue...
+    - 
+    - 
+    - 
   prompt: {fileID: 1112906423}
 --- !u!61 &1391237202
 BoxCollider2D:
@@ -31710,7 +31716,7 @@ PrefabInstance:
     - target: {fileID: 287045499807818721, guid: 0f07934cb0180304fa8eb4c1cf19222f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 287045499807818721, guid: 0f07934cb0180304fa8eb4c1cf19222f,
         type: 3}
@@ -32206,9 +32212,9 @@ MonoBehaviour:
       long as I can remember. Cinerians are tired of being policed, shackled, segregated,
       and gatekept. This can\u2019t be how our story ends."
     - "Stratum still holds this age-old belief that subspees are spiritually imbalanced
-      because our magic \u201Cleaked\u201D from our minds into our bodies. We\u2019re
-      not the super-minded normies Stratum loves and expects. Our powers are unpredictable,
-      and they don\u2019t like \"unpredictable.\""
+      because our magic \u201Cleaked\u201D from our minds into our bodies. "
+    - "We\u2019re not the super-minded normies Stratum loves and expects. Our powers
+      are unpredictable, and they don\u2019t like \"unpredictable.\""
     - "But I mean, doesn't Stratum give us a way out? My Grandma\u2019s victory shows
       that this tournament\u2019s our chance to prove ourselves, and I dunno about
       the rest of \u2018em, but I\u2019ll take my ticket out, thanks."

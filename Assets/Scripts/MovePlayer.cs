@@ -98,6 +98,7 @@ public class MovePlayer : MonoBehaviour
             {
                 if (Input.GetButtonDown("Dodge"))
                 {
+                    AudioManagerSFX.PlaySound("dodge");
                     isDodging = true;
                     animator.SetTrigger("Dodging");
                     StartCoroutine(BeginDodgeRoll());
