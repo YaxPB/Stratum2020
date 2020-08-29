@@ -154,9 +154,11 @@ MonoBehaviour:
   theDialogue:
     name: ANNOUCEMENT
     sentences:
-    - yall bout to die.
+    - All contestants please make your way into the Main Arena!
+    - Oh, and uh... good luck.
     responses:
-    - 
+    - There's no turning back.
+    - Time to kick some stratumBot butt!
   theCam: {fileID: 357245703}
   granGran: {fileID: 1054841078}
   playerPos: {fileID: 845693173}

@@ -27,9 +27,12 @@ public class GrandmaTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            if(grandmaAnim != null)
+            {
+                grandmaAnim.SetBool("isSpeaking", true);
+                granGran.GetComponentInChildren<ParticleSystem>().Play();
+            }
             theCam.GetComponent<CameraFollow>().target = grandmaPos;
-            grandmaAnim.SetBool("isSpeaking", true);
-            granGran.GetComponentInChildren<ParticleSystem>().Play();
             TriggerDialogue();
             Debug.Log("Entering interactable area.");
         } // If the player enters the isTrigger collider of an interactable object
@@ -44,8 +47,11 @@ public class GrandmaTrigger : MonoBehaviour
 
     public void ResetCam()
     {
-        grandmaAnim.SetBool("isSpeaking", false);
-        granGran.GetComponentInChildren<ParticleSystem>().Stop();
+        if(grandmaAnim != null)
+        {
+            grandmaAnim.SetBool("isSpeaking", false);
+            granGran.GetComponentInChildren<ParticleSystem>().Stop();
+        }
         // Reset camera to resume following player
         theCam.GetComponent<CameraFollow>().target = playerPos;
         // So the dialogue attached to this object can only be played once
