@@ -84,7 +84,7 @@ public class MovePlayer : MonoBehaviour
         {
             AudioManagerSFX.PlaySound("run");
             // Can change this to adjust speed of footstep sounds
-            stepOffset = 0.25f;
+            stepOffset = 0.3f;
         }
 
         if (rollTime > 0)
@@ -141,7 +141,6 @@ public class MovePlayer : MonoBehaviour
             berimbauBeatDownTimer.Rotate(0f, -180f, 0f);
             // Prevents the berimbau timer from flipping erratically
             // berimbauBeatDownTimer.Rotate(0f, -180f, -gameObject.transform.eulerAngles.z);
-            // Note to self: Rotation issue is happening because of the way the randomized angle.z thing is set up in Berimbau
         }
     }
 

@@ -8,6 +8,7 @@ public class AudioManagerSFX : MonoBehaviour
     public static AudioSource theSource;
     public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, doorOpen, typingText, lampBreak, pandeiro, attackUP;
     public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHit, enemyDie;
+    public static AudioClip healthPickup;
     public static float pitchRandom = 0.1f;
 
     // Start is called before the first frame update
@@ -27,6 +28,8 @@ public class AudioManagerSFX : MonoBehaviour
         playerHit = Resources.Load<AudioClip>("Sounds/aud_kick4");
         playerHitLamp = Resources.Load<AudioClip>("Sounds/aud_lampHit1");
         attackUP = Resources.Load<AudioClip>("Sounds/berimbauPowerUP");
+
+        healthPickup = Resources.Load<AudioClip>("Sounds/aud_healthPickup");
         
         theSource = GetComponent<AudioSource>();
         if(theSource == null)
@@ -52,7 +55,7 @@ public class AudioManagerSFX : MonoBehaviour
                 theSource.PlayOneShot(playerHit);
                 theSource.volume = 1f;
                 theSource.clip = enemyHit;
-                theSource.PlayDelayed(0.2f);
+                theSource.PlayDelayed(0.15f);
                 break;
             case "kickLamp":
                 theSource.PlayOneShot(playerHit);
@@ -90,6 +93,9 @@ public class AudioManagerSFX : MonoBehaviour
                 break;
             case "attackUP":
                 theSource.PlayOneShot(attackUP);
+                break;
+            case "healthUP":
+                theSource.PlayOneShot(healthPickup);
                 break;
         }
 

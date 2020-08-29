@@ -112,15 +112,16 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
 
-        }
-        if (Time.time > nextMusic)
-        {
-            //mp.runSpeed = regSpeed;
-            if (Input.GetButtonDown("Berimbau"))
+            if (Time.time > nextMusic)
             {
-                Music();
-                nextMusic = Time.time + musicCoolDown;
+                //mp.runSpeed = regSpeed;
+                if (Input.GetButtonDown("Berimbau"))
+                {
+                    Music();
+                    nextMusic = Time.time + musicCoolDown;
+                }
             }
+
         }
     }
 

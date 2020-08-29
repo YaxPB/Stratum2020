@@ -29,7 +29,7 @@ public class CombatZone : MonoBehaviour
     {
         // Because enemy objects are destroyed, if index 0 is null, it SHOULD be that the zone has been cleared
         // i.e. Check if there are any enemies left in a given combatZone
-        if (hitEnemies.Length <= 0)
+        if (hitEnemies.Length <= 0 && spawnPoints.Length <= 0)
         {
             Debug.Log("Beep boop");
             // If all enemies have been defeated, player may progress to next area
