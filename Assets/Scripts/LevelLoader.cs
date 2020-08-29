@@ -18,7 +18,12 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(mp != null)
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            LoadNextLevel();
+        }
+
+        if (mp != null)
         {
             if (mp.load)
             {
@@ -35,7 +40,7 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         //change index after adding credits and comic
-        if (levelIndex <= 4)
+        if (levelIndex <= 6)
         {
             if (mp != null)
             {
