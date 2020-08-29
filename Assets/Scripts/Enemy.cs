@@ -325,24 +325,13 @@ public class Enemy : MonoBehaviour
         speed = regSpeed;
     }
 
-    void LockedOn(bool linedUp)
-    {
-        if (!linedUp)
-        {
-            hitMe.enabled = false;
-        }
-        Debug.Log("Locked on!");
-        hitMe.enabled = true;
-        hitMe.SetBool("isCombat", true);
-        hitMe.SetBool("withinRange", true);
-    }
-
     void ByeVomit()
     {
         if (!flight.didHit)
         {
             Destroy(flight);
         }
+        Destroy(flight, 5f);
     }
 
     void StopBlock()

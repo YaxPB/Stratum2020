@@ -6,31 +6,32 @@ public class AudioManagerSFX : MonoBehaviour
 {
     public static AudioManagerSFX instance;
     public static AudioSource theSource;
-    public static AudioClip playerFootsteps, playerHit, playerHitLamp, berimBAM, attackUP;
-    public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHit, enemyDie;
-    public static AudioClip dodge, doorOpen, healthPickup, lampBreak, pandeiro, typingText;
+    public static AudioClip playerFootsteps, playerHIT, playerHITLamp, berimBAM, attackUP;
+    public static AudioClip enemyGrowl, enemyBasicAttack, enemyStrongAttack, enemyHIT, enemyDie;
+    public static AudioClip ballIsLife, ballHIT, dodge, doorOpen, healthPickup, lampBreak, pandeiro, typingText;
     public static float pitchRandom = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
+        ballHIT = Resources.Load<AudioClip>("Sounds/aud_ballHit1");
+        ballIsLife = Resources.Load<AudioClip>("Sounds/aud_ballKick1");
         berimBAM = Resources.Load<AudioClip>("Sounds/aud_berimbauNote2");
         dodge = Resources.Load<AudioClip>("Sounds/aud_dodge1");
         doorOpen = Resources.Load<AudioClip>("Sounds/aud_doorOpen");
+        healthPickup = Resources.Load<AudioClip>("Sounds/aud_healthPickup");
         lampBreak = Resources.Load<AudioClip>("Sounds/aud_lampCrash1");
         pandeiro = Resources.Load<AudioClip>("Sounds/aud_pandeiro1");
         typingText = Resources.Load<AudioClip>("Sounds/aud_textBlip1");
 
         enemyBasicAttack = Resources.Load<AudioClip>("Sounds/aud_kick5");
-        enemyHit = Resources.Load<AudioClip>("Sounds/aud_enemyTakeDamage");
+        enemyHIT = Resources.Load<AudioClip>("Sounds/aud_enemyTakeDamage");
         enemyDie = Resources.Load<AudioClip>("Sounds/aud_enemyDies");
 
         playerFootsteps = Resources.Load<AudioClip>("Sounds/aud_footsteps1");
-        playerHit = Resources.Load<AudioClip>("Sounds/aud_kick4");
-        playerHitLamp = Resources.Load<AudioClip>("Sounds/aud_lampHit1");
+        playerHIT = Resources.Load<AudioClip>("Sounds/aud_kick4");
+        playerHITLamp = Resources.Load<AudioClip>("Sounds/aud_lampHit1");
         attackUP = Resources.Load<AudioClip>("Sounds/berimbauPowerUP");
-
-        healthPickup = Resources.Load<AudioClip>("Sounds/aud_healthPickup");
         
         theSource = GetComponent<AudioSource>();
         if(theSource == null)
@@ -56,20 +57,26 @@ public class AudioManagerSFX : MonoBehaviour
                 break;
             case "kickEnemy":
                 // theSource.PlayOneShot(berimBAM);
-                theSource.PlayOneShot(playerHit);
+                theSource.PlayOneShot(playerHIT);
                 theSource.volume = 1f;
                 break;
             case "enemyHIT":
-                theSource.PlayOneShot(enemyHit);
+                theSource.PlayOneShot(enemyHIT);
                 break;
             case "kickLamp":
-                theSource.PlayOneShot(playerHit);
+                theSource.PlayOneShot(playerHIT);
                 theSource.pitch = Random.Range(1.0f - pitchRandom, 1.0f + pitchRandom);
-                theSource.PlayOneShot(playerHitLamp);
+                theSource.PlayOneShot(playerHITLamp);
                 break;
             case "lampBreak":
                 theSource.clip = lampBreak;
                 theSource.PlayDelayed(0.5f);
+                break;
+            case "ballIsLife":
+                theSource.PlayOneShot(ballIsLife);
+                break;
+            case "ballHIT":
+                theSource.PlayOneShot(ballHIT);
                 break;
             case "open":
                 theSource.PlayOneShot(doorOpen);

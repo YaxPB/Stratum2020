@@ -28,6 +28,7 @@ public class Ball : MonoBehaviour
         {
             if (Input.GetButtonDown("Kick"))
             {
+                AudioManagerSFX.PlaySound("ballIsLife");
                 anim.SetTrigger("Ballin");
                 Invoke("Shoot",0.35f);
                 cool.ballIsCooling = true;
@@ -48,5 +49,7 @@ public class Ball : MonoBehaviour
         {
             Destroy(flight.gameObject);
         }
+        // So even if the ball doesn't collide, will destroy instance after 10f
+        Destroy(flight.gameObject, 10f);
     }
 }

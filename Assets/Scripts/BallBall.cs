@@ -32,6 +32,7 @@ public class BallBall : MonoBehaviour
         Rigidbody2D enemyRb = hitInfo.GetComponent<Rigidbody2D>();
         if (enemy != null && !didHit)
         {
+            AudioManagerSFX.PlaySound("ballHIT");
             didHit = true;
             //KNOCKBACK CODE
             enemy.speed = enemy.speed/2;

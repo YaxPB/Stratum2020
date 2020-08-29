@@ -145,7 +145,7 @@ public class WaveSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         nextArrow.enabled = false;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 
