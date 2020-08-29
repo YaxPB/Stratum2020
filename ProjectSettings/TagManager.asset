@@ -3,19 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Border
-  - Beat
-  - Music
-  - Overhead
-  - Barrier
-  - PewPew
-  - Door
-  - SFX
-  - NextLevel
-  - DeathCheck
-  - SpawnPoint
+  tags: [Enemy, Border, Beat, Music, Overhead, Barrier, PewPew, Door, SFX, NextLevel,
+    Enemy, Border, Beat, Music, Overhead, Barrier, PewPew, Door, SFX, NextLevel, DeathCheck,
+    SpawnPoint]
   layers:
   - Default
   - TransparentFX
