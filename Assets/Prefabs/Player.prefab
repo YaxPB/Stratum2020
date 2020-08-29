@@ -5809,6 +5809,11 @@ PrefabInstance:
       propertyPath: buffVisual
       value: 
       objectReference: {fileID: 1191321964249892975}
+    - target: {fileID: 6690911817887895519, guid: d9ccd36a8b0d98e408352f5a65f1c83c,
+        type: 3}
+      propertyPath: attackUP
+      value: 
+      objectReference: {fileID: 306988780}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ccd36a8b0d98e408352f5a65f1c83c, type: 3}
 --- !u!1 &7228140114664218548 stripped
