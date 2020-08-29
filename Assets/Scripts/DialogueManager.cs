@@ -95,7 +95,7 @@ public class DialogueManager : MonoBehaviour
             return;
         } // if there are no more sentences to display
 
-        Debug.Log("Current count is " + sentences.Count);
+        //Debug.Log("Current count is " + sentences.Count);
 
         // Pop the bottom (first) sentence off the queue
         string sentence = sentences.Dequeue();
@@ -147,7 +147,7 @@ public class DialogueManager : MonoBehaviour
         AudioManagerSFX.theSource.Stop();
         MovePlayer.instance.canMove = true;
         // Closes the dialogue box and ends the conversation
-        Debug.Log("End of conversation.");
+        //Debug.Log("End of conversation.");
         animator.SetBool("isOpen", false);
         // Reset variable for future conversations
         pressedTimes = 0;

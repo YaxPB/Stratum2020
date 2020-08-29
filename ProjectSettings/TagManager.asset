@@ -16,6 +16,18 @@ TagManager:
   - NextLevel
   - DeathCheck
   - SpawnPoint
+  - Enemy
+  - Border
+  - Beat
+  - Music
+  - Overhead
+  - Barrier
+  - PewPew
+  - Door
+  - SFX
+  - NextLevel
+  - DeathCheck
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

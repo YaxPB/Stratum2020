@@ -151,22 +151,18 @@ public class MovePlayer : MonoBehaviour
         switch (direction)
         {
             case 1:
-                Debug.Log("rolled left");
                 rb.velocity = Vector2.left * rollSpeed;
                 direction = 0;
                 break;
             case 2:
-                Debug.Log("rolled right");
                 rb.velocity = Vector2.right * rollSpeed;
                 direction = 0;
                 break;
             case 3:
-                Debug.Log("rolled up");
                 rb.velocity = Vector2.up * rollSpeed;
                 direction = 0;
                 break;
             case 4:
-                Debug.Log("rolled down");
                 rb.velocity = Vector2.down * rollSpeed;
                 direction = 0;
                 break;

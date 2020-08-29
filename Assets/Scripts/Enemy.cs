@@ -95,8 +95,13 @@ public class Enemy : MonoBehaviour
         {
             if (Time.time >= nextAttack)
             {
-                isAttacking = true;
-                EnemyAttack();
+                //random chance for enemy to attack player so they're not constantly aggressive
+                var r = Random.Range(0, 100);
+                if (r < 80)
+                {
+                    isAttacking = true;
+                    EnemyAttack();
+                }
                 nextAttack = Time.time + 1f / attackRate;
             }
         }
@@ -299,7 +304,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Music"))
         {
@@ -312,7 +317,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("oh nooo i'm stunned");
         isStunned = true;
         speed = 0;
-    }
+    }*/
 
     void NotStunned()
     {

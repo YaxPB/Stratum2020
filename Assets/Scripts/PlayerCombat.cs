@@ -45,7 +45,7 @@ public class PlayerCombat : MonoBehaviour
     public MovePlayer mp;
     public float regSpeed;
 
-    public float musicCoolDown = 5f;
+    public float musicCoolDown = 5f;    
     private float nextMusic = 0;
 
     //despawn timer lol
@@ -66,27 +66,32 @@ public class PlayerCombat : MonoBehaviour
     public bool nextLevel = false;
 
     CameraShake cs;
+    SpriteRenderer sp;
+
+    private float respawn_time = 3f;
+
+    public bool timeToRestart = false;
 
     private void Awake()
     {
         GameOver = GameObject.Find("GameOver");
+        cs = FindObjectOfType<CameraShake>();
+        ll = FindObjectOfType<LevelLoader>();
+        sp = GetComponentInChildren<SpriteRenderer>();
+        GameOver.SetActive(false);
         Lives = 3;
     }
 
     void Start()
     {
-        dead = false;
         instance = this;
         currentHealth = maxHealth;
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         regSpeed = mp.runSpeed;
         attackDamage = baseDamage;
 
-        GameOver.SetActive(false);
-        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         healthCanvas.SetActive(true);
         berimBeatDownTimer.SetActive(false);
-        cs = FindObjectOfType<CameraShake>();
-        ll = FindObjectOfType<LevelLoader>();
     }
 
     // Update is called once per frame
@@ -149,28 +154,30 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
-        if (!mp.isDodging)
+        if (!dead)
         {
-            mp.runSpeed = 0f;
-            currentHealth -= damage;
+            if (!mp.isDodging)
+            {
+                mp.runSpeed = 0f;
+                currentHealth -= damage;
 
-            anim.SetTrigger("Hurt");
-            healthBar.SetHealth(currentHealth);
+                anim.SetTrigger("Hurt");
+                healthBar.SetHealth(currentHealth);
 
-            cs.shakeDistance = 0.06f;
-            Invoke("ResetShake", 0.2f);
-            Invoke("ResetSpeed", 0.2f);
-        }
+                cs.shakeDistance = 0.06f;
+                Invoke("ResetShake", 0.2f);
+                Invoke("ResetSpeed", 0.2f);
+            }
 
-        if (floatyText != null && currentHealth > 0)
-        {
-            ShowFloatyText(damage);
-        }
+            if (floatyText != null && currentHealth > 0)
+            {
+                ShowFloatyText(damage);
+            }
 
-        if (currentHealth - damage <= 0)
-        {
-            Die();
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -278,10 +285,9 @@ public class PlayerCombat : MonoBehaviour
         {
             instance.enabled = true;
         }
-
     }
 
-    void Respawn()
+    public void Respawn()
     {
         if(Lives > 0)
         {
@@ -293,12 +299,13 @@ public class PlayerCombat : MonoBehaviour
             mp.enabled = true;
 
             Start();
+            StartCoroutine(Respawning());
         }
         else
         {
+            timeToRestart = true;
             GameOver.SetActive(true);
             healthCanvas.SetActive(false);
-            Debug.Log("Game Over foo!");
         }
     }
 
@@ -307,9 +314,21 @@ public class PlayerCombat : MonoBehaviour
     {
         if(collision.tag == "DeathCheck")
         {
-            Debug.Log("touched me");
             nextLevel = true;
         }
+    }
+
+    private IEnumerator Respawning()
+    {
+        float timeElapsed = 0f;
+        float totalTime = respawn_time;
+        while (timeElapsed < totalTime)
+        {
+            timeElapsed += Time.deltaTime;
+            sp.color = Color.Lerp(new Color(1,1,1,0), new Color(1,1,1,1), timeElapsed / totalTime);
+            yield return null;
+        }
+        dead = false;
     }
 }
 

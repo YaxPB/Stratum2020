@@ -56,7 +56,6 @@ public class WaveSpawner : MonoBehaviour
     // Added minX to allow larger "locked" combat area
     private float minX;
 
-    // Access to nextZone animation moved from CombatZone
     public Animator nextArrow;
 
     private void Start()
@@ -70,13 +69,13 @@ public class WaveSpawner : MonoBehaviour
         rightFlames = borderR.GetComponentsInChildren<ParticleSystem>();
         activationBox = GetComponent<Collider2D>();
 
-        foreach(Transform sp in spawnPoints)
+        /*foreach(Transform sp in spawnPoints)
         {
             foreach(Wave leWave in waves)
             {
                 numEnemies += leWave.count;
             }
-        }
+        }*/
         
         cf = FindObjectOfType<CameraFollow>();
         oh = FindObjectOfType<Overhead>();
@@ -213,8 +212,14 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject waveEnemy)
     {
-        Debug.Log("Spawning Enemy: " + waveEnemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        foreach(var enemy in FindObjectsOfType<Enemy>())
+        {
+            if(enemy.transform.position == _sp.position)
+            {
+                _sp.position += transform.right * 2;
+            }
+        }
         Instantiate(waveEnemy, _sp.position, _sp.rotation);
     }
 
@@ -228,12 +233,11 @@ public class WaveSpawner : MonoBehaviour
                 StartCoroutine(SelfDestruct());
                 return;
             }
-            if(oh != null)
+            
+            if (oh != null)
             {
-                // Set the overhead bar ONCE--fixed an issue where it was resetting health for every enemy spawn
                 oh.SetOverhead(this, numWaves);
             }
-
             Debug.Log("Total number of enemies on this floor: " + numEnemies);
             // Immediately spawn first wave upon walking into activationBox
             StartCoroutine(SpawnWave(waves[nextWave])); 
@@ -244,7 +248,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 //manipulate camera values
                 cf.XMinValue = borderL.transform.position.x + 5;
-                cf.XMaxValue = borderR.transform.position.x - 5;
+                //cf.XMaxValue = borderR.transform.position.x - 5;
             }
 
             // Activates magical flame walls to confine player
