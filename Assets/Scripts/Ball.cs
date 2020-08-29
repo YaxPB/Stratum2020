@@ -49,7 +49,5 @@ public class Ball : MonoBehaviour
         {
             Destroy(flight.gameObject);
         }
-        // So even if the ball doesn't collide, will destroy instance after 10f
-        Destroy(flight.gameObject, 10f);
     }
 }
