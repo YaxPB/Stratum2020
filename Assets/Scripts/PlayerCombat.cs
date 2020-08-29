@@ -109,6 +109,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     Attack();
                     nextAttack = Time.time + 1f / attackRate;
+                    AudioManagerSFX.PlaySound("kickEnemy");
                 }
             }
 
@@ -143,7 +144,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 damo.TakeDamage(damo.currentHealth);
             }
-            AudioManagerSFX.PlaySound("kickEnemy");
+            AudioManagerSFX.PlaySound("enemyHIT");
         }
 
         foreach (Collider2D breakable in hitBreakables)

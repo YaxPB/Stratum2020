@@ -143,8 +143,9 @@ public class WaveSpawner : MonoBehaviour
         borderR.enabled = false;
         boxy.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         nextArrow.enabled = false;
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 
@@ -227,7 +228,9 @@ public class WaveSpawner : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
-            if(numWaves <= 0)
+            AudioManagerBG.SwitchTrack("combat");
+            PlayerCombat.instance.gameObject.SendMessage("TimeToFight", true);
+            if (numWaves <= 0)
             {
                 Debug.Log("There are no waves!");
                 StartCoroutine(SelfDestruct());

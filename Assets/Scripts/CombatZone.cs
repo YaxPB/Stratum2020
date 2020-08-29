@@ -14,29 +14,36 @@ public class CombatZone : MonoBehaviour
     public LayerMask enemyLayers;
     public float zoneX;
     public float zoneY;
-    // public Animator nextZone;
+    public Animator nextZone;
     
     void Start()
     {
         healthBar = FindObjectOfType<HealthBar>().GetComponentInParent<Canvas>();
         isCombat = false;
-        // Detect all enemies within a combat area
-        hitEnemies = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, enemyLayers);
-        spawnPoints = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, spawnLayers);
     }
 
     private void Update()
     {
         // Because enemy objects are destroyed, if index 0 is null, it SHOULD be that the zone has been cleared
         // i.e. Check if there are any enemies left in a given combatZone
-        if (hitEnemies.Length <= 0 && spawnPoints.Length <= 0)
+        if (isCombat)
         {
-            Debug.Log("Beep boop");
-            // If all enemies have been defeated, player may progress to next area
-            zoneWall.enabled = false;
-            // nextZone.SetTrigger("allClear");
-            // Might rethink this next line so commented out for now
-            Destroy(this.gameObject, 4f);
+            // Detect all enemies within a combat area
+            hitEnemies = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, enemyLayers);
+            spawnPoints = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, spawnLayers);
+            if (hitEnemies.Length <= 0 && spawnPoints.Length <= 0)
+            {
+                Debug.Log("Beep boop");
+                // If all enemies have been defeated, player may progress to next area
+                zoneWall.enabled = false;
+                if (nextZone != null)
+                {
+                    nextZone.SetTrigger("allClear");
+                }
+
+                // Might rethink this next line so commented out for now
+                Destroy(this.gameObject, 4f);
+            }
         }
     }
 

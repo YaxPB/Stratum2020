@@ -74,8 +74,8 @@ public class AudioManagerBG : MonoBehaviour
                 {
                     temp = theSource.clip;
                     theSource.clip = combatTheme;
+                    theSource.Play();
                 }
-                theSource.Play();
                 break;
             case "berimBAM":
                 theSource.Stop();

@@ -58,8 +58,9 @@ public class AudioManagerSFX : MonoBehaviour
                 // theSource.PlayOneShot(berimBAM);
                 theSource.PlayOneShot(playerHit);
                 theSource.volume = 1f;
-                theSource.clip = enemyHit;
-                theSource.PlayDelayed(0.15f);
+                break;
+            case "enemyHIT":
+                theSource.PlayOneShot(enemyHit);
                 break;
             case "kickLamp":
                 theSource.PlayOneShot(playerHit);
