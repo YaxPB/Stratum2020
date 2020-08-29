@@ -9,7 +9,7 @@ public class CombatZone : MonoBehaviour
     public static bool isCombat;
     private Collider2D[] hitEnemies;
     public Collider2D zoneWall;
-    public LayerMask enemyLayers;
+    public LayerMask spawnLayers;
     public float zoneX;
     public float zoneY;
     public Animator nextZone;
@@ -19,7 +19,7 @@ public class CombatZone : MonoBehaviour
         healthBar = FindObjectOfType<HealthBar>().GetComponentInParent<Canvas>();
         isCombat = false;
         // Detect all enemies within a combat area
-        hitEnemies = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, enemyLayers);
+        hitEnemies = Physics2D.OverlapBoxAll(this.transform.position, new Vector2(zoneX, zoneY), 0, spawnLayers);
     }
 
     //private void Update()

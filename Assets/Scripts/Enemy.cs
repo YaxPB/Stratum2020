@@ -95,8 +95,13 @@ public class Enemy : MonoBehaviour
         {
             if (Time.time >= nextAttack)
             {
-                isAttacking = true;
-                EnemyAttack();
+                //random chance for enemy to attack player so they're not constantly aggressive
+                var r = Random.Range(0, 100);
+                if (r < 80)
+                {
+                    isAttacking = true;
+                    EnemyAttack();
+                }
                 nextAttack = Time.time + 1f / attackRate;
             }
         }
@@ -185,8 +190,8 @@ public class Enemy : MonoBehaviour
         // enemy gameobj is not destroyed, body is left behind for 2 seconds
         this.enabled = false;
 
-        var r = Random.Range(0, 10);
-        if (r < 9)
+        var r = Random.Range(0, 100);
+        if (r > 90)
             drop = Instantiate<HealthPickup>(hp, transform.position + transform.right * 1, transform.rotation);
 
         Destroy(gameObject, 2f);
@@ -299,7 +304,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Music"))
         {
@@ -312,7 +317,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("oh nooo i'm stunned");
         isStunned = true;
         speed = 0;
-    }
+    }*/
 
     void NotStunned()
     {

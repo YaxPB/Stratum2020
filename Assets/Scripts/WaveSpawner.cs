@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public string name;
-        public Transform enemy;
+        public GameObject enemy;
         public int count;
         public float rate;
     }
@@ -56,7 +56,6 @@ public class WaveSpawner : MonoBehaviour
     // Added minX to allow larger "locked" combat area
     private float minX;
 
-    // Access to nextZone animation moved from CombatZone
     public Animator nextArrow;
 
     private void Start()
@@ -70,13 +69,13 @@ public class WaveSpawner : MonoBehaviour
         rightFlames = borderR.GetComponentsInChildren<ParticleSystem>();
         activationBox = GetComponent<Collider2D>();
 
-        foreach(Transform sp in spawnPoints)
+        /*foreach(Transform sp in spawnPoints)
         {
             foreach(Wave leWave in waves)
             {
                 numEnemies += leWave.count;
             }
-        }
+        }*/
         
         cf = FindObjectOfType<CameraFollow>();
         oh = FindObjectOfType<Overhead>();
@@ -86,7 +85,9 @@ public class WaveSpawner : MonoBehaviour
             Debug.LogError("no spawn points foo");
         }
 
+        // Set waveCountDown to the value of timeBetweenWaves at the start
         waveCountDown = timeBetweenWaves;
+        // Store the camFollow min and max x-values for later reference
         maxX = cf.XMaxValue;
         minX = cf.XMinValue;
     }
@@ -96,29 +97,37 @@ public class WaveSpawner : MonoBehaviour
         // Need a way to check if all enemies in a given "zone" are defeated
         if (allWavesComplete)
         {
+            // Enables the nextZone sprite and animation
             nextArrow.enabled = true;
             nextArrow.SetTrigger("allClear");
+            // Coroutine that gradually destroys completed combatZones to prevent accidental repetition or NullReferenceExceptions
             StartCoroutine(SelfDestruct());
             return;
         }
 
+        // Once wave spawning is triggered
         if (beginTheWaves)
         {
             if (state == SpawnState.WAITING)
             {
+                // Check if all enemies in a given wave are defeated/still exist
                 if (!EnemyIsAlive())
                 {
+                    // Signal that the wave has been completed
                     WaveCompleted();
-                }
-            }
+                } // if all enemies in a given wave are defeated
+            } // if current spawn state is WAITING
 
+            // Added second conditional check to consolidate multiple ifs
             if (waveCountDown <= 0 && completed)
             {
                 if (state != SpawnState.SPAWNING)
                 {
+                    // Make sure any currently running Coroutines stop before spawning a new wave
                     StopAllCoroutines();
+                    // Spawn the next wave of enemies if there are any left
                     StartCoroutine(SpawnWave(waves[nextWave]));
-                }
+                } // if current spawn state is SPAWNING
             }
 
             if (state == SpawnState.COUNTING)
@@ -136,13 +145,15 @@ public class WaveSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
         nextArrow.enabled = false;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     void WaveCompleted()
     {
         Debug.Log("wave completed");
+        // Reset the waveCountDown timer
         waveCountDown = timeBetweenWaves;
+        // represents the state of the current wave (completed or not)
         completed = true;
 
         // Decrement every time a wave is completed
@@ -153,6 +164,7 @@ public class WaveSpawner : MonoBehaviour
         if(numWaves <= 0)
         {
             allWavesComplete = true;
+            // Reset CamFollow max and min x-coordinates
             cf.XMaxValue = maxX;
             cf.XMinValue = minX;
             return;
@@ -161,20 +173,19 @@ public class WaveSpawner : MonoBehaviour
 
     bool EnemyIsAlive()
     {
-        //searchCountDown = 1f;
+        // Removed timer that was preventing the Enemy check
         if (GameObject.FindGameObjectWithTag("Enemy") == null)
         {
             Debug.Log("all done");
-
             return false;
-        }
+        } // if there are no more active Enemy objects in the current scene
         return true;
     }
 
     IEnumerator SpawnWave(Wave _wave)
     {
+        // Reset completed every time a new wave is spawning
         completed = false;
-        // foos.SetActive(false);
 
         Debug.Log("Spawning wave:" + _wave.name);
         state = SpawnState.SPAWNING;
@@ -187,29 +198,48 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(1f / _wave.rate);
             }
         }
+        // So the waveCountDown knows when to start counting down
         state = SpawnState.WAITING;
+        // Prevents an out of bounds index exception
         if(nextWave + 1 >= waves.Length)
         {
             yield break;
         }
+        // Only increment nextWave if there is another wave to increment by
         nextWave++;
         yield break;
     }
 
-    void SpawnEnemy(Transform _enemy)
+    void SpawnEnemy(GameObject waveEnemy)
     {
-        Debug.Log("Spawning Enemy: " + _enemy.name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        foreach(var enemy in FindObjectsOfType<Enemy>())
+        {
+            if(enemy.transform.position == _sp.position)
+            {
+                _sp.position += transform.right * 2;
+            }
+        }
+        Instantiate(waveEnemy, _sp.position, _sp.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player") && !allWavesComplete)
         {
-            if(oh != null)
+            if(numWaves <= 0)
+            {
+                Debug.Log("There are no waves!");
+                StartCoroutine(SelfDestruct());
+                return;
+            }
+            
+            if (oh != null)
+            {
                 oh.SetOverhead(this, numWaves);
+            }
             Debug.Log("Total number of enemies on this floor: " + numEnemies);
+            // Immediately spawn first wave upon walking into activationBox
             StartCoroutine(SpawnWave(waves[nextWave])); 
             borderL.enabled = true;     // Turns on left wall of combat area
             borderR.enabled = true;     // Turns on right wall of combat area
@@ -218,7 +248,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 //manipulate camera values
                 cf.XMinValue = borderL.transform.position.x + 5;
-                cf.XMaxValue = borderR.transform.position.x - 5;
+                //cf.XMaxValue = borderR.transform.position.x - 5;
             }
 
             // Activates magical flame walls to confine player
@@ -230,7 +260,8 @@ public class WaveSpawner : MonoBehaviour
             {
                 ps.Play();
             }
-
+            // Disables activationBox so we don't accidentally re-trigger the WaveSpawner
+            // (Also handled through SelfDestruct Coroutine)
             activationBox.enabled = false;
             beginTheWaves = true;
         }

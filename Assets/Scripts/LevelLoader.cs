@@ -35,7 +35,7 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         //change index after adding credits and comic
-        if (levelIndex <= 6)
+        if (levelIndex <= 4)
         {
             if (mp != null)
             {

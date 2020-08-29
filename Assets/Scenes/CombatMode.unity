@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1032,6 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  hp: {fileID: 0}
 --- !u!1 &283541073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1080961523}
   dialogueText: {fileID: 28946117}
+  responseText: {fileID: 0}
   animator: {fileID: 156618872}
 --- !u!4 &283541075
 Transform:
@@ -1885,6 +1887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  hp: {fileID: 0}
 --- !u!61 &615903594
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2816,6 +2819,8 @@ MonoBehaviour:
     name: Mysterious Goo
     sentences:
     - 'Huh. A trail of goo... wonder what could''ve left that? '
+    responses: []
+  prompt: {fileID: 0}
 --- !u!58 &961190548
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2869,7 +2874,7 @@ Transform:
   - {fileID: 1850799818}
   - {fileID: 961190546}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994080847
 GameObject:
@@ -3079,6 +3084,8 @@ MonoBehaviour:
     - Man, I lava being in this game. This game gets me HEATED!
     - Damn I am on FIRE!! Hahahahahahahahahahahahahahahahahahahahahahahahahahaha--
     - '--hahaha-oh shit I am LITERALLY ON FIRE!! D:'
+    responses: []
+  prompt: {fileID: 0}
 --- !u!61 &1028077762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3628,6 +3635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  hp: {fileID: 0}
 --- !u!61 &1155499420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3882,6 +3890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  hp: {fileID: 0}
 --- !u!61 &1275898845
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3977,12 +3986,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!20 &1287740739 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5312570382747571558, guid: 9c9848dc1c602b140a95eb3b6b55421d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5312570383741700133}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290214931
 GameObject:
   m_ObjectHideFlags: 0
@@ -4038,7 +4041,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1298612917
 GameObject:
@@ -4285,7 +4288,7 @@ Transform:
   m_Children:
   - {fileID: 1624887043}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1454591362
 GameObject:
@@ -4331,7 +4334,7 @@ Transform:
   - {fileID: 664682048}
   - {fileID: 994080848}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478297961
 GameObject:
@@ -4680,7 +4683,6 @@ GameObject:
   - component: {fileID: 1591565859}
   - component: {fileID: 1591565858}
   - component: {fileID: 1591565861}
-  - component: {fileID: 1591565862}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5096,6 +5098,8 @@ MonoBehaviour:
     name: Mysterious Glob
     sentences:
     - An even bigger puddle of goo... must be getting closer!
+    responses: []
+  prompt: {fileID: 0}
 --- !u!58 &1652383825
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5623,7 +5627,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1850799816
 GameObject:
@@ -5724,6 +5728,8 @@ MonoBehaviour:
     name: Goo-ish Speck
     sentences:
     - That's a facinating color... what is it?
+    responses: []
+  prompt: {fileID: 0}
 --- !u!58 &1850799820
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6254,6 +6260,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6313008895758306910, guid: 7ffc8f7a2c89e2442872926b1d9a10e0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6415657506124733843, guid: 7ffc8f7a2c89e2442872926b1d9a10e0,
         type: 3}
       propertyPath: m_Name
@@ -6439,7 +6450,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1287740739}
+      objectReference: {fileID: 0}
     - target: {fileID: 8363089308307078202, guid: ef9b295b86719a14e8c731ee45038e21,
         type: 3}
       propertyPath: m_SizeDelta.x
