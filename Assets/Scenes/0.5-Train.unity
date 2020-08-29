@@ -4873,7 +4873,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &205322202
 GameObject:
@@ -11185,7 +11185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &952198964
 GameObject:
@@ -15939,7 +15939,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1001 &995554925
 PrefabInstance:
@@ -15971,7 +15971,7 @@ PrefabInstance:
     - target: {fileID: 1556883728378895486, guid: c7a79021a28697f4f8a3f0f64cbd910d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.4296875
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1556883728378895486, guid: c7a79021a28697f4f8a3f0f64cbd910d,
         type: 3}
@@ -16703,6 +16703,7 @@ MonoBehaviour:
     - -sigh- That's Riley. They're last year's champion and made history as Stratum's
       first single-armed champion. They're also forever too cool for me.
     - Riley had the best biceps. Mm... anyway.
+    responses: []
   prompt: {fileID: 1112906423}
 --- !u!61 &1391237202
 BoxCollider2D:
@@ -16825,6 +16826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1767638003}
   dialogueText: {fileID: 1767638002}
+  responseText: {fileID: 0}
   animator: {fileID: 1767638004}
 --- !u!4 &1416738143
 Transform:
@@ -21739,7 +21741,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1595008469
 GameObject:
@@ -22669,6 +22671,7 @@ MonoBehaviour:
     - It's why I'm trying so hard to get my voice in The Headquarters. I'll prove
       them wrong. And while being pro-tournament in Cineria is... unpopular... I'll
       take my ticket out, thanks.
+    responses: []
   prompt: {fileID: 1112906423}
 --- !u!61 &2009255648
 BoxCollider2D:

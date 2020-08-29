@@ -126,7 +126,6 @@ public class MovePlayer : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
-
         }
 
         transform.position = transform.position + movement * Time.deltaTime;
