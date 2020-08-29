@@ -14,7 +14,7 @@ public class CombatZone : MonoBehaviour
     public LayerMask enemyLayers;
     public float zoneX;
     public float zoneY;
-    public Animator nextZone;
+    // public Animator nextZone;
     
     void Start()
     {
@@ -34,7 +34,7 @@ public class CombatZone : MonoBehaviour
             Debug.Log("Beep boop");
             // If all enemies have been defeated, player may progress to next area
             zoneWall.enabled = false;
-            nextZone.SetTrigger("allClear");
+            // nextZone.SetTrigger("allClear");
             // Might rethink this next line so commented out for now
             Destroy(this.gameObject, 4f);
         }

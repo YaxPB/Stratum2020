@@ -239,7 +239,7 @@ public class PlayerCombat : MonoBehaviour
         {
             Debug.Log("MUSIC!");
         }
-
+        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
         anim.SetBool("Berimbau",true);
         StartCoroutine(BerimBeats());
         berimBeatDownTimer.SetActive(true);
@@ -250,9 +250,6 @@ public class PlayerCombat : MonoBehaviour
     {
         isPlaying = true;
         AudioManagerBG.SwitchTrack("berimBAM");
-
-        GameObject flight = Instantiate(notePrefab, noteStart.position, noteStart.rotation, noteStart);
-        berimbauRange = flight.GetComponent<CircleCollider2D>();
 
         // Freeze the player (momentarily), play some music, button prompts
         MovePlayer.instance.canMove = false;

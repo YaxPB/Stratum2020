@@ -37,7 +37,7 @@ public class WaveSpawner : MonoBehaviour
     private bool beginTheWaves;
 
     public GameObject boxy;
-    public GameObject foos;
+    // public GameObject foos;
     Overhead oh;
     CameraFollow cf;
 
