@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4967,7 +4967,7 @@ PrefabInstance:
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: XMinValue
-      value: -4.181221
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
@@ -4977,7 +4977,7 @@ PrefabInstance:
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: YMinValue
-      value: -3.9
+      value: -3.33
       objectReference: {fileID: 0}
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
@@ -4987,7 +4987,7 @@ PrefabInstance:
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: XMaxValue
-      value: 0.3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
@@ -4997,7 +4997,7 @@ PrefabInstance:
     - target: {fileID: 3713805862371695865, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: YMaxValue
-      value: -1.9
+      value: -1.88
       objectReference: {fileID: 0}
     - target: {fileID: 6298649509532807043, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
@@ -5007,12 +5007,12 @@ PrefabInstance:
     - target: {fileID: 6298649509532807068, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.1
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 6298649509532807068, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.93
+      value: -1.88
       objectReference: {fileID: 0}
     - target: {fileID: 6298649509532807068, guid: 1d8b94a170851c241aa1cd3fa13f80f5,
         type: 3}
@@ -5071,87 +5071,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d8b94a170851c241aa1cd3fa13f80f5, type: 3}
---- !u!1 &363711357
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 363711358}
-  - component: {fileID: 363711359}
-  m_Layer: 0
-  m_Name: Standalone2.5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &363711358
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363711357}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.14, y: 5.24, z: 3.6132812}
-  m_LocalScale: {x: 3.0493748, y: 2, z: 1}
-  m_Children: []
-  m_Father: {fileID: 806082057}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &363711359
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363711357}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 46c88b2b50912d44b99dbd3a18307f79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 7.2, y: 2.83}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &373561691
 GameObject:
   m_ObjectHideFlags: 0
@@ -5982,13 +5901,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806082056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.2748814, y: -1.97, z: -3.6132812}
+  m_LocalPosition: {x: 5.69, y: -2, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 577346555}
   - {fileID: 520297196}
   - {fileID: 1609712297}
-  - {fileID: 363711358}
   - {fileID: 815818664}
   - {fileID: 1719011836}
   - {fileID: 1934922193}
@@ -6107,7 +6025,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 806082057}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &815818665
 SpriteRenderer:
@@ -16535,12 +16453,14 @@ MonoBehaviour:
   theDialogue:
     name: Poster
     sentences:
-    - -sigh- That's Riley. They're last year's champion and made history as Stratum's
-      first single-armed champion. They're also forever too cool for me.
+    - -sigh- That's Riley.  They're last year's champion and made history as Stratum's
+      first single-armed champion.
+    - They're also forever too cool for me.
     - "Their victory made the papers, but Riley would\u2019ve set someone aflame
       if they knew Stratum\u2019s been referring to their flaming forearm as a \u201Cmissing\u201D
-      arm. I hope they\u2019re up there pointing their flame at Stratum normies and
-      demanding justice for subspees as I speak."
+      arm."
+    - "I hope they\u2019re up there pointing their flame at Stratum normies and demanding
+      justice for subspees as I speak."
     - Riley had the best biceps. Mm... anyway.
     responses: []
   prompt: {fileID: 1112906423}
@@ -16628,7 +16548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391237200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.77, y: -4.2, z: 0}
+  m_LocalPosition: {x: -17.97, y: -4.15, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children: []
   m_Father: {fileID: 766714961}
@@ -16665,7 +16585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1767638003}
   dialogueText: {fileID: 1767638002}
-  responseText: {fileID: 0}
+  responseText: {fileID: 1600714034}
   animator: {fileID: 1767638004}
 --- !u!4 &1416738143
 Transform:
@@ -21621,6 +21541,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1600714034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2172726384463617229, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1767638001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1609712296
 GameObject:
   m_ObjectHideFlags: 0
@@ -21880,7 +21812,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 806082057}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1719011837
 SpriteRenderer:
@@ -22264,12 +22196,27 @@ PrefabInstance:
     - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -66
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 70.403
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626390, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -22281,6 +22228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_VerticalOverflow
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329699566626391, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700490797009, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -22300,12 +22252,27 @@ PrefabInstance:
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 540.9949
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 137.64209
+      value: 142
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148329700634698080, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
         type: 3}
@@ -22313,6 +22280,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 165511c4f8a82e444a34cb833e2de192,
         type: 3}
+    - target: {fileID: 2148329700634698081, guid: 42be39c924e1f684f82f5ef4fff6a28f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42be39c924e1f684f82f5ef4fff6a28f, type: 3}
 --- !u!114 &1767638002 stripped
@@ -22455,7 +22427,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 806082057}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1934922194
 SpriteRenderer:
@@ -22555,16 +22527,18 @@ MonoBehaviour:
   theDialogue:
     name: Graffiti
     sentences:
-    - "This movement for equal rights for the subspirited has been around for as
-      long as I can remember. Cinerians are tired of being policed, shackled, segregated,
-      and gatekept. This can\u2019t be how our story ends."
+    - 'This movement for equal rights for the subspirited has been around for as
+      long as I can remember. '
+    - "Cinerians are tired of being policed, shackled, segregated, and gatekept.
+      This can\u2019t be how our story ends."
     - "Stratum still holds this age-old belief that subspees are spiritually imbalanced
-      because our magic \u201Cleaked\u201D from our minds into our bodies. We\u2019re
-      not the super-minded normies Stratum loves and expects. Our powers are unpredictable,
-      and they don\u2019t like \"unpredictable.\""
-    - "But I mean, doesn't Stratum give us a way out? My Grandma\u2019s victory shows
-      that this tournament\u2019s our chance to prove ourselves, and I dunno about
-      the rest of \u2018em, but I\u2019ll take my ticket out, thanks."
+      because our magic \u201Cleaked\u201D from our minds into our bodies. "
+    - "We\u2019re not the super-minded normies Stratum loves and expects. Our powers
+      are unpredictable, and they don\u2019t like \"unpredictable.\""
+    - 'But I mean, doesn''t Stratum give us a way out? '
+    - "My Grandma\u2019s victory shows that this tournament\u2019s our chance to
+      prove ourselves, and I dunno about the rest of \u2018em, but I\u2019ll take
+      my ticket out, thanks."
     responses: []
   prompt: {fileID: 1112906423}
 --- !u!61 &2009255648
