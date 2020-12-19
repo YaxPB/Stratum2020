@@ -20081,6 +20081,30 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 19816608, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19816608, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19816608, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19816608, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19829342, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19829342, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 19845180, guid: 14a80385bc51aef4b860cebf3aae7e24, type: 3}
       propertyPath: ShapeModule.m_Rotation.x
       value: 270
