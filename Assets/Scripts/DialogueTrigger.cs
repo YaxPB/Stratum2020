@@ -7,7 +7,7 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue theDialogue;
     private bool withinRange;
     public GameObject prompt;
-    // private bool hasStarted;
+    public bool hasExpandable;
 
     private void Start()
     {
@@ -26,6 +26,11 @@ public class DialogueTrigger : MonoBehaviour
 
             // Triggers the start of a conversation
             TriggerDialogue();
+
+            if (hasExpandable)
+            {
+                // Trigger the Expandables script
+            }
         }
 
     }
