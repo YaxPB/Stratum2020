@@ -8,10 +8,13 @@ public class DialogueTrigger : MonoBehaviour
     private bool withinRange;
     public GameObject prompt;
     public bool hasExpandable;
+    private bool isBig;
+    public Expandables expandThis;
 
     private void Start()
     {
         prompt.SetActive(false);
+        isBig = false;
     }
 
     public void Update()
@@ -26,6 +29,22 @@ public class DialogueTrigger : MonoBehaviour
 
             // Triggers the start of a conversation
             TriggerDialogue();
+
+        }
+
+        if (hasExpandable && Input.GetKeyDown(KeyCode.E))
+        {
+            if(isBig)
+            {
+                expandThis.ShrinkTheThing();
+                isBig = false;
+            }
+            else
+            {
+                expandThis.ExpandTheThing();
+                isBig = true;
+            }
+
         }
 
     }
@@ -50,15 +69,18 @@ public class DialogueTrigger : MonoBehaviour
             withinRange = false;
             //Debug.Log("Now exiting interactable area.");
         } // If the player exits the isTrigger collider of an interactable object
+        expandThis.ShrinkTheThing();
+        isBig = false;
     }
 
     public void TriggerDialogue()
     {
-        if (hasExpandable)
-        {
-            FindObjectOfType<Expandables>().ExpandTheThing();
-        }
         //Debug.Log("Dialogue Triggered.");
         FindObjectOfType<DialogueManager>().StartDialogue(theDialogue);
+    }
+
+    public void ExpandImage()
+    {
+        FindObjectOfType<Expandables>().ExpandTheThing();
     }
 }
