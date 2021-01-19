@@ -17055,6 +17055,7 @@ MonoBehaviour:
     - Riley had the best biceps. Mm... anyway.
     responses: []
   prompt: {fileID: 1112906423}
+  hasExpandable: 1
 --- !u!61 &1391237202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17139,7 +17140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391237200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.9, y: -3.9, z: 0}
+  m_LocalPosition: {x: -18, y: -4.125, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children: []
   m_Father: {fileID: 766714961}
@@ -22900,6 +22901,7 @@ GameObject:
   - component: {fileID: 1963026295}
   - component: {fileID: 1963026294}
   - component: {fileID: 1963026298}
+  - component: {fileID: 1963026299}
   m_Layer: 0
   m_Name: ExpandablePoster
   m_TagString: Untagged
@@ -23006,6 +23008,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1963026299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963026293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2ad811540f2c840b0b79ffb8611711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandableAnimator: {fileID: 1963026298}
 --- !u!1 &1984083953
 GameObject:
   m_ObjectHideFlags: 0
@@ -23134,6 +23149,7 @@ MonoBehaviour:
       my ticket out, thanks."
     responses: []
   prompt: {fileID: 1112906423}
+  hasExpandable: 0
 --- !u!61 &2009255648
 BoxCollider2D:
   m_ObjectHideFlags: 0

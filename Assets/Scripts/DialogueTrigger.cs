@@ -26,11 +26,6 @@ public class DialogueTrigger : MonoBehaviour
 
             // Triggers the start of a conversation
             TriggerDialogue();
-
-            if (hasExpandable)
-            {
-                // Trigger the Expandables script
-            }
         }
 
     }
@@ -59,6 +54,10 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        if (hasExpandable)
+        {
+            FindObjectOfType<Expandables>().ExpandTheThing();
+        }
         //Debug.Log("Dialogue Triggered.");
         FindObjectOfType<DialogueManager>().StartDialogue(theDialogue);
     }
